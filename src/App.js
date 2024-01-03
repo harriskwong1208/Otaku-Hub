@@ -5,7 +5,7 @@ import { useState,useEffect } from 'react';
 
 function App() {
 
-  const [users,setUsers] = useState({});
+  const [users,setUsers] = useState([]);
   const [isLoading,setIsLoading] = useState(false);
 
   const [error,setError] = useState(null);
@@ -16,7 +16,7 @@ function App() {
       try{
         const response = await axios.get('http://localhost:5000/users');
         const data = response.data;
-        setUsers(data);
+        setUsers(data.users);
         setIsLoading(false);
       }catch(e){
         setError(e);
@@ -53,7 +53,7 @@ function App() {
         </a>
         
         <div>All users and their emails:</div>
-        {users.users.map((user)=>(
+        {users.map((user)=>(
           <div key={user._id}>User: {user.name} email: {user.email}</div>
         ))}
       </header>
