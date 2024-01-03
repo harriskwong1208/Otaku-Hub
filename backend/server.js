@@ -5,6 +5,9 @@ const router = require("./routes/user-routes");
 const mongoose = require("mongoose");
 const app = express();
 
+var cors = require('cors');
+app.use(cors());
+
 //middleware function to convert json string to json object 
 app.use(express.json());
 
