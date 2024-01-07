@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
-import { useState,useEffect } from 'react';
+// import axios from 'axios';
+// import { useState,useEffect } from 'react';
 import HomePage from './components/HomePage';
-import Navbar from './components/navbar';
+// import Navbar from './components/navbar';
 function App() {
 
   //Mock prop to to pass to HomePage component for unit testing
