@@ -2,62 +2,28 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import { useState,useEffect } from 'react';
-
+import HomePage from './components/HomePage';
+import Navbar from './components/navbar';
 function App() {
 
-  const [users,setUsers] = useState([]);
-  const [isLoading,setIsLoading] = useState(false);
-
-  const [error,setError] = useState(null);
-
-  useEffect(()=>{
-    const getUsers = async()=>{
-      setIsLoading(true)
-      try{
-        const response = await axios.get('http://localhost:5000/users');
-        const data = response.data;
-        setUsers(data.users);
-        setIsLoading(false);
-      }catch(e){
-        setError(e);
-        setIsLoading(false);
-      }      
-    }
-
-    getUsers();
-  },{});
-
-
-  if(isLoading){
-    return(<div className="App">Loading......</div>)
-  }
-  if(error){
-    console.log(error);
-  }
+  //Mock prop to to pass to HomePage component for unit testing
+  const homeitems = [
+    {id: 1, title:"One Piece", completed: false},
+    {id: 2, title:"Bleach", completed: false},
+    {id: 3, title:"Naruto", completed: true}
+  ];
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React !!
-        </a>
-        
-        <div>All users and their emails:</div>
-        {users.map((user)=>(
-          <div key={user._id}>User: {user.name} email: {user.email}</div>
-        ))}
-      </header>
-    </div>
+
+    <>
+      {/* <Navbar/> */}
+      {homeitems.map((item,index)=>{
+        return(<HomePage key={index} item={item}/>)
+      })}
+    </>
+
+
   );
 }
 

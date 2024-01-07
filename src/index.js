@@ -5,14 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Navbar from './components/navbar';
+import HomePage from './components/HomePage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Navbar/>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App/>}/>
+        {/* <Route path='/' element={<HomePage/>}/> */}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
