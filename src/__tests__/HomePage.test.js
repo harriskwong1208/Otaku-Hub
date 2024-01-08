@@ -1,7 +1,6 @@
 import {render,screen,cleanup} from '@testing-library/react'
 import HomePage from '../components/HomePage';
-
-
+import renderer from 'react-test-renderer';
 afterEach(()=>{
     cleanup();
 })
@@ -24,3 +23,11 @@ test('should render completed homepage component',()=>{
     expect(homepageElement).toHaveTextContent('Naruto');
     expect(homepageElement).toContainHTML('strike');
 })
+
+//creates a snapshot of the code
+//if anything changes, it will fail the check and show what
+//was changed
+test('matches snapshot',()=>{
+    const item = {id: 3, title:"Naruto", completed: true}
+    const tree = renderer.create(<HomePage item={item}/>).toJSON();
+});
