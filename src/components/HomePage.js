@@ -1,16 +1,15 @@
 import '../styles/HomePage.css';
+import { useEffect } from 'react';
 
-function HomePage({item}){
-    const {id,title,completed} =item;
-    const h1 = <h1>{title}</h1>
-    const text = completed ? <strike>{h1}</strike>: h1;
+function HomePage(){
+
+
+
     return(
-        <div data-testid={`homepage-${id}`} id="header">
-         
-            {text}
+        <div className='homepage'>
+            HomePage
         </div>
-
-        )
+    )
 }
 
 export default HomePage;
