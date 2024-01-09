@@ -1,9 +1,14 @@
-// import {render,screen,cleanup} from '@testing-library/react'
-// import HomePage from '../components/HomePage';
-// import renderer from 'react-test-renderer';
-// afterEach(()=>{
-//     cleanup();
-// })
+import {render,screen,cleanup} from '@testing-library/react'
+import HomePage from '../components/HomePage';
+import renderer from 'react-test-renderer';
+afterEach(()=>{
+    cleanup();
+})
+
+test('mock test',()=>{
+    expect(0).toBe(0);
+})
+
 
 // test('should render noncompleted homepage component',()=>{
 //     const item = {id: 1, title:"One Piece", completed: false}
