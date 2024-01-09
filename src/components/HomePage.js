@@ -1,5 +1,5 @@
 import '../styles/HomePage.css';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 function HomePage(){
 
