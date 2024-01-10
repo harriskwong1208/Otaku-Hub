@@ -8,12 +8,14 @@ function HomePage(){
     const [isLoading, setIsLoading] = useState(false);
     const [error,setError] = useState(null);
 
+    useEffect(()=>{
+        document.title = 'OtakuHub|Home'
+    },[])
 
    async function getAnime(){
         if(animeSearch.length != 0){
             setIsLoading(true);            
             try{
-                
                 const response = await fetch(`https://api.jikan.moe/v4/anime?q=${animeSearch}&sfw`);
                 const data = await response.json();
                 setAnimeList(data);
