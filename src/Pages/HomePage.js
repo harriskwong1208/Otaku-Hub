@@ -16,7 +16,7 @@ function HomePage(){
         if(animeSearch.length != 0){
             setIsLoading(true);            
             try{
-                const response = await fetch(`https://api.jikan.moe/v4/anime?q=${animeSearch}&sfw`);
+                const response = await fetch(`https://api.jikan.moe/v4/anime?q=${animeSearch}&sfw&limit=15`);
                 const data = await response.json();
                 setAnimeList(data);
                 setIsLoading(false);
@@ -33,10 +33,9 @@ function HomePage(){
 
     return(
         <div className='homepage'>
-            <input placeholder='Enter anime name' id='animesearch' onChange={e=>setAnimeSearch(e.target.value)}></input>
-            <button id='animesearch-btn'> submit</button>
-            {animeSearch.length != 0 ? <HomeAnimeDisplay animeSearch={animeSearch}/>
-                : <HomeDefaultDisplay/> }
+            <input placeholder='Enter anime name' id='animesearch'  onChange={e=>setAnimeSearch(e.target.value)}></input>
+            <button id='animesearch-btn' onClick={()=> getAnime()}> submit</button>
+            <HomeAnimeDisplay animeList={animeList}/>
         </div>
     )
 }

@@ -1,0 +1,7 @@
+.animePic{
+    border-radius: 30px;
+    width: 2%;
+    object-fit: contain;
+    object-position: center;
+    vertical-align: middle;
+}
