@@ -1,9 +1,8 @@
 const HomeAnimeDisplay=({animeSearch})=>{
-   
 
     return(
         <div>
-            {animeSearch}asdasd
+            {animeSearch}
         </div>
     )
 }

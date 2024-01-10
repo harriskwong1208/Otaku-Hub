@@ -1,7 +1,7 @@
 import '../styles/HomePage.css';
 import { useEffect ,useState } from 'react';
 import HomeAnimeDisplay from '../components/HomeAnimeDisplay';
-
+import HomeDefaultDisplay from '../components/HomeDefaultDisplay';
 function HomePage(){
     const [animeSearch,setAnimeSearch] = useState('');
     const [animeList,setAnimeList] = useState({});
@@ -10,29 +10,31 @@ function HomePage(){
 
 
    async function getAnime(){
-        setIsLoading(true);
-        try{
-            
-            const response = await fetch(`https://api.jikan.moe/v4/anime?q=${animeSearch}&sfw`);
-            const data = await response.json();
-            setAnimeList(data);
-            setIsLoading(false);
-            console.log(data);
-        }catch(e){
-            setIsLoading(false);
-            setError(e);
-            console.log(e);
+        if(animeSearch.length != 0){
+            setIsLoading(true);            
+            try{
+                
+                const response = await fetch(`https://api.jikan.moe/v4/anime?q=${animeSearch}&sfw`);
+                const data = await response.json();
+                setAnimeList(data);
+                setIsLoading(false);
+                console.log(data);
+            }catch(e){
+                setIsLoading(false);
+                setError(e);
+                console.log(e);
+            }
         }
-
    }
+
 
 
     return(
         <div className='homepage'>
             <input placeholder='Enter anime name' id='animesearch' onChange={e=>setAnimeSearch(e.target.value)}></input>
             <button id='animesearch-btn'> submit</button>
-            {/* <div id='animeDisplay'>{animeSearch}</div> */}
-            <HomeAnimeDisplay animeSearch={animeSearch}/>
+            {animeSearch.length != 0 ? <HomeAnimeDisplay animeSearch={animeSearch}/>
+                : <HomeDefaultDisplay/> }
         </div>
     )
 }
