@@ -42,7 +42,26 @@ import {CognitoUserPool, CognitoUser, AuthenticationDetails,} from "amazon-cogni
   }
   
   export function signIn(username, password) {
-    // Sign in implementation
+    return new Promise((resolve, reject) => {
+        const authenticationDetails = new AuthenticationDetails({
+          Username: username,
+          Password: password,
+        })
+    
+        const cognitoUser = new CognitoUser({
+          Username: username,
+          Pool: userPool,
+        })
+    
+        cognitoUser.authenticateUser(authenticationDetails, {
+          onSuccess: (result) => {
+            resolve(result)
+          },
+          onFailure: (err) => {
+            reject(err)
+          },
+        })
+      })
   }
   
   export function forgotPassword(username) {
