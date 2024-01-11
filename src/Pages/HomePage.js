@@ -1,7 +1,9 @@
 import '../styles/HomePage.css';
 import { useEffect ,useState } from 'react';
 import HomeAnimeDisplay from '../components/HomeAnimeDisplay';
-import HomeDefaultDisplay from '../components/HomeDefaultDisplay';
+// import HomeDefaultDisplay from '../components/HomeDefaultDisplay';
+
+
 function HomePage(){
     const [animeSearch,setAnimeSearch] = useState('');
     const [animeList,setAnimeList] = useState({});
