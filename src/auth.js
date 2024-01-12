@@ -73,7 +73,10 @@ import {CognitoUserPool, CognitoUser, AuthenticationDetails,} from "amazon-cogni
   }
   
   export function signOut() {
-    // Sign out implementation
+    const cognitoUser = userPool.getCurrentUser()
+    if (cognitoUser) {
+      cognitoUser.signOut()
+    }
   }
   
   //checks if there's a currently authenticated user. If so, it fetches the user's session and attributes, 

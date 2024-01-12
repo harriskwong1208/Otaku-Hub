@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { getCurrentUser } from "../auth"
+import { getCurrentUser,signOut } from "../auth"
+
 
 export default function UserProfile() {
   const [user, setUser] = useState()
@@ -27,6 +28,8 @@ export default function UserProfile() {
           {/* Display any other user data here */}
         </div>
       )}
+
+      <button onClick={signOut}>Sign Out</button>
     </div>
   )
 }

@@ -6,25 +6,26 @@ import SignUp from './Pages/SignUp';
 import ConfirmSignUp from './Pages/ConfirmSignUp';
 import Login from './Pages/LogIn';
 import UserProfile from './Pages/UserProfile';
+import { AuthProvider } from './components/AuthContext';
 function App() {
 
 
 
   return (
-
-    <div className='app'>
-      <Navbar/>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<HomePage/>}/>
-          <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/confirm-sign-up' element={<ConfirmSignUp/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/profile' element={< UserProfile/>}/>
-        </Routes>
-      </BrowserRouter>
-    </div>
-
+    <AuthProvider>
+      <div className='app'>
+        <Navbar/>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<HomePage/>}/>
+            <Route path='/signup' element={<SignUp/>}/>
+            <Route path='/confirm-sign-up' element={<ConfirmSignUp/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/profile' element={< UserProfile/>}/>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </AuthProvider>
   );
 }
 
