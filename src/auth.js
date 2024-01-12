@@ -76,10 +76,66 @@ import {CognitoUserPool, CognitoUser, AuthenticationDetails,} from "amazon-cogni
     // Sign out implementation
   }
   
+  //checks if there's a currently authenticated user. If so, it fetches the user's session and attributes, 
+  // converting the attributes into a more convenient JavaScript object. 
+  //This object contains the user's username, email, and sub (user's unique id)
+ // Can now use this function in any component that needs to fetch user's id
   export function getCurrentUser() {
-    // Get current user implementation
+    return new Promise((resolve, reject) => {
+        const cognitoUser = userPool.getCurrentUser()
+    
+        if (!cognitoUser) {
+          reject(new Error("No user found"))
+          return
+        }
+    
+        cognitoUser.getSession((err, session) => {
+          if (err) {
+            reject(err)
+            return
+          }
+          cognitoUser.getUserAttributes((err, attributes) => {
+            if (err) {
+              reject(err)
+              return
+            }
+            const userData = attributes.reduce((acc, attribute) => {
+              acc[attribute.Name] = attribute.Value
+              return acc
+            }, {})
+    
+            resolve({ ...userData, username: cognitoUser.username })
+          })
+        })
+      })
   }
   
+  //Retuns an object that contains user's access and id tokens
+  //See below for example to make authenticatedrequests to server
+
   export function getSession() {
-    // Get session implementation
+    const cognitoUser = userPool.getCurrentUser()
+    return new Promise((resolve, reject) => {
+      if (!cognitoUser) {
+        reject(new Error("No user found"))
+        return
+      }
+      cognitoUser.getSession((err, session) => {
+        if (err) {
+          reject(err)
+          return
+        }
+        resolve(session)
+      })
+    })
   }
+
+//Example code from getSession()
+//********************************************************* */
+// const session = await getSession()
+// const accessToken = session.accessToken
+// fetch("/api/protected", {
+//   headers: {
+//     Authorization: `Bearer ${accessToken}`,
+//   },
+// })
