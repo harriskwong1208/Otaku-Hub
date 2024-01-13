@@ -1,10 +1,13 @@
-import { useState } from "react"
-import { signIn } from "../auth"
+import { useState, useContext } from "react"
+import { AuthContext } from "../components/AuthContext"
+import { Navigate } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+
+  const { user, signIn } = useContext(AuthContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -12,10 +15,15 @@ export default function Login() {
 
     try {
       await signIn(username, password)
-      // Redirect to the app's main page or dashboard
     } catch (err) {
       setError(err.message)
     }
+  }
+
+  // If the user is logged in, don't show the login form
+  if (user) {
+    // Redirect to the profile page
+    return <Navigate to="/profile" />
   }
 
   return (

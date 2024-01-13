@@ -1,22 +1,8 @@
-import { useEffect, useState } from "react"
-import { getCurrentUser,signOut } from "../auth"
-
+import { useContext } from "react"
+import { AuthContext } from "../components/AuthContext"
 
 export default function UserProfile() {
-  const [user, setUser] = useState()
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const user = await getCurrentUser()
-        setUser(user)
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    fetchUser()
-  }, [])
+  const { user, signOut } = useContext(AuthContext)
 
   return (
     <div>
@@ -28,7 +14,6 @@ export default function UserProfile() {
           {/* Display any other user data here */}
         </div>
       )}
-
       <button onClick={signOut}>Sign Out</button>
     </div>
   )
