@@ -7,6 +7,7 @@ import ConfirmSignUp from './Pages/ConfirmSignUp';
 import Login from './Pages/LogIn';
 import UserProfile from './Pages/UserProfile';
 import { AuthProvider } from './components/AuthContext';
+import RouteGuard from './components/RouteGuard';
 function App() {
 
 
@@ -22,6 +23,16 @@ function App() {
             <Route path='/confirm-sign-up' element={<ConfirmSignUp/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/profile' element={< UserProfile/>}/>
+
+            {/* Now, the UserProfile route is protected by the RouteGuard 
+              component. Users who aren't logged in will be redirected to 
+              the /login page when trying to access the /profile route. */}
+            <Route path="/profile"
+            component={
+              <RouteGuard>
+                <UserProfile />
+              </RouteGuard>
+            }/>
           </Routes>
         </BrowserRouter>
       </div>
