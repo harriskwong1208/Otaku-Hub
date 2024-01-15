@@ -1,0 +1,47 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    color: white;
+    background-color: black;
+}
+.logo-sitename{
+    flex: .2;
+    display: flex;
+    align-items: center;
+}
+.logo{
+    flex: 1;
+    width: 20%;
+    margin-left: 2%;
+}
+.logo:hover{
+    cursor: pointer;
+}
+.sitename{
+    margin-left: 3%;
+    flex: 1;
+    font-weight: bold;
+    font-size: medium;
+}
+.tabs{
+    flex: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.tabs div:hover{
+    cursor: pointer;
+}
+.login-out{
+    flex: .3;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.login-out div {
+    margin-right: 1%;
+}
+.login-out div:hover{
+    cursor: pointer;
+}
