@@ -1,4 +1,7 @@
-#header{
-    margin-top: 100px;
-    text-align: center;
+.animePic{
+    border-radius: 100px;
+    width: 5%;
+    
+    object-position: center;
+    vertical-align: middle;
 }
