@@ -65,7 +65,25 @@ import {CognitoUserPool, CognitoUser, AuthenticationDetails,} from "amazon-cogni
   }
   
   export function forgotPassword(username) {
-    // Forgot password implementation
+    return new Promise((resolve, reject) => {
+      const cognitoUser = new CognitoUser({
+        Username: username,
+        Pool: userPool,
+      })
+  
+      // call the cognitoUser.forgotPassword() method,
+      // passing in an object with onSuccess and onFailure callback 
+      // functions. This will trigger the password reset process and 
+      // send a confirmation code to the user's email address    
+      cognitoUser.forgotPassword({
+        onSuccess: () => {
+          resolve()
+        },
+        onFailure: (err) => {
+          reject(err)
+        },
+      })
+    })
   }
   
   export function confirmPassword(username, code, newPassword) {
