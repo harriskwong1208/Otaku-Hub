@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import { AuthContext } from "../components/AuthContext"
-import { Navigate } from "react-router-dom";
+import { Navigate,Link } from "react-router-dom";
 
 export default function Login() {
   const [username, setUsername] = useState("")
@@ -45,6 +45,8 @@ export default function Login() {
         <button type="submit">Login</button>
       </form>
       {error && <p>{error}</p>}
+      <Link to="/forgot-password">Forgot Password</Link>
+
     </div>
   )
 }

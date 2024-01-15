@@ -86,8 +86,23 @@ import {CognitoUserPool, CognitoUser, AuthenticationDetails,} from "amazon-cogni
     })
   }
   
-  export function confirmPassword(username, code, newPassword) {
-    // Confirm password implementation
+  export function confirmPassword(username, confirmationCode, newPassword) {
+    return new Promise((resolve, reject) => {
+      const cognitoUser = new CognitoUser({
+        Username: username,
+        Pool: userPool,
+      })
+      // call the cognitoUser.confirmPassword() method, passing in the confirmationCode, newPassword, 
+      // and an object with onSuccess and onFailure callback functions.
+      cognitoUser.confirmPassword(confirmationCode, newPassword, {
+        onSuccess: () => {
+          resolve()
+        },
+        onFailure: (err) => {
+          reject(err)
+        },
+      })
+    })
   }
   
   export function signOut() {
