@@ -1,17 +1,19 @@
 import '../styles/HomePage.css';
-import { useEffect ,useState } from 'react';
+import { useEffect ,useState,useContext } from 'react';
 import HomeAnimeDisplay from '../components/HomeAnimeDisplay';
 // import HomeDefaultDisplay from '../components/HomeDefaultDisplay';
-
-
+import { LoginContext } from '../Context/LoginContext';
 function HomePage(){
     const [animeSearch,setAnimeSearch] = useState('');
     const [animeList,setAnimeList] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [error,setError] = useState(null);
 
+    const {user} = useContext(LoginContext);
+
     useEffect(()=>{
         document.title = 'OtakuHub|Home'
+        console.log(`Current User: ${JSON.stringify(user)}`)
     },[])
 
    async function getAnime(){

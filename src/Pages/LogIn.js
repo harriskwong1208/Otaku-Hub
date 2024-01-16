@@ -1,20 +1,24 @@
 import { useState, useContext } from "react"
-import { AuthContext } from "../components/AuthContext"
+// import { AuthContext } from "../components/AuthContext"
 import { Navigate,Link } from "react-router-dom";
-
+import { LoginContext } from "../Context/LoginContext";
+import { signIn,getCurrentUser } from "../auth";
 export default function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
-  const { user, signIn } = useContext(AuthContext)
+  //  const { user,signIn } = useContext(AuthContext);
+
+  const { user,setUser } = useContext(LoginContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError("")
-
     try {
-      await signIn(username, password)
+        await signIn(username, password);
+        const user = await getCurrentUser();
+        setUser(user);
     } catch (err) {
       setError(err.message)
     }
@@ -23,7 +27,7 @@ export default function Login() {
   // If the user is logged in, don't show the login form
   if (user) {
     // Redirect to the profile page
-    return <Navigate to="/profile" />
+    return <Navigate to="/" />
   }
 
   return (
