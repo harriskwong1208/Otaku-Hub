@@ -33,6 +33,12 @@
 .tabs div:hover{
     cursor: pointer;
 }
+.tabs div a{
+    text-decoration: none;
+}
+.tabs div a:visited{
+    color: white;
+}
 .login-out{
     flex: .3;
     display: flex;
@@ -42,6 +48,13 @@
 .login-out div {
     margin-right: 1%;
 }
+.login-out div a{
+    text-decoration: none;
+
+} 
 .login-out div:hover{
     cursor: pointer;
+}
+.login-out div a:visited{
+    color: white;
 }
