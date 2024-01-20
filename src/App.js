@@ -17,8 +17,7 @@ function App() {
   const [user,setUser] = useState();
 
   return (
-    // <AuthProvider>
-    <LoginContext.Provider value={{user,setUser}}>
+    <AuthProvider>
       <div className='app'>
           <Navbar/>
           <BrowserRouter>
@@ -29,22 +28,20 @@ function App() {
               <Route path='/login' element={<Login/>}/>
               <Route path='/profile' element={< UserProfile/>}/>
               <Route path='/forgot-password' element={<ForgotPassword/>}/>
-              <Route path='reset-password' element={<ResetPassword/>} />
+              <Route path='/reset-password' element={<ResetPassword/>} />
               {/* Now, the UserProfile route is protected by the RouteGuard 
                 component. Users who aren't logged in will be redirected to 
                 the /login page when trying to access the /profile route. */}
-              <Route path="/profile"
+              {/* <Route path="/profile"
               component={
                 <RouteGuard>
                   <UserProfile />
                 </RouteGuard>
-              }/>
+              }/> */}
             </Routes>
           </BrowserRouter>
         </div>
-    </LoginContext.Provider> 
-
-    //</AuthProvider>
+    </AuthProvider>
   );
 }
 

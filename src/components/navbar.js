@@ -1,16 +1,15 @@
 import '../styles/navbar.css';
 import logo from '../static/sitelogo.jpg';
 import {useContext} from 'react';
-import { LoginContext } from '../Context/LoginContext';
-import { signOut } from '../auth';
+import {AuthContext} from './AuthContext.js';
+
 export default function Navbar() {
 
-  const {user,setUser} = useContext(LoginContext);
+  const {user,signOut} = useContext(AuthContext);  
   
   const handleLogout= async()=>{
     try{
       await signOut();
-      setUser(null);
     }catch(e){
       console.log(e);
     }
@@ -29,6 +28,7 @@ export default function Navbar() {
         <div className='manga'>Manga</div>
         <div className='friends'>Friends</div>
         <div className='list'>List</div>
+        <div className='profile'><a href='/profile'>Profile</a></div>
       </div>
       <div className='login-out'>
         {!user && 
