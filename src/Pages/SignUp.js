@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { signUp } from "../auth"
+import axios from 'axios';
 
 export default function SignUp() {
   const [username, setUsername] = useState("")
@@ -8,13 +9,20 @@ export default function SignUp() {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
 
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError("")
-
+    setError(""); 
     try {
-      await signUp(username, email, password)
+      await signUp(username, email, password)              
+      /*****************************************************************/
+      //TEMP API ENDPOINT FOR DEVELOPEMENT
+      await axios.post('http://localhost:5000/users/',{
+        name: username,
+        email: email,
+      }); 
       setSuccess(true)
+      console.log('Successfully added user in database and auth.');
     } catch (err) {
       setError(err.message)
     }
