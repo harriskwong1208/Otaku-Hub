@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { signUp } from "../auth"
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 export default function SignUp() {
@@ -33,6 +34,7 @@ export default function SignUp() {
       <div>
         <h2>SignUp successful!</h2>
         <p>Please check your email for the confirmation code.</p>
+        <Link to='/confirm-sign-up'>Click here to confirm account</Link>
       </div>
     )
   }

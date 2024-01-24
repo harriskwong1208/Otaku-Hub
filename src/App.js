@@ -14,7 +14,7 @@ import { LoginContext } from './Context/LoginContext';
 import {useState} from 'react';
 function App() {
 
-  const [user,setUser] = useState();
+  // const [user,setUser] = useState();
 
   return (
     <AuthProvider>

@@ -39,11 +39,11 @@ const addUser = async(req,res,next)=>{
 
 const updateUser = async(req,res,next)=>{
     const id = req.params.id;
-    const {name,email,password} = req.body;
+    const {name,email,password,subId} = req.body;
     let user ;
     try{
         user = await User.findByIdAndUpdate(id,
-            {name,email,password});
+            {name,email,password,subId});
     }catch(e){
         return next(e);
     }    
