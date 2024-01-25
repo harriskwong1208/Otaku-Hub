@@ -1,7 +1,8 @@
 import { useContext,useEffect,useState } from "react"
 import { AuthContext } from "../components/AuthContext"
 import { getCurrentUser } from "../auth"
-import { getUserIdByEmail,addUserSubId,getUserFromCognito } from "../Collections/Users"
+import { getUserIdByEmail,addUserSubId,getUserFromCognito,findEmail } from "../Collections/Users"
+import axios from 'axios';
 
 export default function UserProfile() {
   const { user, signOut } = useContext(AuthContext)
@@ -9,8 +10,10 @@ export default function UserProfile() {
     async function getUserCognito(){
       // const user =  await getCurrentUser();
       // console.log(user.sub);
+
       // const user = await getUserIdByEmail('bleach123@gmail.com');
       // console.log(user._id);
+
       // try{
       //   const userData = await getUserIdByEmail('ichigobleach20002022@gmail.com');
       //   const userCog = await getUserFromCognito();
@@ -18,7 +21,16 @@ export default function UserProfile() {
       // }catch(e){
       //   console.log(e);
       // }
-    }
+   
+        // const result = await findEmail('harris@gmail.com');
+        // if(result == -1){
+        //   console.log('Cannot find email')
+        // }else{
+        //   console.log(result);
+        // }
+
+
+      }
     getUserCognito();
     
   },[])
