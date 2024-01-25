@@ -1,9 +1,21 @@
 import '../styles/navbar.css';
 import logo from '../static/sitelogo.jpg';
-import { Link } from 'react-router-dom';
-import SignUp from '../Pages/SignUp';
-import Login from '../Pages/LogIn';
+import {useContext} from 'react';
+import {AuthContext} from './AuthContext.js';
+
 export default function Navbar() {
+
+  const {user,signOut} = useContext(AuthContext);  
+  
+  const handleLogout= async()=>{
+    try{
+      await signOut();
+    }catch(e){
+      console.log(e);
+    }
+  }
+
+
   return (
     <div className='navbar'>
       <div className='logo-sitename'>
@@ -16,18 +28,25 @@ export default function Navbar() {
         <div className='manga'>Manga</div>
         <div className='friends'>Friends</div>
         <div className='list'>List</div>
+        <div className='profile'><a href='/profile'>Profile</a></div>
       </div>
       <div className='login-out'>
-        <div className='login'>
-          <a href='/login'>Login</a>
-        </div>
-        <div className='logout'>
-          <a href='/'>Log out</a>
-        </div>
-        <div className='signup'>
-          <a href='/signup'>Sign Up</a>
-        </div>
+        {!user && 
+          <div className='login'>
+            <a href='/login'>Login</a>
+          </div>        
+        }
 
+        {user &&
+        <div className='logout' onClick={() => handleLogout()}> 
+          Log out
+        </div>
+        }
+        {!user  &&
+          <div className='signup'>
+            <a href='/signup'>Sign Up</a>
+          </div>
+        }
       </div>
     </div>
   );

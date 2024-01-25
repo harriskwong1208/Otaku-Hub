@@ -30,7 +30,6 @@ function AuthProvider({ children }) {
   //Calls cognito signin function and updates the user state
   //Should be called by the login form intead of the cognito signin function
   const signIn = async (username, password) => {
-    debugger
     await auth.signIn(username, password)
     await getCurrentUser()
   }
