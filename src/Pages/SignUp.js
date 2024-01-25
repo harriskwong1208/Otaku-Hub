@@ -2,7 +2,7 @@ import { useState } from "react"
 import { signUp } from "../auth"
 import { Link } from "react-router-dom";
 import axios from 'axios';
-
+import { findEmail } from "../Collections/Users";
 export default function SignUp() {
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -15,6 +15,10 @@ export default function SignUp() {
     e.preventDefault()
     setError(""); 
     try {
+      const _findEmail = await findEmail(email);
+      if(_findEmail === 1){
+        throw new Error("Email already in use!!");
+      }
       await signUp(username, email, password)              
       /*****************************************************************/
       //TEMP API ENDPOINT FOR DEVELOPEMENT
