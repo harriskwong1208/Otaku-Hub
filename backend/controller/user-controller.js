@@ -4,7 +4,8 @@ const getAllUsers = async(req,res,next)=>{
     let users;
 
     try{
-        users= await User.find();
+        //Only return name, email, and Id. Keeping subId and password safe
+        users= await User.find().select('name email');
 
     }catch(e){
         return next(e);
@@ -73,7 +74,7 @@ const getUser = async(req,res,next)=>{
     const id = req.params.id;
     let user;
     try{
-        user = await User.findById(id);
+        user = await User.findById(id).select('name email');
     }catch(e){
         return next(e);
     }
