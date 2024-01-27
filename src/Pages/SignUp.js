@@ -19,10 +19,10 @@ export default function SignUp() {
       if(_findEmail === 1){
         throw new Error("Email already in use!!");
       }
-      await signUp(username, email, password)              
+      await signUp(username, email, password);         
       /*****************************************************************/
       //TEMP API ENDPOINT FOR DEVELOPEMENT
-      await axios.post('http://localhost:5000/users/',{
+      await axios.post('https://otakuhubexpress.ue.r.appspot.com/api/users/',{
         name: username,
         email: email,
       }); 

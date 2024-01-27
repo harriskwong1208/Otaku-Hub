@@ -28,7 +28,7 @@ export default function UserProfile() {
         // }else{
         //   console.log(result);
         // }
-
+      
 
       }
     getUserCognito();
