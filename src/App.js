@@ -32,7 +32,7 @@ function App() {
                 component. Users who aren't logged in will be redirected to 
                 the /login page when trying to access the /profile route. */}
               {/* <Route path="/profile"
-              component={
+              component={ 
                 <RouteGuard>
                   <UserProfile />
                 </RouteGuard>
