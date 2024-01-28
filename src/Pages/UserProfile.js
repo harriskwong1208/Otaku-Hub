@@ -1,8 +1,8 @@
 import { useContext,useEffect,useState } from "react"
 import { AuthContext } from "../components/AuthContext"
-import { getCurrentUser } from "../auth"
-import { getUserIdByEmail,addUserSubId,getUserFromCognito,findEmail } from "../Collections/Users"
-import axios from 'axios';
+// import { getCurrentUser } from "../auth"
+// import { getUserIdByEmail,addUserSubId,getUserFromCognito,findEmail } from "../Collections/Users"
+// import axios from 'axios';
 
 export default function UserProfile() {
   const { user, signOut } = useContext(AuthContext)

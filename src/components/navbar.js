@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <div className='navbar'>
       <div className='logo-sitename'>
-        <img className='logo' src={logo} onClick={()=>console.log('clicked')}/>
+        <img className='logo' alt='Logo' src={logo} onClick={()=>console.log('clicked')}/>
         <div className='sitename'>OtakuHub</div>
       </div>
       <div className='tabs'>

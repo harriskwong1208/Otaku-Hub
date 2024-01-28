@@ -1,8 +1,8 @@
 import '../styles/HomePage.css';
-import { useEffect ,useState,useContext } from 'react';
+import { useEffect ,useState } from 'react';
 import HomeAnimeDisplay from '../components/HomeAnimeDisplay';
 // import HomeDefaultDisplay from '../components/HomeDefaultDisplay';
-import axios from 'axios';
+// import axios from 'axios';
 
 function HomePage(){
     const [animeSearch,setAnimeSearch] = useState('');

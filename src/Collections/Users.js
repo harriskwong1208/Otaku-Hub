@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AuthContext } from "../components/AuthContext";
+// import { AuthContext } from "../components/AuthContext";
 import { getCurrentUser } from "../auth";
 
 export  async function getUserIdByEmail(email){

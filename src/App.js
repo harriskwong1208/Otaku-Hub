@@ -7,10 +7,8 @@ import ConfirmSignUp from './Pages/ConfirmSignUp';
 import Login from './Pages/LogIn';
 import UserProfile from './Pages/UserProfile';
 import { AuthProvider } from './components/AuthContext';
-import RouteGuard from './components/RouteGuard';
 import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
-import {useState} from 'react';
 function App() {
 
   // const [user,setUser] = useState();

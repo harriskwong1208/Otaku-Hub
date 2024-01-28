@@ -8,7 +8,7 @@ export default function ConfirmSignUp() {
   const [code, setCode] = useState("")
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
-  const {user,signIn}= useContext(AuthContext);
+  const {signIn}= useContext(AuthContext);
   const [password,setPassword] = useState('');
   const [email, setEmail] = useState('');
 

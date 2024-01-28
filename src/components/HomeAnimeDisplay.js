@@ -10,7 +10,7 @@ const HomeAnimeDisplay=({animeList})=>{
         <ul className="animeRows">
             {animeList.data.map((anime)=>(
                 <li key={anime.mal_id}>{anime.title}
-                    <img  className='animePic' src={anime.images.jpg.image_url}/>
+                    <img  className='animePic' alt="anime-pic" src={anime.images.jpg.image_url}/>
                 </li>
             ))}
         </ul>
