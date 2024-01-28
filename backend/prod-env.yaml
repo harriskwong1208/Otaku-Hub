@@ -1,0 +1,2 @@
+env_variables:
+  MONGOURL : mongodb+srv://admin:0c6n2JJZrWGMet5c@cluster0.xjonk1h.mongodb.net/
