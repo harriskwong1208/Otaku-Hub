@@ -2,15 +2,18 @@
 const express = require('express');
 const UserRouter = require('./routes/user-routes.js');
 const mongoose = require('mongoose');
+const  cors = require('cors');
+
 require("dotenv").config(); 
 
-const app = express();
 
-const  cors = require('cors');
+
+const app = express();
 app.use(cors());
 
 // Middleware function to convert JSON string to JSON object
 app.use(express.json());
+
 
 
 

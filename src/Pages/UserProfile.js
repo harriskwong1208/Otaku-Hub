@@ -2,10 +2,11 @@ import { useContext,useEffect,useState } from "react"
 import { AuthContext } from "../components/AuthContext"
 // import { getCurrentUser } from "../auth"
 // import { getUserIdByEmail,addUserSubId,getUserFromCognito,findEmail } from "../Collections/Users"
-// import axios from 'axios';
-
+import axios from 'axios';
+import { getSession } from "../auth"
 export default function UserProfile() {
-  const { user, signOut } = useContext(AuthContext)
+  const { user, signOut } = useContext(AuthContext);
+  const [accessToken,setAccessToken] = useState('');
   useEffect(()=>{
     async function getUserCognito(){
       // const user =  await getCurrentUser();
@@ -28,12 +29,26 @@ export default function UserProfile() {
         // }else{
         //   console.log(result);
         // }
-      
+        if(user){
+          const info = await getSession();
+          setAccessToken(info.accessToken.jwtToken);
+          // console.log(info);
+          try{
+            const response = await axios.put('http://localhost:8000/api/users/6595d8c3b4a47cfc1d65d964',
+              {
+                subId: "third try",
+                access: accessToken
+              });
 
+              console.log(response);
+          }catch(e){
+            console.log(e);
+          }
+        }
       }
     getUserCognito();
     
-  },[])
+  },[user])
 
 
   return (
@@ -43,10 +58,9 @@ export default function UserProfile() {
           <h2>User Profile</h2>
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
-          {/* Display any other user data here */}
+          <p>JWttoken: {accessToken}</p>
         </div>
       )}
-      <button onClick={signOut}>Sign Out</button>
     </div>
   )
 }

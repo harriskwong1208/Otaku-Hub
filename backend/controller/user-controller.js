@@ -1,4 +1,15 @@
 const User = require("../model/User");
+const { CognitoJwtVerifier } = require ('aws-jwt-verify');
+
+require("dotenv").config(); 
+
+// Verifier that expects valid access tokens:
+const verifier = CognitoJwtVerifier.create({
+  userPoolId: process.env.UserPoolId,
+  tokenUse: "access",
+  clientId: process.env.ClientId,
+});
+
 
 const getAllUsers = async(req,res,next)=>{
     let users;
@@ -11,7 +22,7 @@ const getAllUsers = async(req,res,next)=>{
         return next(e);
     }
     if(!users){
-        return res.status(500).json({message:"Interna; Server Error."});
+        return res.status(500).json({message:"Internal; Server Error."});
  
    }
 
@@ -40,18 +51,28 @@ const addUser = async(req,res,next)=>{
 
 const updateUser = async(req,res,next)=>{
     const id = req.params.id;
-    const {name,email,password,subId} = req.body;
-    let user ;
-    try{
-        user = await User.findByIdAndUpdate(id,
-            {name,email,password,subId});
-    }catch(e){
-        return next(e);
-    }    
-    if(!user){
-        return res.status(500),json({msessage:"Unable to update user."});
+    const {name,email,password,subId,access} = req.body;
+
+    if(access){
+
+        let user ;
+        try{
+            const isValidToken = await verifier.verify(access);
+            if (!isValidToken) {
+                return res.status(498).json({ message: "Invalid or missing access token." });
+            }      
+            user = await User.findByIdAndUpdate(id,
+                {name,email,password,subId});
+        }catch(e){
+            return next(e);
+        }    
+        if(!user){
+            return res.status(500),json({msessage:"Unable to update user."});
+        }
+        return res.status(200).json({message:"Updated successfully"});
+    }else{
+        return res.status(498).json({message:"Must include access token for access!"});
     }
-    return res.status(200).json({message:"Updated successfully"});
 }
 
 
