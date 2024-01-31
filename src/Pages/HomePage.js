@@ -2,7 +2,8 @@ import '../styles/HomePage.css';
 import { useEffect ,useState } from 'react';
 import HomeAnimeDisplay from '../components/HomeAnimeDisplay';
 // import HomeDefaultDisplay from '../components/HomeDefaultDisplay';
-// import axios from 'axios';
+import axios from 'axios';
+import { apiEndPoints } from '../apiEndpoints';
 
 function HomePage(){
     const [animeSearch,setAnimeSearch] = useState('');
@@ -21,7 +22,7 @@ function HomePage(){
         if(animeSearch.length != 0){
             setIsLoading(true);            
             try{
-                const response = await fetch(`https://api.jikan.moe/v4/anime?q=${animeSearch}&sfw&limit=15`);
+                const response = await fetch(apiEndPoints.jikan + animeSearch + '&sfw&limit=15');
                 const data = await response.json();
                 setAnimeList(data);
                 setIsLoading(false);
@@ -33,7 +34,6 @@ function HomePage(){
             }
         }
    }
-
 
 
     return(

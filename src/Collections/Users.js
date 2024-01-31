@@ -1,10 +1,11 @@
 import axios from "axios";
 // import { AuthContext } from "../components/AuthContext";
 import { getCurrentUser } from "../auth";
+import {apiEndPoints} from "../apiEndpoints";
 
 export  async function getUserIdByEmail(email){
-    // let users = await axios.get('http://localhost:5000/users');
-    let users = await axios.get('https://otakuhubexpress.ue.r.appspot.com/api/users/');
+    let users = await axios.get(apiEndPoints.localHost);
+    // let users = await axios.get(apiEndpoints.hostedEndpoint);
 
     users = users.data.users;
     for(let i =0;i < users.length;i++){
@@ -16,10 +17,10 @@ export  async function getUserIdByEmail(email){
 }
 
 export  async function addUserSubId(subId,id){
-    // await axios.put(`http://localhost:5000/users/${id}`,{
+    // await axios.put(apiEndPoints.localHost + id,{
     //     subId: subId
     // });
-    await axios.put(`https://otakuhubexpress.ue.r.appspot.com/api/users/${id}`,{
+    await axios.put(apiEndPoints.hostedEndpoint + id,{
         subId: subId
     });
 }
@@ -30,7 +31,9 @@ export  async function getUserFromCognito(){
 }
 //Returns 1 if email exists in database, -1 otherwise
 export  async function findEmail(email){
-    let users = await axios.get('https://otakuhubexpress.ue.r.appspot.com/api/users/');
+    let users = await axios.get(apiEndPoints.localHost);
+// let users = await axios.get(apiEndPoints.hostedEndpoint);
+    
     users = users.data.users;
     for(let i =0; i < users.length;i++){
         if(users[i].email == email){

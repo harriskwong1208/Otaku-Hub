@@ -1,21 +1,21 @@
 const User = require("../model/User");
 
+require("dotenv").config(); 
+
+
+
+
 const getAllUsers = async(req,res,next)=>{
     let users;
 
-    try{
-        //Only return name, email, and Id. Keeping subId and password safe
-        users= await User.find().select('name email');
-
-    }catch(e){
-        return next(e);
-    }
+    //Only return name, email, and Id. Keeping subId and password safe
+    users= await User.find().select('name email');
     if(!users){
-        return res.status(500).json({message:"Interna; Server Error."});
- 
-   }
+        return res.status(500).json({message:"Internal; Server Error."});
+    }
 
-   return res.status(200).json({users});
+    return res.status(200).json({users});
+
 }
 
 
@@ -41,17 +41,21 @@ const addUser = async(req,res,next)=>{
 const updateUser = async(req,res,next)=>{
     const id = req.params.id;
     const {name,email,password,subId} = req.body;
-    let user ;
-    try{
-        user = await User.findByIdAndUpdate(id,
-            {name,email,password,subId});
-    }catch(e){
-        return next(e);
-    }    
-    if(!user){
-        return res.status(500),json({msessage:"Unable to update user."});
-    }
-    return res.status(200).json({message:"Updated successfully"});
+
+  
+
+        let user ;
+        try{
+            user = await User.findByIdAndUpdate(id,
+                {name,email,password,subId});
+        }catch(e){
+            return next(e);
+        }    
+        if(!user){
+            return res.status(500),json({msessage:"Unable to update user."});
+        }
+        return res.status(200).json({message:"Updated successfully"});
+
 }
 
 
