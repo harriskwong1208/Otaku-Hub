@@ -1,7 +1,7 @@
 import '../styles/navbar.css';
 import logo from '../static/sitelogo.jpg';
 import {useContext} from 'react';
-import {AuthContext} from './AuthContext.js';
+import {AuthContext} from '../Context/AuthContext.js';
 
 export default function Navbar() {
 

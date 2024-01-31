@@ -6,7 +6,7 @@ import SignUp from './Pages/SignUp';
 import ConfirmSignUp from './Pages/ConfirmSignUp';
 import Login from './Pages/LogIn';
 import UserProfile from './Pages/UserProfile';
-import { AuthProvider } from './components/AuthContext';
+import { AuthProvider } from './Context/AuthContext';
 import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
 function App() {
