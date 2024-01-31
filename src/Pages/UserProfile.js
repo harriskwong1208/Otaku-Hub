@@ -1,9 +1,9 @@
 import { useContext,useEffect,useState } from "react"
 import { AuthContext } from "../components/AuthContext"
-// import { getCurrentUser } from "../auth"
 import { getUserIdByEmail,addUserSubId,getUserFromCognito,findEmail } from "../Collections/Users"
 import axios from 'axios';
-import { getSession } from "../auth"
+import { getSession,getCurrentUser } from "../auth"
+import { apiEndPoints } from "../apiEndpoints";
 export default function UserProfile() {
   const { user, signOut } = useContext(AuthContext);
   // useEffect(()=>{
@@ -33,6 +33,8 @@ export default function UserProfile() {
   //   getUserCognito();
     
   // },[user])
+
+
 
 
   return (
