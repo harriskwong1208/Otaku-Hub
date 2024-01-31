@@ -24,7 +24,7 @@ export default function Navbar() {
       </div>
       <div className='tabs'>
         <div className='home'><a href='/'>Home</a></div>
-        <div className='anime'>Anime</div>
+        <div className='anime'><a href='/animesearch'>Anime</a></div>
         <div className='manga'>Manga</div>
         <div className='friends'>Friends</div>
         <div className='list'>List</div>

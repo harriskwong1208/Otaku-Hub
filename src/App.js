@@ -9,6 +9,9 @@ import UserProfile from './Pages/UserProfile';
 import { AuthProvider } from './Context/AuthContext';
 import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
+import AnimeSearchPage from './Pages/AnimeSearchPage';
+
+
 function App() {
 
   // const [user,setUser] = useState();
@@ -26,15 +29,7 @@ function App() {
               <Route path='/profile' element={< UserProfile/>}/>
               <Route path='/forgot-password' element={<ForgotPassword/>}/>
               <Route path='/reset-password' element={<ResetPassword/>} />
-              {/* Now, the UserProfile route is protected by the RouteGuard 
-                component. Users who aren't logged in will be redirected to 
-                the /login page when trying to access the /profile route. */}
-              {/* <Route path="/profile"
-              component={ 
-                <RouteGuard>
-                  <UserProfile />
-                </RouteGuard>
-              }/> */}
+              <Route path='/animesearch' element={<AnimeSearchPage/>}/>
             </Routes>
           </BrowserRouter>
         </div>
