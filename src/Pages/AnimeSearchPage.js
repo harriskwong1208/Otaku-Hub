@@ -57,25 +57,25 @@ export default function AnimeSearchPage(e){
             </form>
         </div>
         <div className="anime-results">
-            <div className="anime">
-                <div className="anime-details">
-                    <div className="title">
-                        Bleach
+            {results.map((anime)=>(
+                <div key={anime.mal_id} className="anime">
+                    <div className="anime-details">
+                        <div className="title">
+                            {anime.title}
+                        </div>
+                        <div className="score">
+                            Score: {anime.score}
+                        </div>
+                        <div className="synopsis">
+                            {anime.synopsis}
+                        </div>
                     </div>
-                    <div className="air-date">
-                       Air date: 2002=2013
+                    <div className="anime-pic">
+                        <img alt="anime-image" src={anime.images.jpg.image_url}></img>
                     </div>
-                    <div className="description">
-                    Ichigo Kurosaki is an ordinary high schooler—until his family is attacked by a Hollow, a corrupt spirit that seeks to devour human souls. It is then that he meets a Soul Reaper named Rukia Kuchiki, who gets injured while protecting Ichigo's family from the assailant. To save his family, Ichigo accepts Rukia's offer of taking her powers and becomes a Soul Reaper as a result.
+                </div>
+            ))}
 
-                    However, as Rukia is unable to regain her powers, Ichigo is given the daunting task of hunting down the Hollows that plague their town. However, he is not alone in his fight, as he is later joined by his friends—classmates Orihime Inoue, Yasutora Sado, and Uryuu Ishida—who each have their own unique abilities. As Ichigo and his comrades get used to their new duties and support each other on and off the battlefield, the young Soul Reaper soon learns that the Hollows are not the only real threat to the human world. 
-              
-                    </div>
-                </div>
-                <div className="anime-pic">
-                    <img alt="Bleach" src="https://upload.wikimedia.org/wikipedia/en/7/72/Bleachanime.png"></img>
-                </div>
-            </div>
         </div>
     
     </div>);
