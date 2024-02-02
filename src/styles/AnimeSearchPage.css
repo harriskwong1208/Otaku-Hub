@@ -51,17 +51,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 .anime-pic img{
     width: 75%;
 }
-.anime-details .title,.score,.synopsis{
+.anime-details .title,.score-episodes-type,.synopsis{
     text-align: center;
     font-weight: bolder;
     font-size: larger;
 }
+.anime-details .score-episodes-type span{
+    margin-left: 3%;
+}
 .anime-details .synopsis{
     font-weight:500;
     font-size:larger;
+}
+.animesearch-page .loading{
+    text-align: center;
+    padding-top: 5%;
+    font-size: larger;
 }

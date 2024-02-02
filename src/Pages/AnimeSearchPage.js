@@ -29,12 +29,6 @@ export default function AnimeSearchPage(e){
         }
     }
 
-    if(isLoading){
-        return(
-        <>
-            Loading Results......
-        </>)
-    }
 
 
     return(
@@ -56,27 +50,34 @@ export default function AnimeSearchPage(e){
                 <button className="search-btn" type="submit">Search</button>
             </form>
         </div>
-        <div className="anime-results">
+        {isLoading ? 
+            <div className="loading">
+                Loading Anime......
+            </div> : 
+            <div className="anime-results">
             {results.map((anime)=>(
                 <div key={anime.mal_id} className="anime">
                     <div className="anime-details">
                         <div className="title">
                             {anime.title}
                         </div>
-                        <div className="score">
-                            Score: {anime.score}
+                        <div className="score-episodes-type">
+                            <span>Score: {anime.score}</span>
+                            <span>Episodes: {anime.episodes}</span>
+                            <span>Type: {anime.type}</span>
                         </div>
                         <div className="synopsis">
                             {anime.synopsis}
                         </div>
                     </div>
                     <div className="anime-pic">
-                        <img alt="anime-image" src={anime.images.jpg.image_url}></img>
+                        <img alt="anime-image" src={anime.images.jpg.image_url}>
+                        </img>
                     </div>
                 </div>
             ))}
 
-        </div>
+        </div>}
     
     </div>);
 
