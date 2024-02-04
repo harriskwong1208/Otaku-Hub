@@ -18,6 +18,10 @@ const userSchema = new Schema({
   },
   subId: {
     type: String,
+    unique:true
+  },
+  anime:{
+    type: [mongoose.ObjectId]
   }
 });
 

@@ -33,7 +33,7 @@ const addUser = async(req,res,next)=>{
         return next(e);
     }
     if(!user){
-        res.status(500).json({message:"Unable to save user"});
+       return res.status(500).json({message:"Unable to save user"});
     }
     return res.status(201).json({user});
 }
