@@ -47,6 +47,7 @@
     grid-template-columns: 1fr 20%;
 }
 .anime-pic{
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -54,12 +55,21 @@
 }
 .anime-pic img{
     width: 75%;
+    cursor: pointer;
 }
 .anime-details .title,.score-episodes-type,.synopsis{
     text-align: center;
     font-weight: bolder;
     font-size: larger;
 }
+.anime-details .title{
+    cursor: pointer;
+    text-decoration: none;
+} 
+.anime-details .title:hover,.title:visited{
+    cursor: pointer;
+    text-decoration: none;
+} 
 .anime-details .score-episodes-type span{
     margin-left: 3%;
 }

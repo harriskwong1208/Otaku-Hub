@@ -2,13 +2,14 @@ import { useEffect,useState } from "react";
 import '../styles/AnimeSearchPage.css';
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function AnimeSearchPage(e){
     const [anime,setAnime] = useState('');
     const [isLoading,setIsLoading] = useState(false);
     const [results,setResults] = useState([]);
+    const navigate = useNavigate('');
 
     useEffect(()=>{
         console.log(results);
@@ -58,7 +59,7 @@ export default function AnimeSearchPage(e){
             {results.map((anime)=>(
                 <div key={anime.mal_id} className="anime">
                     <div className="anime-details">
-                        <div className="title">
+                        <div className="title" onClick={()=>navigate(`/anime/${anime.mal_id}`)}>
                             {anime.title}
                         </div>
                         <div className="score-episodes-type">
@@ -71,8 +72,10 @@ export default function AnimeSearchPage(e){
                         </div>
                     </div>
                     <div className="anime-pic">
-                        <img alt="anime-image" src={anime.images.jpg.image_url}>
-                        </img>
+                        <img alt="anime-image" src={anime.images.jpg.image_url}
+                            onClick={()=>navigate(`/anime/${anime.mal_id}`)}
+                        />
+
                     </div>
                 </div>
             ))}
