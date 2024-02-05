@@ -2,26 +2,21 @@ import { useEffect,useState } from "react";
 import '../styles/AnimeSearchPage.css';
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
-import { useNavigate } from "react-router-dom";
 
 
 export default function AnimeSearchPage(e){
     const [anime,setAnime] = useState('');
     const [isLoading,setIsLoading] = useState(false);
     const [results,setResults] = useState([]);
-    const navigate = useNavigate('');
 
     useEffect(()=>{
         console.log(results);
     },[results]);
-
-
-
     async function searchAnime(e){
         e.preventDefault();
         setIsLoading(true);
         try{
-            const data = await axios.get(apiEndPoints.jikan+anime+'&sfw&limit=16');
+            const data = await axios.get(apiEndPoints.jikan+anime+'&sfw&limit=24');
             setResults(data.data.data);
             setIsLoading(false);      
         }catch(e){
@@ -29,9 +24,6 @@ export default function AnimeSearchPage(e){
             setIsLoading(false);
         }
     }
-
-
-
     return(
     <div className="animesearch-page">
         <head>
@@ -59,8 +51,10 @@ export default function AnimeSearchPage(e){
             {results.map((anime)=>(
                 <div key={anime.mal_id} className="anime">
                     <div className="anime-details">
-                        <div className="title" onClick={()=>navigate(`/anime/${anime.mal_id}`)}>
-                            {anime.title}
+                        <div className="title">
+                            <a className="link" target="_blank"
+                                href={`/anime/${anime.mal_id}`} rel="noreferrer"
+                            >{anime.title}</a>
                         </div>
                         <div className="score-episodes-type">
                             <span>Score: {anime.score}</span>
@@ -72,16 +66,11 @@ export default function AnimeSearchPage(e){
                         </div>
                     </div>
                     <div className="anime-pic">
-                        <img alt="anime-image" src={anime.images.jpg.image_url}
-                            onClick={()=>navigate(`/anime/${anime.mal_id}`)}
-                        />
-
+                        <img alt="anime-visual" src={anime.images.jpg.image_url}/>
                     </div>
                 </div>
             ))}
-
         </div>}
-    
     </div>);
 
 }
