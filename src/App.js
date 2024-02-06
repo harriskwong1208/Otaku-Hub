@@ -10,7 +10,7 @@ import { AuthProvider } from './Context/AuthContext';
 import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
 import AnimeSearchPage from './Pages/AnimeSearchPage';
-import AnimeDetails from './Pages/AnimeDetails';
+import DetailsPage from './Pages/DetailsPage';
 
 function App() {
 
@@ -29,7 +29,7 @@ function App() {
               <Route path='/forgot-password' element={<ForgotPassword/>}/>
               <Route path='/reset-password' element={<ResetPassword/>} />
               <Route path='/animesearch' element={<AnimeSearchPage/>}/>
-              <Route path='/anime/:id' element={<AnimeDetails/>} />
+              <Route path='/anime/:id' element={<DetailsPage/>} />
             </Routes>
           </BrowserRouter>
         </div>
