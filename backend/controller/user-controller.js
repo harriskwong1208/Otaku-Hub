@@ -40,9 +40,8 @@ const addUser = async(req,res,next)=>{
 
 const updateUser = async(req,res,next)=>{
     const id = req.params.id;
-    const {name,email,password,subId} = req.body;
+    const {name,email,password,subId,mal_id} = req.body;
 
-  
 
         let user ;
         try{

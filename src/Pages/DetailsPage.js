@@ -4,6 +4,7 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import '../styles/DetailsPage.css';
+import { addAnime } from "../Collections/Anime";
 
 export default function DetailsPage(){
     const {id} = useParams();
@@ -99,7 +100,7 @@ export default function DetailsPage(){
                 </div>
                 <div className="List-setting">
                     {!user ? <div>Sign in to add to list!</div> :
-                     <button onClick={()=>console.log('Clicked')}>Add to List</button>}
+                     <button onClick={()=>addAnime(anime)}>Add to List</button>}
                 </div>
             </div>
             <div className="middle-section">

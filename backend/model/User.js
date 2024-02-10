@@ -21,7 +21,7 @@ const userSchema = new Schema({
     unique:true
   },
   anime:{
-    type: [mongoose.ObjectId]
+    type: [String]
   }
 });
 

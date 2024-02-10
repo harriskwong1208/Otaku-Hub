@@ -6,22 +6,10 @@ const animeSchema = new Schema({
         type:String,
         required: true,
     },
-    score:{
-        type:Number
-    },
-    episodes:{
-        type:Number,
-
-    },
-    type:{
+    mal_id:{
         type:String,
-    },
-    description:{
-        type:String,
-    },
-    imageURL:{
-        type:String,
-    },
+        required:true
+    }
 })
 
-module.exports = mongoose.model("Anime",animeSchema);
+module.exports = mongoose.model("Anime",animeSchema); 
