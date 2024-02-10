@@ -39,21 +39,21 @@ export default function DetailsPage(){
 
         <div className="left-section">
             <div className="img">
-                <img src={anime && anime.images.jpg.large_image_url}/>
+                <img src={anime.images && anime.images.jpg.large_image_url}/>
             </div>
             <div className="information">
                 <div className="airDate">
-                    Air Date: {anime.aired.string && anime.aired.string}
+                    Air Date: {anime.aired && anime.aired.string}
                 </div>
                 <div className="demographic">
-                    Demographic: {anime.demographics[0].name && anime.demographics[0].name}
+                    Demographic: {(anime.demographics && anime.demographics[0]) && anime.demographics[0].name}
                 </div>
                 <div className="duration">
-                    Duration: {anime.duration}
+                    Duration: {anime.duration && anime.duration}
                 </div>
                 <div className="studio">
                     Studios: 
-                    {anime.studios.map((studio,index)=>(
+                    {anime.studios && anime.studios.map((studio,index)=>(
                     index != anime.studios.length-1 ?
                     ` ${studio.name},` : ` ${studio.name}`
                     ))}
@@ -72,9 +72,9 @@ export default function DetailsPage(){
                 </div>
                 <div className="producers">
                     Producers: 
-                        {anime.producers.map((producer,index)=>(
+                        {anime.producers && anime.producers.map((producer,index)=>(
                             index != anime.producers.length-1 ?
-                            ` ${producer.name},` : ` ${producer.name}`
+                            ` ${ producer.name},` : ` ${ producer.name}`
                         ))}
                 </div>
                 <div className="mal-link">
