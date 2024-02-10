@@ -1,0 +1,16 @@
+.DetailsPage{
+    display: grid;
+    grid-template-columns: .3fr 1fr;
+    position: relative;
+}
+.DetailsPage .left-section{
+    border: solid;
+}
+.DetailsPage .popup{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    border: solid;
+    padding: 10%;
+    
+}
