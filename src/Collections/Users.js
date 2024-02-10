@@ -4,8 +4,7 @@ import { getCurrentUser } from "../auth";
 import {apiEndPoints} from "../apiEndpoints";
 
 export  async function getUserIdByEmail(email){
-    let users = await axios.get(apiEndPoints.localHost);
-    // let users = await axios.get(apiEndpoints.hostedEndpoint);
+    let users = await axios.get(apiEndPoints.localHost+'users');
 
     users = users.data.users;
     for(let i =0;i < users.length;i++){
@@ -17,12 +16,12 @@ export  async function getUserIdByEmail(email){
 }
 
 export  async function addUserSubId(subId,id){
-    // await axios.put(apiEndPoints.localHost + id,{
-    //     subId: subId
-    // });
-    await axios.put(apiEndPoints.hostedEndpoint + id,{
+    await axios.put(apiEndPoints.localHost+'users/' + id,{
         subId: subId
     });
+    // await axios.put(apiEndPoints.hostedEndpoint + id,{
+    //     subId: subId
+    // });
 }
 
 export  async function getUserFromCognito(){
@@ -31,8 +30,7 @@ export  async function getUserFromCognito(){
 }
 //Returns 1 if email exists in database, -1 otherwise
 export  async function findEmail(email){
-    let users = await axios.get(apiEndPoints.localHost);
-// let users = await axios.get(apiEndPoints.hostedEndpoint);
+    let users = await axios.get(apiEndPoints.localHost+'users');
     
     users = users.data.users;
     for(let i =0; i < users.length;i++){
