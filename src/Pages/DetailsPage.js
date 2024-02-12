@@ -4,15 +4,16 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import '../styles/DetailsPage.css';
-import { addAnime } from "../Collections/Anime";
-
+import { addAnime,getAnimeByMalId } from "../Collections/Anime";
+import { checkUserWatchList,getCurrentUserId,getAllUsersFromDatabase } from "../Collections/Users";
 export default function DetailsPage(){
     const {id} = useParams();
     const {user} = useContext(AuthContext);
     const [isLoading,setIsLoading] = useState(false);
     const [anime,setAnime] = useState({});
     const [error,setError] = useState(null);
-    
+    const [userId,setUserId] = useState('');
+
     async function getAnime(){
         setIsLoading(true);
         try{
@@ -27,10 +28,13 @@ export default function DetailsPage(){
             setIsLoading(false);
         }
     }
-    
     useEffect(()=>{
         getAnime();
+        const userId = getCurrentUserId();
+        setUserId(userId);
     },[]);
+
+
 
     if(isLoading){
         return(<div>Loading......</div>)
@@ -100,7 +104,7 @@ export default function DetailsPage(){
                 </div>
                 <div className="List-setting">
                     {!user ? <div>Sign in to add to list!</div> :
-                     <button onClick={()=>addAnime(anime)}>Add to List</button>}
+                     <button onClick={()=>addAnime(userId,anime)}>Add to List</button>}
                 </div>
             </div>
             <div className="middle-section">

@@ -20,7 +20,7 @@ const userSchema = new Schema({
     type: String,
     unique:true
   },
-  anime:{
+  watchList:{
     type: [String]
   }
 });

@@ -9,7 +9,7 @@ const getAllUsers = async(req,res,next)=>{
     let users;
 
     //Only return name, email, and Id. Keeping subId and password safe
-    users= await User.find().select('name email');
+    users= await User.find().select('name email subId');
     if(!users){
         return res.status(500).json({message:"Internal; Server Error."});
     }
@@ -40,13 +40,13 @@ const addUser = async(req,res,next)=>{
 
 const updateUser = async(req,res,next)=>{
     const id = req.params.id;
-    const {name,email,password,subId,mal_id} = req.body;
+    const {name,email,password,subId,animeId} = req.body;
 
 
         let user ;
         try{
             user = await User.findByIdAndUpdate(id,
-                {name,email,password,subId});
+                {name,email,password,subId,$push:{watchList: animeId}});
         }catch(e){
             return next(e);
         }    
