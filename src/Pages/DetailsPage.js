@@ -116,13 +116,13 @@ export default function DetailsPage(){
         </div>
         {popUp &&
        <div className="popup-box">
-            <div className="popup">
-                <div className="title">Are you sure?</div>
-                <div className="buttons">
-                    <button className="yes-btn">Yes</button>
-                    <button className="no-btn" onClick={()=> setPopUp(false)}>No</button>
-                </div>
+
+            <div className="title">Are you sure?</div>
+            <div className="buttons">
+                <button className="yes-btn">Yes</button>
+                <button className="no-btn" onClick={()=> setPopUp(false)}>No</button>
             </div>
+
        </div>
        }
     </div>)
