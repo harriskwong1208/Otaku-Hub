@@ -12,7 +12,6 @@ export default function DetailsPage(){
     const [isLoading,setIsLoading] = useState(false);
     const [anime,setAnime] = useState({});
     const [error,setError] = useState(null);
-    const [userId,setUserId] = useState('');
 
     async function getAnime(){
         setIsLoading(true);
@@ -30,8 +29,7 @@ export default function DetailsPage(){
     }
     useEffect(()=>{
         getAnime();
-        const userId = getCurrentUserId();
-        setUserId(userId);
+
     },[]);
 
 
@@ -104,7 +102,7 @@ export default function DetailsPage(){
                 </div>
                 <div className="List-setting">
                     {!user ? <div>Sign in to add to list!</div> :
-                     <button onClick={()=>addAnime(userId,anime)}>Add to List</button>}
+                     <button onClick={()=>addAnime(anime)}>Add to List</button>}
                 </div>
             </div>
             <div className="middle-section">

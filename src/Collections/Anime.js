@@ -2,7 +2,7 @@ import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import { getCurrentUserId,checkUserWatchList } from "./Users";
 
-async function addAnime(userId,anime){
+async function addAnime(anime){
 
     const {title,mal_id} = anime; 
 
@@ -12,7 +12,7 @@ async function addAnime(userId,anime){
         //returns anime if found
         const result = await getAnimeByMalId(mal_id);
         let animeId;
-        if(result == null){
+        if(result === null){
             //add anime to animes collection
             const animeInfo = await axios.post(apiEndPoints.localHost+'anime',{
                 "name": title,
@@ -22,12 +22,13 @@ async function addAnime(userId,anime){
         }else{
             animeId = result._id;
         }
+        const userId = await getCurrentUserId();
         const found = await checkUserWatchList(userId,animeId);
         if(found){
             alert("Already in watch List !!!")
         }else{
             //add animeId to user watch List
-            const message = await axios.put(apiEndPoints.localHost+'anime/'+userId,{
+            const message = await axios.put(apiEndPoints.localHost+'users/'+userId,{
                 "animeId": animeId
             });
             console.log("Added to watch List!");
@@ -55,7 +56,6 @@ async function getAnimeByMalId(mal_id){
     }catch(e){
         console.log(e);
     }
-    console.log(`anime with mal_id:${mal_id} cannot be found in database`);
     return null;
 }
 

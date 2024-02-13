@@ -77,7 +77,7 @@ const getUser = async(req,res,next)=>{
     const id = req.params.id;
     let user;
     try{
-        user = await User.findById(id).select('name email');
+        user = await User.findById(id).select('name email watchList');
     }catch(e){
         return next(e);
     }
