@@ -6,11 +6,57 @@
 .DetailsPage .left-section{
     border: solid;
 }
-.DetailsPage .popup{
+.DetailsPage .popup-box{
+    background-color: black;
     position: absolute;
-    top: 40%;
-    left: 40%;
-    border: solid;
-    padding: 10%;
-    
+    top: 45%;
+    left: 44%;
+    color: white;
+    padding: 3% 6%;
+    border-radius: 5%;
+    font-size: larger;
+    animation-name: animePopup;
+    animation-duration: .4s;
+    transition: .4s;
+    z-index: 1;
+}
+.DetailsPage .popup-box *{
+    border: white solid;
+
+}
+.popup-box .popup .title{
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 1%;
+}
+.popup-box .popup .buttons{
+    margin-top: 1%;
+    padding-top: 3%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.popup-box .popup .buttons *{
+    border-radius: 30%;
+}
+.yes-btn{
+    background-color: rgb(67, 110, 204);
+    border: none;
+    color: white;
+}
+.no-btn{
+    background-color: rgb(221, 26, 26);
+    border: none;
+    color: white;
+}
+
+@keyframes animePopup{
+    from{
+        top: -300px;
+        opacity: 0;
+    }
+    to{
+        top: 45%;
+        opacity: 1;
+    }
 }

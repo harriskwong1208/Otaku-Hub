@@ -11,8 +11,8 @@ export default function DetailsPage(){
     const {user} = useContext(AuthContext);
     const [isLoading,setIsLoading] = useState(false);
     const [anime,setAnime] = useState({});
-    const [error,setError] = useState(null);
-
+    const [error,setError] = useState(null);      
+    const [popUp,setPopUp] = useState(false);
     async function getAnime(){
         setIsLoading(true);
         try{
@@ -31,6 +31,7 @@ export default function DetailsPage(){
         getAnime();
 
     },[]);
+
 
 
 
@@ -101,8 +102,10 @@ export default function DetailsPage(){
                     Popularity: {anime.popularity}
                 </div>
                 <div className="List-setting">
+                    {/* {!user ? <div>Sign in to add to list!</div> :
+                     <button onClick={()=>addAnime(anime)}>Add to List</button>} */}
                     {!user ? <div>Sign in to add to list!</div> :
-                     <button onClick={()=>addAnime(anime)}>Add to List</button>}
+                     <button onClick={()=>setPopUp(true)}>Add to List</button>}
                 </div>
             </div>
             <div className="middle-section">
@@ -111,8 +114,16 @@ export default function DetailsPage(){
                 </div>
             </div>
         </div>
-       <div className="popup">
-        Popup
+        {popUp &&
+       <div className="popup-box">
+            <div className="popup">
+                <div className="title">Are you sure?</div>
+                <div className="buttons">
+                    <button className="yes-btn">Yes</button>
+                    <button className="no-btn" onClick={()=> setPopUp(false)}>No</button>
+                </div>
+            </div>
        </div>
+       }
     </div>)
 }
