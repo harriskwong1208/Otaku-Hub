@@ -95,3 +95,16 @@ export async function addAnimeToUser(animeId){
         return new Error("Unable to ad anime to user's watch list");
     }
 }
+export async function getUserList(){
+    
+    try{
+        const id = await getCurrentUserId();
+        const response = await axios.get(apiEndPoints.localHost+`users/${id}`);
+        const user = response.data.user;
+        const list = user.watchList;
+        return list;
+    }catch(e){
+        console.log(e);
+    }
+    return new Error("Unable to fetch List");
+}

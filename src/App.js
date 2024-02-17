@@ -11,7 +11,7 @@ import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
 import AnimeSearchPage from './Pages/AnimeSearchPage';
 import DetailsPage from './Pages/DetailsPage';
-
+import ListPage from './Pages/ListPage';
 function App() {
 
 
@@ -30,6 +30,7 @@ function App() {
               <Route path='/reset-password' element={<ResetPassword/>} />
               <Route path='/animesearch' element={<AnimeSearchPage/>}/>
               <Route path='/anime/:id' element={<DetailsPage/>} />
+              <Route path='/list' element={<ListPage/>} />
             </Routes>
           </BrowserRouter>
         </div>

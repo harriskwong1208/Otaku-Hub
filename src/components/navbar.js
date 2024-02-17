@@ -27,7 +27,7 @@ export default function Navbar() {
         <div className='anime-tab'><a href='/animesearch'>Anime</a></div>
         <div className='manga'>Manga</div>
         <div className='friends'>Friends</div>
-        <div className='list'>List</div>
+        <div className='list'><a href='/list'>List</a></div>
         <div className='profile'><a href='/profile'>Profile</a></div>
       </div>
       <div className='login-out'>

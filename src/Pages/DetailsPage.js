@@ -105,7 +105,7 @@ export default function DetailsPage(){
                     {/* {!user ? <div>Sign in to add to list!</div> :
                      <button onClick={()=>addAnime(anime)}>Add to List</button>} */}
                     {!user ? <div>Sign in to add to list!</div> :
-                     <button onClick={()=>setPopUp(true)}>Add to List</button>}
+                     <button onClick={()=>addAnime(anime)}>Add to List</button>}
                 </div>
             </div>
             <div className="middle-section">
@@ -114,16 +114,6 @@ export default function DetailsPage(){
                 </div>
             </div>
         </div>
-        {popUp &&
-       <div className="popup-box">
 
-            <div className="title">Are you sure?</div>
-            <div className="buttons">
-                <button className="yes-btn">Yes</button>
-                <button className="no-btn" onClick={()=> setPopUp(false)}>No</button>
-            </div>
-
-       </div>
-       }
     </div>)
 }

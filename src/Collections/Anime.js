@@ -4,9 +4,13 @@ import { getCurrentUserId,checkUserWatchList } from "./Users";
 
 async function addAnime(anime){
 
-    const {title,mal_id} = anime; 
-
-
+    const {title,mal_id,images=null,aired=null,demographics,studios=null,episodes,
+            source,url,score} = anime; 
+    let _studios ;
+    studios ?  _studios = studios.map(studio=>{return studio.name}) 
+        : _studios = null; 
+    let _demographics;
+    demographics.length > 0 ? _demographics = demographics[0].name : _demographics = null; 
     try{
         //Check if anime is already added into watch list
         //returns anime if found
@@ -16,7 +20,17 @@ async function addAnime(anime){
             //add anime to animes collection
             const animeInfo = await axios.post(apiEndPoints.localHost+'anime',{
                 "name": title,
-                "mal_id": mal_id
+                "mal_id": mal_id,
+                "imageUrl":images.jpg.image_url,
+                "aired": aired.string,
+                "demographic": _demographics,
+                "studio": _studios,
+                "episodes": episodes,
+                "source": source,
+                "malLink": url, 
+                "score": score,
+
+
             });
             animeId = animeInfo.data.anime._id;
         }else{

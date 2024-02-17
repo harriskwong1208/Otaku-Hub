@@ -31,12 +31,15 @@ const getAnimeById = async(req,res,next)=>{
 }
 
 const addAnime = async(req,res,next)=>{
-    const {name,mal_id} = req.body;
+    const {name,mal_id,imageUrl,aired,demographic,studio,
+        episodes,source,malLink,score} = req.body;
     let anime;
     try{
         anime = new Anime({
             name,
-            mal_id
+            mal_id,
+            imageUrl,aired,demographic,studio,
+        episodes,source,malLink,score
         })
         anime = await anime.save();
     }catch(e){
