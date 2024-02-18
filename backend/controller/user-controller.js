@@ -8,8 +8,8 @@ require("dotenv").config();
 const getAllUsers = async(req,res,next)=>{
     let users;
 
-    //Only return name, email, and Id. Keeping subId and password safe
-    users= await User.find().select('name email');
+    //Only return name, email, and Id. 
+    users= await User.find().select('name email subId friends watchList mangaList');
     if(!users){
         return res.status(500).json({message:"Internal; Server Error."});
     }
@@ -33,21 +33,21 @@ const addUser = async(req,res,next)=>{
         return next(e);
     }
     if(!user){
-        res.status(500).json({message:"Unable to save user"});
+       return res.status(500).json({message:"Unable to save user"});
     }
     return res.status(201).json({user});
 }
 
 const updateUser = async(req,res,next)=>{
     const id = req.params.id;
-    const {name,email,password,subId} = req.body;
+    const {name,email,password,subId,animeId,friendId,mangaId} = req.body;
 
-  
 
         let user ;
         try{
             user = await User.findByIdAndUpdate(id,
-                {name,email,password,subId});
+                {name,email,password,subId,$push:{watchList: animeId},
+                $push:{mangaList: mangaId},$push:{friends: friendId}});
         }catch(e){
             return next(e);
         }    
@@ -78,7 +78,7 @@ const getUser = async(req,res,next)=>{
     const id = req.params.id;
     let user;
     try{
-        user = await User.findById(id).select('name email');
+        user = await User.findById(id).select('name email watchList friends mangaList');
     }catch(e){
         return next(e);
     }

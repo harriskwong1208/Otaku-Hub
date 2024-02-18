@@ -18,6 +18,16 @@ const userSchema = new Schema({
   },
   subId: {
     type: String,
+    unique:true
+  },
+  watchList:{
+    type: [String]
+  },
+  friends:{
+    type: [String]
+  },
+  mangaList:{
+    type:[String]
   }
 });
 

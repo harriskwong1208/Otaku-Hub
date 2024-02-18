@@ -1,6 +1,5 @@
 .env
-server.js
-/controller
-/model
-/routes
+# /controller
+# /model
+# /routes
  

@@ -1,5 +1,5 @@
 import { useContext,useEffect,useState } from "react"
-import { AuthContext } from "../components/AuthContext"
+import { AuthContext } from "../Context/AuthContext"
 import { getUserIdByEmail,addUserSubId,getUserFromCognito,findEmail } from "../Collections/Users"
 import axios from 'axios';
 import { getSession,getCurrentUser } from "../auth"

@@ -1,6 +1,6 @@
 import { useState,useContext } from "react"
 import { confirmSignUp } from "../auth"
-import { AuthContext } from "../components/AuthContext"
+import { AuthContext } from "../Context/AuthContext"
 import {getUserIdByEmail,addUserSubId,getUserFromCognito} from "../Collections/Users"
 import { Link } from "react-router-dom"
 export default function ConfirmSignUp() {

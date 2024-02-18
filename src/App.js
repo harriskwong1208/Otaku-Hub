@@ -6,12 +6,15 @@ import SignUp from './Pages/SignUp';
 import ConfirmSignUp from './Pages/ConfirmSignUp';
 import Login from './Pages/LogIn';
 import UserProfile from './Pages/UserProfile';
-import { AuthProvider } from './components/AuthContext';
+import { AuthProvider } from './Context/AuthContext';
 import ForgotPassword from './Pages/ForgotPassword';
 import ResetPassword from './Pages/ResetPassword';
+import AnimeSearchPage from './Pages/AnimeSearchPage';
+import DetailsPage from './Pages/DetailsPage';
+import ListPage from './Pages/ListPage';
+import FriendPage from './Pages/FriendPage';
 function App() {
 
-  // const [user,setUser] = useState();
 
   return (
     <AuthProvider>
@@ -26,15 +29,10 @@ function App() {
               <Route path='/profile' element={< UserProfile/>}/>
               <Route path='/forgot-password' element={<ForgotPassword/>}/>
               <Route path='/reset-password' element={<ResetPassword/>} />
-              {/* Now, the UserProfile route is protected by the RouteGuard 
-                component. Users who aren't logged in will be redirected to 
-                the /login page when trying to access the /profile route. */}
-              {/* <Route path="/profile"
-              component={ 
-                <RouteGuard>
-                  <UserProfile />
-                </RouteGuard>
-              }/> */}
+              <Route path='/animesearch' element={<AnimeSearchPage/>}/>
+              <Route path='/anime/:id' element={<DetailsPage/>} />
+              <Route path='/list' element={<ListPage/>} />
+              <Route path='/friends' element={<FriendPage/>}/>
             </Routes>
           </BrowserRouter>
         </div>

@@ -1,7 +1,7 @@
 import '../styles/navbar.css';
 import logo from '../static/sitelogo.jpg';
 import {useContext} from 'react';
-import {AuthContext} from './AuthContext.js';
+import {AuthContext} from '../Context/AuthContext.js';
 
 export default function Navbar() {
 
@@ -24,10 +24,10 @@ export default function Navbar() {
       </div>
       <div className='tabs'>
         <div className='home'><a href='/'>Home</a></div>
-        <div className='anime'>Anime</div>
+        <div className='anime-tab'><a href='/animesearch'>Anime</a></div>
         <div className='manga'>Manga</div>
-        <div className='friends'>Friends</div>
-        <div className='list'>List</div>
+        <div className='friends'><a href='/friends'>Friends</a></div>
+        <div className='list'><a href='/list'>List</a></div>
         <div className='profile'><a href='/profile'>Profile</a></div>
       </div>
       <div className='login-out'>
