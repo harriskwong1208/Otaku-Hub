@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { getCurrentUser } from "../auth";
 import {apiEndPoints} from "../apiEndpoints";
+import { getAnime } from "./Anime";
 
 export  async function getUserIdByEmail(email){
     let users = await axios.get(apiEndPoints.localHost+'users');
@@ -95,8 +96,7 @@ export async function addAnimeToUser(animeId){
         return new Error("Unable to ad anime to user's watch list");
     }
 }
-export async function getUserList(){
-    
+export async function getUserWatchList(){
     try{
         const id = await getCurrentUserId();
         const response = await axios.get(apiEndPoints.localHost+`users/${id}`);
@@ -105,6 +105,7 @@ export async function getUserList(){
         return list;
     }catch(e){
         console.log(e);
+        return new Error("Unable to fetch WatchList");
     }
-    return new Error("Unable to fetch List");
 }
+

@@ -74,5 +74,16 @@ async function getAnimeByMalId(mal_id){
 }
 
 
+async function getAnime(id){
+    let anime;
+    try{
+        anime = await axios.get(apiEndPoints.localHost+`anime/${id}`);
 
-export {addAnime,getAnimeByMalId};
+    }catch(e){
+        return new Error("Error in getting anime.")
+    }
+    return anime;
+}
+
+
+export {addAnime,getAnimeByMalId,getAnime};
