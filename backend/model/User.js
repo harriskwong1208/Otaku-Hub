@@ -22,6 +22,12 @@ const userSchema = new Schema({
   },
   watchList:{
     type: [String]
+  },
+  friends:{
+    type: [String]
+  },
+  mangaList:{
+    type:[String]
   }
 });
 
