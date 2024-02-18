@@ -45,7 +45,7 @@ export default function SearchFriend(){
         Search Friend component
         <input onChange={handleInputChange} placeholder="Search Friend"></input>
         <ul>
-            {filteredUsers.map(user => <li key={user._id}>{user.name}</li>)}
+            {filteredUsers &&  filteredUsers.map(user => <li key={user._id}>{user.name}</li>)}
 
         </ul>
     </div>)
