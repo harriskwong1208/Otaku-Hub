@@ -29,8 +29,6 @@ async function addAnime(anime){
                 "source": source,
                 "malLink": url, 
                 "score": score,
-
-
             });
             animeId = animeInfo.data.anime._id;
         }else{

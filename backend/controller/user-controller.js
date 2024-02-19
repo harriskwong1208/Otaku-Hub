@@ -46,13 +46,18 @@ const updateUser = async(req,res,next)=>{
         let user ;
         try{
             user = await User.findByIdAndUpdate(id,
-                {name,email,password,subId,$push:{watchList: animeId},
-                $push:{mangaList: mangaId},$push:{friends: friendId}});
+                // {name,email,password,subId,$push:{watchList: animeId},
+                // $push:{mangaList: mangaId},$push:{friends: friendId}});
+                {name,email,password,subId,
+                    $push:{
+                        watchList: animeId,
+                        mangaList: mangaId,
+                        friends: friendId}});
         }catch(e){
             return next(e);
         }    
         if(!user){
-            return res.status(500),json({msessage:"Unable to update user."});
+            return res.status(500).json({msessage:"Unable to update user."});
         }
         return res.status(200).json({message:"Updated successfully"});
 
