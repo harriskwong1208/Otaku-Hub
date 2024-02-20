@@ -21,7 +21,7 @@ export default function ListFriends(){
         <ul>
             {friends && friends.map((friend,index)=>(
                 <li key={index}>
-                    friend: {index}
+                    <a href={`/user/${friend}`}>friend</a>:
                 </li>))}
         </ul>
     </div>);

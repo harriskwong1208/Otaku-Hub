@@ -4,23 +4,46 @@ import { getUserIdByEmail,addUserSubId,getUserFromCognito,findEmail } from "../C
 import axios from 'axios';
 import { getSession,getCurrentUser } from "../auth"
 import { apiEndPoints } from "../apiEndpoints";
-export default function UserProfile(props) {
+import { useParams } from "react-router-dom";
+export default function UserProfile() {
 
-  const { user, signOut } = useContext(AuthContext);
+    const {id} = useParams();
+    const [user,setUser] = useState();
+    const [isLoading,setIsLoading] = useState(false);
 
-  if(!user){
-    return(<div>Log in <a href="login">here</a></div>)
-  }
+    async function getUser(){
+        setIsLoading(true);
+        try{
+            const data = await axios.get(apiEndPoints.localHost+"users/"+id);
+            console.log(data);
+            setUser(data.user);
+            return data;
+
+        }catch(e){
+            console.error(e);
+            return new Error(e);
+        }   
+    }
+    useEffect(()=>{
+        // getUser().then(data =>{
+        //     console.log("AFter:")
+        //     console.log(data);
+        //     setIsLoading(false);})
+        //     .catch(e=> console.log(e));
+        setIsLoading(true);
+        axios.get(apiEndPoints.localHost+'users/'+id)
+            .then(data=> {setUser(data.user); setIsLoading(false);})
+            .catch(e=> {console.error(e); setIsLoading(false)});
+    },[])
+
+    if(isLoading){
+        return(<div>Loading ......</div>)
+    }
 
   return (
     <div>
-      {user && (
-        <div>
-          <h2>User Profile</h2>
-          <p>Username: {user.username}</p>
-          <p>Email: {user.email}</p>
-        </div>
-      )}
+        Heelo
+        {user && <div>{user.name}</div>}
     </div>
   )
 }
