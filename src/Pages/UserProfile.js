@@ -4,9 +4,13 @@ import { getUserIdByEmail,addUserSubId,getUserFromCognito,findEmail } from "../C
 import axios from 'axios';
 import { getSession,getCurrentUser } from "../auth"
 import { apiEndPoints } from "../apiEndpoints";
-export default function UserProfile() {
+export default function UserProfile(props) {
+
   const { user, signOut } = useContext(AuthContext);
 
+  if(!user){
+    return(<div>Log in <a href="login">here</a></div>)
+  }
 
   return (
     <div>
