@@ -96,6 +96,7 @@ export async function addAnimeToUser(animeId){
         return new Error("Unable to ad anime to user's watch list");
     }
 }
+//Get current user's watch list
 export async function getUserWatchList(){
     try{
         const id = await getCurrentUserId();
