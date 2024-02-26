@@ -1,0 +1,4 @@
+.friends .friend{
+    display: flex;
+    align-items: center;
+}

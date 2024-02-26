@@ -37,7 +37,7 @@ const addUser = async(req,res,next)=>{
     }
     return res.status(201).json({user});
 }
-
+ 
 const updateUser = async(req,res,next)=>{
     const id = req.params.id;
     const {name,email,password,subId,animeId,friendId,mangaId} = req.body;

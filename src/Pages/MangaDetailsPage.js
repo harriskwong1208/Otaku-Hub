@@ -32,9 +32,6 @@ export default function DetailsPage(){
 
     },[]);
 
-
-
-
     if(isLoading){
         return(<div>Loading......</div>)
     }

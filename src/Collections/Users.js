@@ -96,6 +96,7 @@ export async function addAnimeToUser(animeId){
         return new Error("Unable to ad anime to user's watch list");
     }
 }
+//Get current user's watch list
 export async function getUserWatchList(){
     try{
         const id = await getCurrentUserId();
@@ -109,3 +110,52 @@ export async function getUserWatchList(){
     }
 }
 
+//Get currentlly logged in user's friends list
+export async function getFriendsFromUser(){
+    try{
+        const id = await getCurrentUserId();
+        const response = await axios.get(apiEndPoints.localHost+`users/${id}`);
+        const user = response.data.user;
+        const list = user.friends;
+
+        return list;
+    }catch(e){
+        console.log(e);
+        return new Error("Unable to fetch WatchList");
+    }
+}
+
+export async function addFriendToUser(friendId){
+    try{
+        //check if friend is already in user's list
+        const friends = await getFriendsFromUser();
+        // console.log('Friends: ')
+        // console.log(friends);
+        if(friends.includes(friendId)){
+            alert('Already added!');
+            return;
+        }
+        const currUserId = await getCurrentUserId();
+        //Add to user's friends list
+        const response = await axios.put(apiEndPoints.localHost+'users/'+currUserId,{
+            friendId: friendId
+        });
+        console.log(response);
+        alert("Added Friend!");
+    }catch(e){
+        console.log(e);
+        return new Error("Error in adding friend.");
+    }
+}
+//Returns currentlly logged in user object from database
+export async function getCurrentUserDatabase(){
+    const user = await getUserFromCognito();
+    const subId = user.sub;
+    const users = await getAllUsersFromDatabase();
+    for(let i of users){
+        if(i.subId === subId){
+            return i;
+        }
+    }
+    return new Error("Error in getting user.")
+}
