@@ -70,10 +70,7 @@ export default function MangaDetailsPage(){
                 </div>
                 <div className="rating">
                     Volumns: {anime.volumes}
-                </div>
-                <div className="season">
-                    Season Aired: {anime.season}
-                </div>                 
+                </div>           
                 <div className="source">
                     Type: {anime.type}
                 </div>
