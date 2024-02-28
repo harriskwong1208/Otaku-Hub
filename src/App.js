@@ -15,6 +15,7 @@ import ListPage from './Pages/ListPage';
 import FriendPage from './Pages/FriendPage';
 import UserProfile from './Pages/UserProfile';
 import MangaSearchPage from './Pages/MangaSearchPage';
+import MangaDetailsPage from './Pages/MangaDetails';
 function App() {
 
 
@@ -37,7 +38,7 @@ function App() {
               <Route path='/friends' element={<FriendPage/>}/>
               <Route path='/user/:id' element={<UserProfile/>}/>
               <Route path='/mangasearch' element={<MangaSearchPage/>}/>
-      
+              <Route path='/manga/:id' element={<MangaDetailsPage/>} />
             </Routes>
           </BrowserRouter>
         </div>

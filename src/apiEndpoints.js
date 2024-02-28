@@ -4,5 +4,5 @@ export const apiEndPoints={
     jikan: 'https://api.jikan.moe/v4/anime?q=',
     jikanById: 'https://api.jikan.moe/v4/anime/',
     jikanManga: 'https://api.jikan.moe/v4/manga?q=',
-    // jikanMangaById: 'https://api.jikan.moe/v4/manga?q=bleach&sfw&type=manga'
+    jikanMangaById: 'https://api.jikan.moe/v4/manga/'
 }

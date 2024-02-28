@@ -55,6 +55,13 @@ export default function DetailsPage(){
                 <div className="duration">
                     Duration: {anime.duration && anime.duration}
                 </div>
+                <div className="genres">
+                    Genres: 
+                    {anime.genres && anime.genres.map((genre,index)=>(
+                    index != anime.genres.length-1 ?
+                    ` ${genre.name},` : ` ${genre.name}`
+                    ))}
+                </div>
                 <div className="studio">
                     Studios: 
                     {anime.studios && anime.studios.map((studio,index)=>(

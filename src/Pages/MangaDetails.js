@@ -6,7 +6,7 @@ import { apiEndPoints } from "../apiEndpoints";
 import '../styles/DetailsPage.css';
 import { addAnime,getAnimeByMalId } from "../Collections/Anime";
 import { checkUserWatchList,getCurrentUserId,getAllUsersFromDatabase } from "../Collections/Users";
-export default function DetailsPage(){
+export default function MangaDetailsPage(){
     const {id} = useParams();
     const {user} = useContext(AuthContext);
     const [isLoading,setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function DetailsPage(){
     async function getAnime(){
         setIsLoading(true);
         try{
-            let _anime = await axios.get(apiEndPoints.jikanById+id);
+            let _anime = await axios.get(apiEndPoints.jikanMangaById+id);
             _anime = _anime.data.data;
             setAnime(_anime);
             console.log(_anime);
@@ -32,6 +32,9 @@ export default function DetailsPage(){
 
     },[]);
 
+
+
+
     if(isLoading){
         return(<div>Loading......</div>)
     }
@@ -44,38 +47,41 @@ export default function DetailsPage(){
             </div>
             <div className="information">
                 <div className="airDate">
-                    Air Date: {anime.aired && anime.aired.string}
+                    Publishing Date: {anime.published && 
+                        `${anime.published.from.split("T")[0]} 
+                            ${anime.published.to != null ? `to ${anime.published.to.split("T")[0]}` :
+                                ""}`}
                 </div>
                 <div className="demographic">
                     Demographic: {(anime.demographics && anime.demographics[0]) && anime.demographics[0].name}
                 </div>
                 <div className="duration">
-                    Duration: {anime.duration && anime.duration}
+                    Status: {anime.status && anime.status}
                 </div>
-                <div className="studio">
-                    Studios: 
-                    {anime.studios && anime.studios.map((studio,index)=>(
-                    index != anime.studios.length-1 ?
-                    ` ${studio.name},` : ` ${studio.name}`
+                <div className="genres">
+                    Genres: 
+                    {anime.genres && anime.genres.map((genre,index)=>(
+                    index != anime.genres.length-1 ?
+                    ` ${genre.name},` : ` ${genre.name}`
                     ))}
                 </div>
                 <div className="episodes">
-                    Episodes: {anime.episodes ? anime.episodes : "Still airing"}
+                    Chapters: {anime.chapters ? anime.chapters : "Unknown"}
                 </div>
                 <div className="rating">
-                    Rating: {anime.rating}
+                    Volumns: {anime.volumes}
                 </div>
                 <div className="season">
                     Season Aired: {anime.season}
                 </div>                 
                 <div className="source">
-                    Source Material: {anime.source}
+                    Type: {anime.type}
                 </div>
                 <div className="producers">
-                    Producers: 
-                        {anime.producers && anime.producers.map((producer,index)=>(
-                            index != anime.producers.length-1 ?
-                            ` ${ producer.name},` : ` ${ producer.name}`
+                    Serializations: 
+                        {anime.serializations && anime.serializations.map((serialization,index)=>(
+                            index != anime.serializations.length-1 ?
+                            ` ${ serialization.name},` : ` ${ serialization.name}`
                         ))}
                 </div>
                 <div className="mal-link">
