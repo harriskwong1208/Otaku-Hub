@@ -6,6 +6,8 @@ import { apiEndPoints } from "../apiEndpoints";
 import '../styles/DetailsPage.css';
 import { addAnime,getAnimeByMalId } from "../Collections/Anime";
 import { checkUserWatchList,getCurrentUserId,getAllUsersFromDatabase } from "../Collections/Users";
+import { addManga } from "../Collections/Manga"
+
 export default function MangaDetailsPage(){
     const {id} = useParams();
     const {user} = useContext(AuthContext);
@@ -103,7 +105,7 @@ export default function MangaDetailsPage(){
                 </div>
                 <div className="List-setting">
                     {!user ? <div>Sign in to add to list!</div> :
-                     <button onClick={()=>addAnime(anime)}>Add to List</button>}
+                     <button onClick={()=>addManga(anime)}>Add to List</button>}
                 </div>
             </div>
             <div className="middle-section">

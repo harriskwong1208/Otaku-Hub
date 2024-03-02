@@ -19,8 +19,8 @@ async function addManga(manga){
         _published = `${published.from.split("T")[0]} ${published.to 
             && published.to.split("T")[0]}`;
 
-        let _demographic;
-            if(demographics){
+        let _demographic = null;
+        if(demographics.length > 0){
             _demographic = demographics[0].name
         }
         let _serializations;
@@ -40,7 +40,7 @@ async function addManga(manga){
                 "mal_id": mal_id,
                 "imageUrl": images.jpg.image_url,
                 "published": _published,
-                "demographic": demographic,
+                "demographic": _demographic,
                 "serializations": _serializations,
                 "chapters": chapters,
                 "type": type,
@@ -97,7 +97,7 @@ async function getManga(id){
     }catch(e){
         return new Error("Error in getting manga.")
     }
-    return anime;
+    return manga;
 }
 
 
