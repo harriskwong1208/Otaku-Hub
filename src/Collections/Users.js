@@ -159,3 +159,34 @@ export async function getCurrentUserDatabase(){
     }
     return new Error("Error in getting user.")
 }
+
+
+//Check if manga is already in user's manga list
+//RETURNS TRUE if manga already in manga list
+export async function checkUserMangaList(id,mangaId){
+    try{
+        const response = await axios.get(apiEndPoints.localHost+`users/${id}`);
+        const user = response.data.user;
+        const found = user.mangaList.find(u => u == mangaId);
+        if(found){
+            return true;
+        }
+    }catch(e){
+        console.log(e);
+    }
+    return false;
+}
+
+//Get current user's manga list
+export async function getUserMangaList(){
+    try{
+        const id = await getCurrentUserId();
+        const response = await axios.get(apiEndPoints.localHost+`users/${id}`);
+        const user = response.data.user;
+        const list = user.mangaList;
+        return list;
+    }catch(e){
+        console.log(e);
+        return new Error("Unable to fetch MangaList");
+    }
+}
