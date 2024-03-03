@@ -1,8 +1,5 @@
-import { useContext,useEffect,useState } from "react"
-import { AuthContext } from "../Context/AuthContext"
-import { getUserIdByEmail,addUserSubId,getUserFromCognito,findEmail } from "../Collections/Users"
+import { useEffect,useState } from "react"
 import axios from 'axios';
-import { getSession,getCurrentUser } from "../auth"
 import { apiEndPoints } from "../apiEndpoints";
 import { useParams } from "react-router-dom";
 import { getAnime } from "../Collections/Anime";
@@ -14,15 +11,15 @@ export default function UserProfile() {
     const [isLoading,setIsLoading] = useState(false);
     const [watchList, setWatchList] = useState();
     const [mangaList, setMangaList] = useState();
-    async function getUserName(id){
-        try{
-            const user = await axios.get(apiEndPoints.localHost+'users/'+id);
-            const name = user.data.user.name;
-            return name;
-        }catch(e){
-            console.log(e);
-            return "Error loading name...";
+    const [friends,setFriends] = useState();
+
+    async function getFriends(friends){
+        let _friends = [];
+        for(let i of friends){
+            let data = await axios.get(apiEndPoints.localHost+'users/'+i);
+            _friends.push(data.data.user.name)       
         }
+        return _friends;
     }
 
     async function setList(List,callback,type){
@@ -40,14 +37,19 @@ export default function UserProfile() {
         const userinfo = data;
         setUser(data.data.user);
 
+        //Get friends' names
+        const friends = await getFriends(data.data.user.friends);        
+        setFriends(friends);
+
+        //Set anime and manga lists
         data =  await setList(data.data.user.watchList,getAnime,"anime");
-        console.log('WatchList:');
-        console.log(data);
+        // console.log('WatchList:');
+        // console.log(data);
         setWatchList(data);
 
         data = await setList(userinfo.data.user.mangaList,getManga,"manga");
-        console.log('MangaList:');
-        console.log(data);
+        // console.log('MangaList:');
+        // console.log(data);
         setMangaList(data);
      
     }
@@ -55,6 +57,11 @@ export default function UserProfile() {
 
     useEffect(()=>{
         setIsLoading(true);
+        // getUserName(id)
+        //     .then(data=>{
+
+        //     })
+        //     .catch(e=>console.error(e));
         setAllLists()
             .then(()=>{
                 setIsLoading(false);
@@ -72,12 +79,11 @@ export default function UserProfile() {
     <div>
         
         Name: {user && <div>{user.name}</div>}
-        Friends: {user && 
+        Friends: {friends && 
             <ul>
-                {user.friends.map((friend,index)=>(
+                {friends.map((friend,index)=>(
                 <li key={index}>
-                    {/* {getUserName(friend)} */}
-                    friend
+                    {friend}
                 </li>))}
             </ul>}
         Watch List: {watchList && 
