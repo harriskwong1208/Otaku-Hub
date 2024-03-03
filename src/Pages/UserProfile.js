@@ -6,13 +6,14 @@ import { getSession,getCurrentUser } from "../auth"
 import { apiEndPoints } from "../apiEndpoints";
 import { useParams } from "react-router-dom";
 import { getAnime } from "../Collections/Anime";
+import { getManga } from "../Collections/Manga";
 export default function UserProfile() {
 
     const {id} = useParams();
     const [user,setUser] = useState();
     const [isLoading,setIsLoading] = useState(false);
     const [watchList, setWatchList] = useState();
-
+    const [mangaList, setMangaList] = useState();
     async function getUserName(id){
         try{
             const user = await axios.get(apiEndPoints.localHost+'users/'+id);
@@ -23,36 +24,42 @@ export default function UserProfile() {
             return "Error loading name...";
         }
     }
-    async function setAnimeWatchList(watchList){
+
+    async function setList(List,callback,type){
         let list = [];
-        for(let i of  watchList){
-            const response = await getAnime(i);
-            const data = response.data.anime;
+        for(let i of  List){
+            const response = await callback(i);
+            const data = response.data[type];
             list.push(data);
         }
         return list;
     }
 
+    async function setAllLists(){
+        let data = await axios.get(apiEndPoints.localHost+'users/'+id);
+        const userinfo = data;
+        setUser(data.data.user);
+
+        data =  await setList(data.data.user.watchList,getAnime,"anime");
+        console.log('WatchList:');
+        console.log(data);
+        setWatchList(data);
+
+        data = await setList(userinfo.data.user.mangaList,getManga,"manga");
+        console.log('MangaList:');
+        console.log(data);
+        setMangaList(data);
+     
+    }
+
 
     useEffect(()=>{
         setIsLoading(true);
-        axios.get(apiEndPoints.localHost+'users/'+id)
-            .then(data=>{
-                setUser(data.data.user);
-                // console.log(data.data.user.watchList);
-                setAnimeWatchList(data.data.user.watchList)
-                    .then(data => {
-                        console.log(data);
-                        setWatchList(data);
-                        setIsLoading(false);
-                    })
-                    .catch(e=>{
-                        console.log(e);
-                        setIsLoading(false);
-                    })
-            })
-            .catch(e => {
-                console.log(e);
+        setAllLists()
+            .then(()=>{
+                setIsLoading(false);
+            }).catch(e=>{
+                console.error(e);
                 setIsLoading(false);
             })
     },[])
@@ -81,8 +88,13 @@ export default function UserProfile() {
             </li>))}
         </ul>}
         Manga List: 
-        {/* TO BE IMPLEMENETED  */}
-
+        {mangaList && 
+        <ul>
+            {mangaList.map((manga,index)=>(
+            <li key={index}>
+                <a href={`/manga/${manga.mal_id}`} target="_blank">{manga.title}</a>
+            </li>))}
+        </ul>}
 
 
     </div>
