@@ -1,0 +1,23 @@
+.LoadingScreen {
+  height: 300px;
+  padding-top: 25%;
+  width: 99.71%;
+  position: relative;
+}
+.LoadingBlock {
+  position: absolute;
+  top: 25%;
+  width: 100%;
+  margin-left: 0.39%;
+}
+.LoadingBlock .Message {
+  width: 100%;
+  text-align: center;
+  padding: 2% 0 2% 0;
+  font-size: larger;
+  font-weight: bold;
+}
+.LoadingBlock .animation {
+  display: flex;
+  justify-content: center;
+}

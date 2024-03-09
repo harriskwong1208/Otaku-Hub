@@ -1,0 +1,78 @@
+.Profile * {
+  font-size: larger;
+  font-family: "Bebas Neue", "kanit", sans-serif;
+}
+/* .Profile .card {
+  position: relative;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 800px;
+  box-shadow: 0 0 10px grey;
+  border-radius: 50px;
+} */
+.Profile .card {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1.2fr 1fr;
+  margin-top: 3%;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 800px;
+  box-shadow: 0 0 10px grey;
+  border-radius: 50px;
+}
+.Profile .card * {
+  /* border: solid; */
+}
+
+.Profile .card .image {
+  /* border: solid;
+  display: flex;
+  justify-content: center;
+  height: 30%; */
+  padding-top: 1%;
+}
+.Profile .card .image img {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 170px;
+  border-radius: 10px;
+  /* clip-path: circle(); */
+}
+.Profile .card div {
+  text-align: center;
+}
+.card .section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card #Bio {
+  position: relative;
+}
+.card #Email {
+  position: relative;
+}
+.card #Email span {
+  position: absolute;
+  top: -10%;
+}
+.card #Bio span {
+  width: 70%;
+  position: absolute;
+  top: -30%;
+  font-size: large;
+}
+.card #btn {
+  position: relative;
+}
+
+.Edit-Btn {
+  border-radius: 10%;
+  position: absolute;
+  top: -5%;
+  padding: 0.25% 1% 0.25% 1%;
+  color: white;
+  background-color: rgb(29, 146, 241);
+  border: none;
+}
