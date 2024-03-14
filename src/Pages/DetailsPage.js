@@ -17,8 +17,9 @@ export default function DetailsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [anime, setAnime] = useState({});
   const [error, setError] = useState(null);
-  const [popUp, setPopUp] = useState(false);
   async function getAnime() {
+    document.body.style = "background: #10131f;";
+
     setIsLoading(true);
     try {
       let _anime = await axios.get(apiEndPoints.jikanById + id);
@@ -48,19 +49,20 @@ export default function DetailsPage() {
         </div>
         <div className="information">
           <div className="airDate">
-            Air Date: {anime.aired && anime.aired.string}
+            <strong>Air Date:</strong> {anime.aired && anime.aired.string}
           </div>
           <div className="demographic">
-            Demographic:{" "}
+            <strong>Demographic:</strong>{" "}
             {anime.demographics &&
               anime.demographics[0] &&
               anime.demographics[0].name}
           </div>
           <div className="duration">
-            Duration: {anime.duration && anime.duration}
+            <strong>Duration: </strong>
+            {anime.duration && anime.duration}
           </div>
           <div className="genres">
-            Genres:
+            <strong>Genres: </strong>
             {anime.genres &&
               anime.genres.map((genre, index) =>
                 index != anime.genres.length - 1
@@ -69,7 +71,7 @@ export default function DetailsPage() {
               )}
           </div>
           <div className="studio">
-            Studios:
+            <strong>Studios: </strong>
             {anime.studios &&
               anime.studios.map((studio, index) =>
                 index != anime.studios.length - 1
@@ -78,13 +80,23 @@ export default function DetailsPage() {
               )}
           </div>
           <div className="episodes">
-            Episodes: {anime.episodes ? anime.episodes : "Still airing"}
+            <strong>Episodes: </strong>
+            {anime.episodes ? anime.episodes : "Still airing"}
           </div>
-          <div className="rating">Rating: {anime.rating}</div>
-          <div className="season">Season Aired: {anime.season}</div>
-          <div className="source">Source Material: {anime.source}</div>
+          <div className="rating">
+            <strong>Rating: </strong>
+            {anime.rating}
+          </div>
+          <div className="season">
+            <strong>Season Aired: </strong>
+            {anime.season}
+          </div>
+          <div className="source">
+            <strong>Source Material: </strong>
+            {anime.source}
+          </div>
           <div className="producers">
-            Producers:
+            <strong>Producers:</strong>
             {anime.producers &&
               anime.producers.map((producer, index) =>
                 index != anime.producers.length - 1
@@ -93,32 +105,40 @@ export default function DetailsPage() {
               )}
           </div>
           <div className="mal-link">
-            More Details:{" "}
-            <a target="_blank" href={anime.url}>
+            <strong>More Details:</strong>{" "}
+            <a id="mal_link" target="_blank" href={anime.url}>
               MyAnimeList
             </a>
           </div>
         </div>
       </div>
       <div className="right-section">
-        <div className="top-section">
+        <section>
+          <div className="List-setting">
+            <div id="Anime-Title">
+              <span>{anime.title_english}</span>
+            </div>
+            {!user ? (
+              <div id="SignInMessage">Sign in to add to list!</div>
+            ) : (
+              <div className="buttons">
+                <button id="Add-Btn" onClick={() => addAnime(anime)}>
+                  Add to List
+                </button>
+                <button id="Remove-Btn">Remove From List</button>
+              </div>
+            )}
+          </div>
           <div className="score">
-            Score: {anime.score}, by {anime.scored_by} users
+            Score:
+            {anime.score}, by {anime.scored_by} users
           </div>
           <div className="popularity">Popularity: {anime.popularity}</div>
           <div className="rank">Ranking: {anime.rank}</div>
-          <div className="popularity">Popularity: {anime.popularity}</div>
-          <div className="List-setting">
-            {!user ? (
-              <div>Sign in to add to list!</div>
-            ) : (
-              <button onClick={() => addAnime(anime)}>Add to List</button>
-            )}
-          </div>
-        </div>
-        <div className="middle-section">
-          <div className="description"></div>
-        </div>
+        </section>
+        <article>
+          <div className="synopsis">{anime.synopsis}</div>
+        </article>
       </div>
     </div>
   );

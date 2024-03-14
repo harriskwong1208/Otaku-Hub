@@ -1,63 +1,92 @@
-.DetailsPage{
-    display: grid;
-    grid-template-columns: .3fr 1fr;
-    position: relative;
+.DetailsPage {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  position: relative;
 }
-.DetailsPage .left-section{
-    border: solid;
+.DetailsPage .left-section {
+  color: white;
 }
-.DetailsPage .popup-box{
-    box-shadow: 0 0 0 1px grey;
-    position: absolute;
-    top: 45%;
-    left: 44%;
-    color: black;
-    width: 15%;
-    height: 15%;
-    border-radius: 5%;
-    font-size: larger;
-    animation-name: animePopup;
-    animation-duration: .4s;
-    transition: .4s;
-    z-index: 1;
+.left-section {
+  margin-left: 0.5%;
 }
-
-.popup-box  .title{
-    text-align: center;
-    width: 100%;
-    margin-top: 5%;
-    margin-bottom: 1%;
+.left-section .img {
+  display: flex;
+  justify-content: center;
 }
-.popup-box  .buttons{
-    margin-top: 10%;
-    padding-top: 3%;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+.left-section .img img {
+  height: 70%;
+  width: 70%;
 }
-.popup-box  .buttons *{
-    border-radius: 30%;
-    padding: 2% 4%;
-
+.left-section .information div {
+  margin-top: 3%;
+  text-align: center;
 }
-.yes-btn{
-    background-color: rgb(67, 110, 204);
-    border: none;
-    color: white;
-}
-.no-btn{
-    background-color: rgb(221, 26, 26);
-    border: none;
-    color: white;
+#mal_link,
+#mal_link:visited,
+#mal_link:active {
+  color: white;
 }
 
-@keyframes animePopup{
-    from{
-        top: -300px;
-        opacity: 0;
-    }
-    to{
-        top: 45%;
-        opacity: 1;
-    }
+.right-section {
+  color: white;
+}
+section {
+  margin-top: 1%;
+  border-radius: 20px;
+  border: solid;
+  display: grid;
+  grid-template-columns: 0.6fr 1fr 1fr;
+  grid-template-rows: 150px;
+}
+section #SignInMessage,
+#Add-Btn {
+  display: block;
+}
+
+.List-setting {
+  grid-row: 1/3;
+  border: solid;
+  position: relative;
+}
+.List-setting #Anime-Title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+}
+.List-setting .buttons {
+  height: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  border: solid;
+  justify-content: space-around;
+  align-items: center;
+}
+.List-setting .buttons button {
+  color: white;
+  padding: 2% 4% 2% 4%;
+  border-radius: 20px;
+  border: none;
+}
+.List-setting .buttons #Add-Btn {
+  background-color: rgb(15, 116, 199);
+}
+.List-setting .buttons #Add-Btn:active {
+  background-color: rgb(16, 87, 146);
+  transition: 0.6s;
+}
+.List-setting .buttons #Remove-Btn {
+  background-color: rgb(223, 38, 38);
+}
+.List-setting .buttons #Remove-Btn:active {
+  background-color: rgb(161, 20, 20);
+  transition: 0.6s;
 }
