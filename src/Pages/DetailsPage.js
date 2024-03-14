@@ -129,14 +129,26 @@ export default function DetailsPage() {
               </div>
             )}
           </div>
-          <div className="score">
-            Score:
-            {anime.score}, by {anime.scored_by} users
+          <div className="score-users">
+            <div id="score-title">
+              <span>Score:</span>
+            </div>
+            <div id="score">{anime.score}</div>
+            <div id="users">by {anime.scored_by} users</div>
           </div>
-          <div className="popularity">Popularity: {anime.popularity}</div>
-          <div className="rank">Ranking: {anime.rank}</div>
+          <div className="popularity">
+            <div id="title">Popularity:</div>
+            <div id="number"> {anime.popularity}</div>
+          </div>
+          <div className="rank">
+            <div id="title">Ranking: </div>
+            <div id="number">{anime.rank}</div>
+          </div>
         </section>
         <article>
+          <br></br>
+          <span id="title">Synopsis</span>
+          <hr></hr>
           <div className="synopsis">{anime.synopsis}</div>
         </article>
       </div>
