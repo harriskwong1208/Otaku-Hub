@@ -129,6 +129,7 @@ export default function DetailsPage() {
               </div>
             )}
           </div>
+          <div className="vertical-line"></div>
           <div className="score-users">
             <div id="score-title">
               <span>Score:</span>
@@ -136,10 +137,12 @@ export default function DetailsPage() {
             <div id="score">{anime.score}</div>
             <div id="users">by {anime.scored_by} users</div>
           </div>
+          <div className="vertical-line"></div>
           <div className="popularity">
             <div id="title">Popularity:</div>
             <div id="number"> {anime.popularity}</div>
           </div>
+          <div className="vertical-line"></div>
           <div className="rank">
             <div id="title">Ranking: </div>
             <div id="number">{anime.rank}</div>
@@ -151,6 +154,23 @@ export default function DetailsPage() {
           <hr></hr>
           <div className="synopsis">{anime.synopsis}</div>
         </article>
+        <div className="trailers">
+          <br></br>
+          <span id="title">Trailer</span>
+          <hr></hr>
+          {!anime.trailer.embed_url ? (
+            <div id="video-container">
+              <iframe
+                id="video"
+                width="420"
+                height="345"
+                src={anime.trailer.embed_url}
+              ></iframe>
+            </div>
+          ) : (
+            <div id="message">Trailer unavailable.</div>
+          )}
+        </div>
       </div>
     </div>
   );
