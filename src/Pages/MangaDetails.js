@@ -4,28 +4,25 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/DetailsPage.css";
-import { addAnime, getAnimeByMalId } from "../Collections/Anime";
-import {
-  checkUserWatchList,
-  getCurrentUserId,
-  getAllUsersFromDatabase,
-} from "../Collections/Users";
-import { addManga } from "../Collections/Manga";
+import { addAnime } from "../Collections/Anime";
 import LoadComponent from "../components/Loading";
+import { addManga } from "../Collections/Manga";
+
 export default function MangaDetailsPage() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [anime, setAnime] = useState({});
+  const [manga, setManga] = useState({});
   const [error, setError] = useState(null);
-  const [popUp, setPopUp] = useState(false);
-  async function getAnime() {
+  async function getManga() {
+    document.body.style = "background: #10131f;";
+
     setIsLoading(true);
     try {
-      let _anime = await axios.get(apiEndPoints.jikanMangaById + id);
-      _anime = _anime.data.data;
-      setAnime(_anime);
-      console.log(_anime);
+      let _manga = await axios.get(apiEndPoints.jikanMangaById + id);
+      _manga = _manga.data.data;
+      setManga(_manga);
+      console.log(_manga);
       setIsLoading(false);
     } catch (e) {
       setError(e);
@@ -34,86 +31,161 @@ export default function MangaDetailsPage() {
     }
   }
   useEffect(() => {
-    getAnime();
+    getManga();
   }, []);
 
   if (isLoading) {
     return <LoadComponent />;
   }
 
+  const publishAttribute = (published) => {
+    const fromDate = published.from.split("T")[0];
+    if (published.to == null) {
+      return `Publishing since ${fromDate}`;
+    }
+    return `From ${fromDate} to ${published.to.split("T")[0]}`;
+  };
+
   return (
     <div className="DetailsPage">
       <div className="left-section">
         <div className="img">
-          <img src={anime.images && anime.images.jpg.large_image_url} />
+          <img src={manga.images && manga.images.jpg.large_image_url} />
         </div>
         <div className="information">
-          <div className="airDate">
-            Publishing Date:{" "}
-            {anime.published &&
-              `${anime.published.from.split("T")[0]} 
-                            ${
-                              anime.published.to != null
-                                ? `to ${anime.published.to.split("T")[0]}`
-                                : ""
-                            }`}
+          <div className="publishDate">
+            <strong>Air Date:</strong>{" "}
+            {manga.published
+              ? publishAttribute(manga.published)
+              : "Unavailable"}
           </div>
           <div className="demographic">
-            Demographic:{" "}
-            {anime.demographics &&
-              anime.demographics[0] &&
-              anime.demographics[0].name}
+            <strong>Demographic:</strong>{" "}
+            {manga.demographics &&
+              manga.demographics[0] &&
+              manga.demographics[0].name}
           </div>
-          <div className="duration">Status: {anime.status && anime.status}</div>
+          <div className="volume">
+            <strong>Volume: </strong>
+            {manga.volumes ? manga.volumes : "Unavailable"}
+          </div>
           <div className="genres">
-            Genres:
-            {anime.genres &&
-              anime.genres.map((genre, index) =>
-                index != anime.genres.length - 1
+            <strong>Genres: </strong>
+            {manga.genres &&
+              manga.genres.map((genre, index) =>
+                index != manga.genres.length - 1
                   ? ` ${genre.name},`
                   : ` ${genre.name}`
               )}
           </div>
-          <div className="episodes">
-            Chapters: {anime.chapters ? anime.chapters : "Unknown"}
+          <div className="serializations">
+            <strong>Serialization: </strong>
+            {manga.serializations
+              ? manga.serializations.map((serialization, index) =>
+                  index != manga.serializations.length - 1
+                    ? ` ${serialization.name},`
+                    : ` ${serialization.name}`
+                )
+              : "Unavailable"}
           </div>
-          <div className="rating">Volumns: {anime.volumes}</div>
-          <div className="source">Type: {anime.type}</div>
-          <div className="producers">
-            Serializations:
-            {anime.serializations &&
-              anime.serializations.map((serialization, index) =>
-                index != anime.serializations.length - 1
-                  ? ` ${serialization.name},`
-                  : ` ${serialization.name}`
-              )}
+          <div className="status">
+            <strong>Status: </strong>
+            {manga.status ? manga.status : "Unknown"}
+          </div>
+          <div className="theme">
+            <strong>Theme(s): </strong>
+            {manga.themes
+              ? manga.themes.map((theme, index) =>
+                  index != manga.themes.length - 1
+                    ? ` ${theme.name},`
+                    : ` ${theme.name}`
+                )
+              : ""}
+          </div>
+          <div className="chapters">
+            <strong>Chapters: </strong>
+            {manga.chapters ? manga.chapters : "Unavailable"}
+          </div>
+          <div className="type">
+            <strong>Type: </strong>
+            {manga.type ? manga.type : "Unknown"}
+          </div>
+          <div className="authors">
+            <strong>Author(s):</strong>
+            {manga.authors
+              ? manga.authors.map((author, index) =>
+                  index != manga.authors.length - 1
+                    ? ` ${author.name},`
+                    : ` ${author.name}`
+                )
+              : ""}
           </div>
           <div className="mal-link">
-            More Details:{" "}
-            <a target="_blank" href={anime.url}>
+            <strong>More Details:</strong>{" "}
+            <a id="mal_link" target="_blank" href={manga.url}>
               MyAnimeList
             </a>
           </div>
         </div>
       </div>
       <div className="right-section">
-        <div className="top-section">
-          <div className="score">
-            Score: {anime.score}, by {anime.scored_by} users
-          </div>
-          <div className="popularity">Popularity: {anime.popularity}</div>
-          <div className="rank">Ranking: {anime.rank}</div>
-          <div className="popularity">Popularity: {anime.popularity}</div>
+        <section>
           <div className="List-setting">
+            <div id="Anime-Title">
+              <span>{manga.title_english}</span>
+            </div>
             {!user ? (
-              <div>Sign in to add to list!</div>
+              <div id="SignInMessage">Sign in to add to list!</div>
             ) : (
-              <button onClick={() => addManga(anime)}>Add to List</button>
+              <div className="buttons">
+                <button id="Add-Btn" onClick={() => addManga(manga)}>
+                  Add to List
+                </button>
+                <button id="Remove-Btn">Remove From List</button>
+              </div>
             )}
           </div>
-        </div>
-        <div className="middle-section">
-          <div className="description"></div>
+          <div className="vertical-line"></div>
+          <div className="score-users">
+            <div id="score-title">
+              <span>Score:</span>
+            </div>
+            <div id="score">{manga.score}</div>
+            <div id="users">by {manga.scored_by} users</div>
+          </div>
+          <div className="vertical-line"></div>
+          <div className="popularity">
+            <div id="title">Popularity:</div>
+            <div id="number"> {manga.popularity}</div>
+          </div>
+          <div className="vertical-line"></div>
+          <div className="rank">
+            <div id="title">Ranking: </div>
+            <div id="number">{manga.rank}</div>
+          </div>
+        </section>
+        <article>
+          <br></br>
+          <span id="title">Synopsis</span>
+          <hr></hr>
+          <div className="synopsis">{manga.synopsis}</div>
+        </article>
+        <div className="trailers">
+          <br></br>
+          <span id="title">Trailer</span>
+          <hr></hr>
+          {manga.trailer ? (
+            <div id="video-container">
+              <iframe
+                id="video"
+                width="420"
+                height="345"
+                src={manga.trailer.embed_url}
+              ></iframe>
+            </div>
+          ) : (
+            <div id="message">Trailer unavailable.</div>
+          )}
         </div>
       </div>
     </div>

@@ -4,12 +4,8 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/DetailsPage.css";
-import { addAnime, getAnimeByMalId } from "../Collections/Anime";
-import {
-  checkUserWatchList,
-  getCurrentUserId,
-  getAllUsersFromDatabase,
-} from "../Collections/Users";
+import { addAnime } from "../Collections/Anime";
+
 import LoadComponent from "../components/Loading";
 export default function DetailsPage() {
   const { id } = useParams();
@@ -158,7 +154,7 @@ export default function DetailsPage() {
           <br></br>
           <span id="title">Trailer</span>
           <hr></hr>
-          {!anime.trailer.embed_url ? (
+          {anime.trailer ? (
             <div id="video-container">
               <iframe
                 id="video"
