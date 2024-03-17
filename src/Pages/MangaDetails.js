@@ -54,7 +54,7 @@ export default function MangaDetailsPage() {
         </div>
         <div className="information">
           <div className="publishDate">
-            <strong>Air Date:</strong>{" "}
+            <strong>Air Date: </strong>
             {manga.published
               ? publishAttribute(manga.published)
               : "Unavailable"}
@@ -168,25 +168,16 @@ export default function MangaDetailsPage() {
           <br></br>
           <span id="title">Synopsis</span>
           <hr></hr>
-          <div className="synopsis">{manga.synopsis}</div>
-        </article>
-        <div className="trailers">
+          <div className="synopsis">
+            {manga.synopsis ? manga.synopsis : "Unavailable"}
+          </div>
           <br></br>
-          <span id="title">Trailer</span>
+          <span id="title">Background</span>
           <hr></hr>
-          {manga.trailer ? (
-            <div id="video-container">
-              <iframe
-                id="video"
-                width="420"
-                height="345"
-                src={manga.trailer.embed_url}
-              ></iframe>
-            </div>
-          ) : (
-            <div id="message">Trailer unavailable.</div>
-          )}
-        </div>
+          <div className="background">
+            {manga.background ? manga.background : "Unavailable"}
+          </div>
+        </article>
       </div>
     </div>
   );

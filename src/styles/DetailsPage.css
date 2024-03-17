@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: 0.3fr 1fr;
   position: relative;
-  margin-right: 1%;
+  padding-right: 1%;
+  padding-bottom: 1%;
 }
 .DetailsPage .left-section {
   color: white;
@@ -151,7 +152,8 @@ article #title {
   font-size: larger;
   font-weight: bolder;
 }
-article .synopsis {
+article .synopsis,
+article .background {
   margin-top: 3%;
   font-size: large;
   font-weight: 600;
