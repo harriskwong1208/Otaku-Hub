@@ -16,7 +16,7 @@ const verifier = CognitoJwtVerifier.create({
   clientId: process.env.ClientId,
 });
 
-app.use(cors());
+app.use(cors()); 
 
 // Middleware function to convert JSON string to JSON object
 app.use(express.json());

@@ -115,7 +115,7 @@ export default function DetailsPage() {
               <span>{anime.title_english}</span>
             </div>
             {!user ? (
-              <div id="SignInMessage">Sign in to add to list!</div>
+              <div id="SignInMessage"><a href="/login" target="_blank">Sign in</a> to add to list!</div>
             ) : (
               <div className="buttons">
                 <button id="Add-Btn" onClick={() => addAnime(anime)}>
