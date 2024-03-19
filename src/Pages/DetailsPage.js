@@ -4,12 +4,8 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/DetailsPage.css";
-import { addAnime, getAnimeByMalId } from "../Collections/Anime";
-import {
-  checkUserWatchList,
-  getCurrentUserId,
-  getAllUsersFromDatabase,
-} from "../Collections/Users";
+import { addAnime } from "../Collections/Anime";
+
 import LoadComponent from "../components/Loading";
 export default function DetailsPage() {
   const { id } = useParams();
@@ -17,7 +13,8 @@ export default function DetailsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [anime, setAnime] = useState({});
   const [error, setError] = useState(null);
-  const [popUp, setPopUp] = useState(false);
+  document.body.style = "background: #10131f;";
+
   async function getAnime() {
     setIsLoading(true);
     try {
@@ -40,6 +37,23 @@ export default function DetailsPage() {
     return <LoadComponent />;
   }
 
+  const suffix = (number) => {
+    let temp = number % 10;
+    if (temp == 1) {
+      return "st";
+    } else if (temp == 2) {
+      return "nd";
+    } else if (temp == 3) {
+      return "rd";
+    }
+    return "th";
+  };
+  const titleShorten = (title) => {
+    // if(title.length > 30) {
+    //   return title.substring(0, 65) + "...";
+    // }
+    return title;
+  };
   return (
     <div className="DetailsPage">
       <div className="left-section">
@@ -48,19 +62,20 @@ export default function DetailsPage() {
         </div>
         <div className="information">
           <div className="airDate">
-            Air Date: {anime.aired && anime.aired.string}
+            <strong>Air Date:</strong> {anime.aired && anime.aired.string}
           </div>
           <div className="demographic">
-            Demographic:{" "}
+            <strong>Demographic:</strong>{" "}
             {anime.demographics &&
               anime.demographics[0] &&
               anime.demographics[0].name}
           </div>
           <div className="duration">
-            Duration: {anime.duration && anime.duration}
+            <strong>Duration: </strong>
+            {anime.duration && anime.duration}
           </div>
           <div className="genres">
-            Genres:
+            <strong>Genres: </strong>
             {anime.genres &&
               anime.genres.map((genre, index) =>
                 index != anime.genres.length - 1
@@ -69,7 +84,7 @@ export default function DetailsPage() {
               )}
           </div>
           <div className="studio">
-            Studios:
+            <strong>Studios: </strong>
             {anime.studios &&
               anime.studios.map((studio, index) =>
                 index != anime.studios.length - 1
@@ -78,13 +93,23 @@ export default function DetailsPage() {
               )}
           </div>
           <div className="episodes">
-            Episodes: {anime.episodes ? anime.episodes : "Still airing"}
+            <strong>Episodes: </strong>
+            {anime.episodes ? anime.episodes : "Still airing"}
           </div>
-          <div className="rating">Rating: {anime.rating}</div>
-          <div className="season">Season Aired: {anime.season}</div>
-          <div className="source">Source Material: {anime.source}</div>
+          <div className="rating">
+            <strong>Rating: </strong>
+            {anime.rating}
+          </div>
+          <div className="season">
+            <strong>Season Aired: </strong>
+            {anime.season}
+          </div>
+          <div className="source">
+            <strong>Source Material: </strong>
+            {anime.source}
+          </div>
           <div className="producers">
-            Producers:
+            <strong>Producers:</strong>
             {anime.producers &&
               anime.producers.map((producer, index) =>
                 index != anime.producers.length - 1
@@ -93,31 +118,88 @@ export default function DetailsPage() {
               )}
           </div>
           <div className="mal-link">
-            More Details:{" "}
-            <a target="_blank" href={anime.url}>
+            <strong>More Details:</strong>{" "}
+            <a id="mal_link" target="_blank" href={anime.url}>
               MyAnimeList
             </a>
           </div>
         </div>
       </div>
       <div className="right-section">
-        <div className="top-section">
-          <div className="score">
-            Score: {anime.score}, by {anime.scored_by} users
-          </div>
-          <div className="popularity">Popularity: {anime.popularity}</div>
-          <div className="rank">Ranking: {anime.rank}</div>
-          <div className="popularity">Popularity: {anime.popularity}</div>
+        <section>
           <div className="List-setting">
+            <div id="Anime-Title">
+              <span>
+                {" "}
+                {anime.title_english
+                  ? titleShorten(anime.title_english)
+                  : titleShorten(anime.title)}
+              </span>
+            </div>
             {!user ? (
-              <div>Sign in to add to list!</div>
+              <div id="SignInMessage">
+                <a href="/login" target="_blank">
+                  Sign in
+                </a>{" "}
+                to add to list!
+              </div>
             ) : (
-              <button onClick={() => addAnime(anime)}>Add to List</button>
+              <div className="buttons">
+                <button id="Add-Btn" onClick={() => addAnime(anime)}>
+                  Add to List
+                </button>
+                <button id="Remove-Btn">Remove From List</button>
+              </div>
             )}
           </div>
-        </div>
-        <div className="middle-section">
-          <div className="description"></div>
+          <div className="vertical-line"></div>
+          <div className="score-users">
+            <div id="score-title">
+              <span>Score:</span>
+            </div>
+            <div id="score">{anime.score} / 10.00</div>
+            <div id="users">by {anime.scored_by} users</div>
+          </div>
+          <div className="vertical-line"></div>
+          <div className="popularity">
+            <div id="title">Popularity:</div>
+            <div id="number">
+              {" "}
+              {anime.popularity}
+              {suffix(anime.popularity)}
+            </div>
+          </div>
+          <div className="vertical-line"></div>
+          <div className="rank">
+            <div id="title">Ranking: </div>
+            <div id="number">
+              {anime.rank}
+              {suffix(anime.rank)}
+            </div>
+          </div>
+        </section>
+        <article>
+          <br></br>
+          <span id="title">Synopsis</span>
+          <hr></hr>
+          <div className="synopsis">{anime.synopsis}</div>
+        </article>
+        <div className="trailers">
+          <br></br>
+          <span id="title">Trailer</span>
+          <hr></hr>
+          {anime.trailer && anime.trailer.embed_url ? (
+            <div id="video-container">
+              <iframe
+                id="video"
+                width="420"
+                height="345"
+                src={anime.trailer.embed_url}
+              ></iframe>
+            </div>
+          ) : (
+            <div id="message">Trailer unavailable.</div>
+          )}
         </div>
       </div>
     </div>

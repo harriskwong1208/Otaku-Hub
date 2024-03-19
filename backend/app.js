@@ -1,14 +1,12 @@
+const express = require("express");
+const UserRouter = require("./routes/user-routes.js");
+const AnimeRouter = require("./routes/anime-routes.js");
+const MangaRouter = require("./routes/manga-routes.js");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const { CognitoJwtVerifier } = require("aws-jwt-verify");
 
-const express = require('express');
-const UserRouter = require('./routes/user-routes.js');
-const AnimeRouter = require('./routes/anime-routes.js');
-const MangaRouter = require('./routes/manga-routes.js');
-
-const mongoose = require('mongoose');
-const  cors = require('cors');
-const { CognitoJwtVerifier } = require ('aws-jwt-verify');
-
-require("dotenv").config(); 
+require("dotenv").config();
 const app = express();
 
 // Verifier that expects valid access tokens:
@@ -18,9 +16,7 @@ const verifier = CognitoJwtVerifier.create({
   clientId: process.env.ClientId,
 });
 
-
-
-app.use(cors());
+app.use(cors()); 
 
 // Middleware function to convert JSON string to JSON object
 app.use(express.json());
@@ -32,7 +28,7 @@ app.use(express.json());
 //       const isValidToken = await verifier.verify(authHeader);
 //       if (!isValidToken) {
 //           return res.status(498).json({ message: "Invalid or missing access token." });
-//       }             
+//       }
 //     }catch(e){
 //       return next(e);
 //     }
@@ -41,24 +37,21 @@ app.use(express.json());
 //   }
 // };
 
-
 // app.all('*', authenticationRequired); // Require authentication for all routes
 
-
 app.use("/api/users", UserRouter);
-app.use("/api/anime",AnimeRouter);
-app.use("/api/manga",MangaRouter)
+app.use("/api/anime", AnimeRouter);
+app.use("/api/manga", MangaRouter);
 
 const PORT = process.env.PORT || 8000;
 
-mongoose.connect(process.env.MONGOURL, {
-  dbName: 'OtakuHub',
-}).then(() => {
-  console.log('OtakuHub database connected !!')
-}).catch(e => console.log(e));
+mongoose
+  .connect(process.env.MONGOURL, {
+    dbName: "OtakuHub",
+  })
+  .then(() => {
+    console.log("OtakuHub database connected !!");
+  })
+  .catch((e) => console.log(e));
 
-app.listen(PORT, () =>
-console.log(`listening on port ${PORT}.`)
-);
-
-
+app.listen(PORT, () => console.log(`listening on port ${PORT}.`));

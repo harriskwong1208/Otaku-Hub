@@ -16,6 +16,7 @@
   padding: 2% 0 2% 0;
   font-size: larger;
   font-weight: bold;
+  color: white;
 }
 .LoadingBlock .animation {
   display: flex;

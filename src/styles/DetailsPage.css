@@ -1,63 +1,198 @@
-.DetailsPage{
-    display: grid;
-    grid-template-columns: .3fr 1fr;
-    position: relative;
+.DetailsPage {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr;
+  position: relative;
+  padding-right: 1%;
+  padding-bottom: 1%;
 }
-.DetailsPage .left-section{
-    border: solid;
+.DetailsPage .left-section {
+  color: white;
 }
-.DetailsPage .popup-box{
-    box-shadow: 0 0 0 1px grey;
-    position: absolute;
-    top: 45%;
-    left: 44%;
-    color: black;
-    width: 15%;
-    height: 15%;
-    border-radius: 5%;
-    font-size: larger;
-    animation-name: animePopup;
-    animation-duration: .4s;
-    transition: .4s;
-    z-index: 1;
+.left-section {
+  margin-left: 0.5%;
 }
-
-.popup-box  .title{
-    text-align: center;
-    width: 100%;
-    margin-top: 5%;
-    margin-bottom: 1%;
+.left-section .img {
+  padding-top: 2%;
+  display: flex;
+  justify-content: center;
 }
-.popup-box  .buttons{
-    margin-top: 10%;
-    padding-top: 3%;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+.left-section .img img {
+  height: 70%;
+  width: 70%;
 }
-.popup-box  .buttons *{
-    border-radius: 30%;
-    padding: 2% 4%;
-
+.left-section .information div {
+  margin-top: 3%;
+  text-align: center;
 }
-.yes-btn{
-    background-color: rgb(67, 110, 204);
-    border: none;
-    color: white;
-}
-.no-btn{
-    background-color: rgb(221, 26, 26);
-    border: none;
-    color: white;
+#mal_link,
+#mal_link:visited,
+#mal_link:active {
+  color: white;
 }
 
-@keyframes animePopup{
-    from{
-        top: -300px;
-        opacity: 0;
-    }
-    to{
-        top: 45%;
-        opacity: 1;
-    }
+.right-section {
+  color: white;
+}
+section {
+  position: relative;
+  margin-top: 1%;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr;
+  grid-template-rows: 150px;
+  box-shadow: 0 0 5px rgb(70, 67, 206);
+}
+section #SignInMessage,
+#Add-Btn {
+  display: block;
+}
+
+section #SignInMessage{
+  padding: 1% 0 4% 0;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  position: absolute;
+  text-align: center;
+}
+#SignInMessage >  a, a:visited{
+  color: rgb(95, 174, 248);
+}
+#SignInMessage > a:active{
+  color: rgb(56, 121, 182);
+}
+.List-setting {
+  grid-row: 1/3;
+  position: relative;
+  border-color: white;
+}
+.List-setting #Anime-Title {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+}
+.List-setting .buttons {
+  height: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.List-setting .buttons button {
+  color: white;
+  padding: 2% 4% 2% 4%;
+  border-radius: 20px;
+  border: none;
+}
+.List-setting .buttons #Add-Btn {
+  background-color: rgb(15, 116, 199);
+}
+.List-setting .buttons #Add-Btn:active {
+  background-color: rgb(16, 87, 146);
+  transition: 0.6s;
+}
+.List-setting .buttons #Remove-Btn {
+  background-color: rgb(223, 38, 38);
+}
+.List-setting .buttons #Remove-Btn:active {
+  background-color: rgb(161, 20, 20);
+  transition: 0.6s;
+}
+.score-users {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.score-users * {
+}
+.score-users #score-title,
+.score-users #score,
+.score-users #users,
+.popularity,
+.rank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.score-users #score-title span {
+  border: none;
+  border-radius: 10px;
+  padding: 2% 3% 2% 3%;
+  background-color: rgb(214, 145, 16);
+  color: white;
+}
+.score-users #score {
+  font-weight: bold;
+}
+/*  */
+
+.popularity,
+.rank {
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+.popularity #title,
+.rank #title {
+  border: none;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  border-radius: 10px;
+  padding: 2% 3% 2% 3%;
+}
+.popularity #title {
+  background-color: rgb(1, 180, 1);
+}
+.rank #title {
+  background-color: rgb(151, 9, 170);
+}
+.popularity #number,
+.rank #number {
+  font-weight: bold;
+  margin-bottom: 5%;
+}
+article #title {
+  font-size: larger;
+  font-weight: bolder;
+}
+article .synopsis,
+article .background {
+  margin-top: 3%;
+  font-size: large;
+  font-weight: 600;
+}
+.trailers #title {
+  font-size: larger;
+  font-weight: bolder;
+}
+.trailers #video-container {
+  padding-top: 1%;
+  display: flex;
+  justify-content: center;
+}
+.trailers #video {
+  border: none;
+}
+.trailers #message {
+  padding-top: 2%;
+  text-align: center;
+}
+.vertical-line {
+  border: none;
+  border-left: solid rgb(82, 173, 201);
+  border-width: 0.1px;
+  height: 80%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
