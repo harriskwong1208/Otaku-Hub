@@ -37,6 +37,17 @@ export default function DetailsPage() {
     return <LoadComponent />;
   }
 
+  const suffix = (number) => {
+    let temp = number % 10;
+    if (temp == 1) {
+      return "st";
+    } else if (temp == 2) {
+      return "nd";
+    } else if (temp == 3) {
+      return "rd";
+    }
+    return "th";
+  };
   return (
     <div className="DetailsPage">
       <div className="left-section">
@@ -115,7 +126,12 @@ export default function DetailsPage() {
               <span>{anime.title_english}</span>
             </div>
             {!user ? (
-              <div id="SignInMessage"><a href="/login" target="_blank">Sign in</a> to add to list!</div>
+              <div id="SignInMessage">
+                <a href="/login" target="_blank">
+                  Sign in
+                </a>{" "}
+                to add to list!
+              </div>
             ) : (
               <div className="buttons">
                 <button id="Add-Btn" onClick={() => addAnime(anime)}>
@@ -130,18 +146,25 @@ export default function DetailsPage() {
             <div id="score-title">
               <span>Score:</span>
             </div>
-            <div id="score">{anime.score}</div>
+            <div id="score">{anime.score} / 10.00</div>
             <div id="users">by {anime.scored_by} users</div>
           </div>
           <div className="vertical-line"></div>
           <div className="popularity">
             <div id="title">Popularity:</div>
-            <div id="number"> {anime.popularity}</div>
+            <div id="number">
+              {" "}
+              {anime.popularity}
+              {suffix(anime.popularity)}
+            </div>
           </div>
           <div className="vertical-line"></div>
           <div className="rank">
             <div id="title">Ranking: </div>
-            <div id="number">{anime.rank}</div>
+            <div id="number">
+              {anime.rank}
+              {suffix(anime.rank)}
+            </div>
           </div>
         </section>
         <article>

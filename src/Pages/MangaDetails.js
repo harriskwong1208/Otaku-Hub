@@ -37,7 +37,17 @@ export default function MangaDetailsPage() {
   if (isLoading) {
     return <LoadComponent />;
   }
-
+  const suffix = (number) => {
+    let temp = number % 10;
+    if (temp == 1) {
+      return "st";
+    } else if (temp == 2) {
+      return "nd";
+    } else if (temp == 3) {
+      return "rd";
+    }
+    return "th";
+  };
   const publishAttribute = (published) => {
     const fromDate = published.from.split("T")[0];
     if (published.to == null) {
@@ -135,7 +145,12 @@ export default function MangaDetailsPage() {
               <span>{manga.title_english}</span>
             </div>
             {!user ? (
-              <div id="SignInMessage"><a href="/login" target="_blank">Sign in</a> to add to list!</div>
+              <div id="SignInMessage">
+                <a href="/login" target="_blank">
+                  Sign in
+                </a>{" "}
+                to add to list!
+              </div>
             ) : (
               <div className="buttons">
                 <button id="Add-Btn" onClick={() => addManga(manga)}>
@@ -150,18 +165,25 @@ export default function MangaDetailsPage() {
             <div id="score-title">
               <span>Score:</span>
             </div>
-            <div id="score">{manga.score}</div>
+            <div id="score">{manga.score} / 10.00 </div>
             <div id="users">by {manga.scored_by} users</div>
           </div>
           <div className="vertical-line"></div>
           <div className="popularity">
             <div id="title">Popularity:</div>
-            <div id="number"> {manga.popularity}</div>
+            <div id="number">
+              {" "}
+              {manga.popularity}
+              {suffix(manga.popularity)}
+            </div>
           </div>
           <div className="vertical-line"></div>
           <div className="rank">
             <div id="title">Ranking: </div>
-            <div id="number">{manga.rank}</div>
+            <div id="number">
+              {manga.rank}
+              {suffix(manga.rank)}
+            </div>
           </div>
         </section>
         <article>
