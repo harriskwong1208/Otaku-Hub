@@ -8,6 +8,7 @@ export default function AnimeSearchPage(e) {
   const [anime, setAnime] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
+  document.body.style = "background: #10131f;";
 
   useEffect(() => {
     console.log(results);

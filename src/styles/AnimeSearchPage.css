@@ -1,12 +1,13 @@
 .animesearch-page {
   font-family: "Bebas Neue", "kanit", sans-serif;
+  color: white;
 }
 .Search-Container {
-  height: 150px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(128, 148, 238);
+  background-color: rgb(64, 87, 192);
   margin-bottom: 1%;
 }
 .Search-Container .search-form {
@@ -15,16 +16,25 @@
   padding-bottom: 1%;
 }
 .search-bar {
+  color: white;
   margin: auto;
   display: block;
   border-radius: 20px;
   text-align: center;
   padding: 1% 5%;
   width: 50%;
-  background-color: white;
+  background-color: rgb(64, 87, 192);
   border: none;
+  transition: 1s;
+  box-shadow: 0 0 10px rgb(78, 202, 206);
+}
+.search-bar::placeholder {
+  color: white;
 }
 .search-bar:focus {
+  transition: 1s;
+  box-shadow: 0 0 10px rgb(235, 171, 76);
+  border: none;
   outline: none;
 }
 .search-btn {
@@ -59,8 +69,7 @@
   height: 100%;
 }
 .anime-pic img {
-  width: 85%;
-  height: 85%;
+  width: 60%;
 }
 .anime-details .score-episodes-type,
 .synopsis {
@@ -102,4 +111,12 @@
 .anime-details .synopsis {
   padding: 5% 1% 1% 1%;
   font-weight: normal;
+}
+.anime-details .title > .link,
+.link:visited {
+  color: white;
+}
+.List-setting #Anime-Title {
+  padding: 1% 1% 1% 1%;
+  overflow: hidden;
 }

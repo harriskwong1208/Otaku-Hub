@@ -13,9 +13,9 @@ export default function DetailsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [anime, setAnime] = useState({});
   const [error, setError] = useState(null);
-  async function getAnime() {
-    document.body.style = "background: #10131f;";
+  document.body.style = "background: #10131f;";
 
+  async function getAnime() {
     setIsLoading(true);
     try {
       let _anime = await axios.get(apiEndPoints.jikanById + id);
@@ -47,6 +47,12 @@ export default function DetailsPage() {
       return "rd";
     }
     return "th";
+  };
+  const titleShorten = (title) => {
+    // if(title.length > 30) {
+    //   return title.substring(0, 65) + "...";
+    // }
+    return title;
   };
   return (
     <div className="DetailsPage">
@@ -123,7 +129,12 @@ export default function DetailsPage() {
         <section>
           <div className="List-setting">
             <div id="Anime-Title">
-              <span>{anime.title_english}</span>
+              <span>
+                {" "}
+                {anime.title_english
+                  ? titleShorten(anime.title_english)
+                  : titleShorten(anime.title)}
+              </span>
             </div>
             {!user ? (
               <div id="SignInMessage">
@@ -177,7 +188,7 @@ export default function DetailsPage() {
           <br></br>
           <span id="title">Trailer</span>
           <hr></hr>
-          {anime.trailer ? (
+          {anime.trailer && anime.trailer.embed_url ? (
             <div id="video-container">
               <iframe
                 id="video"

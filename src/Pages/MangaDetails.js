@@ -56,6 +56,12 @@ export default function MangaDetailsPage() {
     return `From ${fromDate} to ${published.to.split("T")[0]}`;
   };
 
+  const titleShorten = (title) => {
+    // if (title.length > 30) {
+    //   return title.substring(0, 65) + "...";
+    // }
+    return title;
+  };
   return (
     <div className="DetailsPage">
       <div className="left-section">
@@ -142,7 +148,11 @@ export default function MangaDetailsPage() {
         <section>
           <div className="List-setting">
             <div id="Anime-Title">
-              <span>{manga.title_english}</span>
+              <span>
+                {manga.title_english
+                  ? titleShorten(manga.title_english)
+                  : titleShorten(manga.title)}
+              </span>
             </div>
             {!user ? (
               <div id="SignInMessage">

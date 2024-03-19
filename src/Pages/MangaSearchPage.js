@@ -9,6 +9,7 @@ export default function MangaSearchPage(e) {
   const [manga, setManga] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
+  document.body.style = "background: #10131f;";
 
   useEffect(() => {
     console.log(results);
@@ -49,7 +50,7 @@ export default function MangaSearchPage(e) {
             className="search-bar"
             type="text"
             required
-            placeholder="Enter Anime name here"
+            placeholder="Enter Manga name here"
             onChange={(e) => setManga(e.target.value)}
           />
           <button className="search-btn" type="submit">
