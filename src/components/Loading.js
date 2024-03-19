@@ -9,7 +9,7 @@ export default function LoadComponent() {
       <div className="LoadingBlock">
         <div className="Message">Just a Moment</div>
         <div className="animation">
-          <l-dot-stream size="120" speed="2.5" color="black"></l-dot-stream>
+          <l-dot-stream size="120" speed="2.5" color="white"></l-dot-stream>
         </div>
       </div>
     </div>
