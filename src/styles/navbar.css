@@ -31,8 +31,14 @@
   justify-content: space-evenly;
   align-items: center;
 }
+.tabs div{
+  padding: 1%;
+}
 .tabs div:hover {
   cursor: pointer;
+  transition: .2s;
+  background-color: rgb(6, 35, 51);
+  border-radius: 10px;
 }
 .tabs div a,
 .logo-sitename .sitename a {
