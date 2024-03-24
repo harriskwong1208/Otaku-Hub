@@ -10,9 +10,10 @@
 .homepage {
   color: white;
   font-family: "Cabin", sans-serif;
-  font-size: larger;
 }
 .homepage header {
+  font-size: larger;
+
   margin: 2% 10% 0 10%;
   border-radius: 10px;
   /* padding: 5% 0 5% 0; */
