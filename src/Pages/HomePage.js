@@ -21,6 +21,7 @@ function HomePage() {
     try {
       const topAnimeResponse = await axios.get(apiEndPoints.topUpcomingAnime);
       setUpcomingAnime(topAnimeResponse.data.data);
+      console.log(topAnimeResponse);
       const recentAnime = await getUserWatchList();
       setRecentAnime(recentAnime);
       const topAiring = await axios.get(apiEndPoints.topAiring);
@@ -43,14 +44,53 @@ function HomePage() {
         setError(e);
       });
   }, []);
-
+  if (isLoading) {
+    return <LoadComponent />;
+  }
   return (
-    <div className="homepage">{!user ? <WelcomePage /> : <DashBoard />}</div>
+    <div className="homepage">
+      {!user ? (
+        <WelcomePage />
+      ) : (
+        <div className="Dashboard">
+          {upcomingAnime && (
+            <div className="top-upcoming">
+              <div className="title">Top Upcoming Anime</div>
+              <hr></hr>
+              <div className="anime-container">
+                {upcomingAnime.map((anime) => (
+                  <div key={anime.mal_id} className="anime">
+                    <img
+                      alt="anime-image"
+                      src={anime.images.jpg.image_url}
+                    ></img>
+                    <div>{anime.title_english || anime.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
-function DashBoard() {
-  return <div className="recent-events">Recent events</div>;
-}
+// function DashBoard(props) {
+//   return (
+//     <div className="Dashboard">
+//       { && (
+//         <div className="top-upcoming">
+//           {upcomingAnime.map((anime) => (
+//             <div key={anime.mal_id} className="anime">
+//               <img alt="anime-image" src={anime.images.jpg.image_url}></img>
+//               <div>{anime.title_english || anime.title}</div>
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 function WelcomePage() {
   return (
     <header>
