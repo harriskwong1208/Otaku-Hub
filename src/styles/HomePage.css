@@ -46,7 +46,16 @@
   color: rgb(69, 141, 223);
   text-decoration: none;
 }
-.Dashboard .top-upcoming .anime-container {
+.Dashboard  .title{
+  padding: .5% 0 .5% 1%;
+  font-size: larger;
+}
+.Dashboard  .anime-container,.manga-container {
   display: flex;
   justify-content: center;
+  align-items: center;  
+}
+.Dashboard  img{
+  cursor: pointer;
+  width: 99%;
 }

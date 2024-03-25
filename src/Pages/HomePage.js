@@ -5,10 +5,12 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { apiEndPoints } from "../apiEndpoints";
 import { getUserWatchList, getUserMangaList } from "../Collections/Users";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function HomePage() {
   document.body.style = "background: #10131f;";
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate("");
   //Array of anime and their data
   const [upcomingAnime, setUpcomingAnime] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -63,34 +65,54 @@ function HomePage() {
                     <img
                       alt="anime-image"
                       src={anime.images.jpg.image_url}
+                      onClick={()=> navigate(`/anime/${anime.mal_id}`)}
                     ></img>
-                    <div>{anime.title_english || anime.title}</div>
                   </div>
                 ))}
               </div>
             </div>
           )}
+           {topAnime && (
+            <div className="top-Airing">
+              <div className="title">Top Airing Anime</div>
+              <hr></hr>
+              <div className="anime-container">
+                {topAnime.map((anime) => (
+                  <div key={anime.mal_id} className="anime">
+                    <img
+                      alt="anime-image"
+                      src={anime.images.jpg.image_url}
+                      onClick={()=> navigate(`/anime/${anime.mal_id}`)}
+                    ></img>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}  
+           {topManga && (
+            <div className="top-Manga">
+              <div className="title">Top Manga</div>
+              <hr></hr>
+              <div className="anime-container">
+                {topManga.map((manga) => (
+                  <div key={manga.mal_id} className="anime">
+                    
+                    <img
+                      alt="anime-image"
+                      src={manga.images.jpg.image_url}
+                      onClick={()=> navigate(`/manga/${manga.mal_id}`)}
+                    ></img>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}                     
         </div>
       )}
     </div>
   );
 }
-// function DashBoard(props) {
-//   return (
-//     <div className="Dashboard">
-//       { && (
-//         <div className="top-upcoming">
-//           {upcomingAnime.map((anime) => (
-//             <div key={anime.mal_id} className="anime">
-//               <img alt="anime-image" src={anime.images.jpg.image_url}></img>
-//               <div>{anime.title_english || anime.title}</div>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
+
 function WelcomePage() {
   return (
     <header>
