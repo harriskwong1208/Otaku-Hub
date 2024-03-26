@@ -190,3 +190,15 @@ export async function getUserMangaList(){
         return new Error("Unable to fetch MangaList");
     }
 }
+// Input array of user Ids from user's friendslist
+// Returns array of information of each user
+export  async function getFriends(friends) {
+    let _friends = [];
+    for (let i of friends) {
+      let data = await axios.get(apiEndPoints.localHost + "users/" + i);
+      _friends.push(data.data.user.name);
+    }
+    return _friends;
+  }
+
+  

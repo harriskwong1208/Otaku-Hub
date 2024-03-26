@@ -6,6 +6,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { apiEndPoints } from "../apiEndpoints";
 import { getUserWatchList, getUserMangaList } from "../Collections/Users";
 import { useNavigate } from "react-router-dom";
+import { getAnime } from "../Collections/Anime";
 import axios from "axios";
 function HomePage() {
   document.body.style = "background: #10131f;";
@@ -19,13 +20,29 @@ function HomePage() {
   const [topAnime, setTopAnime] = useState();
   const [topManga, setTopManga] = useState();
   const [error, setError] = useState();
+  
+  //Set lists with infomation from array of ids
+  //Input: array of ids
+  //Returns: array of objects 
+  async function getListInfo(arr, callback){
+    let temp =[];
+    for(let i of arr){
+      const data = await getAnime(i);
+      temp.push(data.data.anime)
+    }
+    temp = temp.reverse()
+    return temp.slice(0,10);
+  }
+
   async function getData() {
     try {
       const topAnimeResponse = await axios.get(apiEndPoints.topUpcomingAnime);
       setUpcomingAnime(topAnimeResponse.data.data);
-      console.log(topAnimeResponse);
+      // console.log(topAnimeResponse);
       const recentAnime = await getUserWatchList();
-      setRecentAnime(recentAnime);
+      const recentAnimeList = await getListInfo(recentAnime);
+      console.log(recentAnimeList)
+      setRecentAnime(recentAnimeList);
       const topAiring = await axios.get(apiEndPoints.topAiring);
       setTopAnime(topAiring.data.data);
       const recentManga = await getUserMangaList();
@@ -106,7 +123,25 @@ function HomePage() {
                 ))}
               </div>
             </div>
-          )}                     
+          )}              
+          {recentAnime && (
+            <div className="recent-anime">
+              <div className="title">Recent Added Anime</div>
+              <hr></hr>
+              <div className="anime-container">
+                {recentAnime.map((anime) => (
+                  <div key={anime.mal_id} className="anime">
+                    
+                    <img
+                      alt="anime-image"
+                      src={anime.imageUrl}
+                      onClick={()=> navigate(`/anime/${anime.mal_id}`)}
+                    ></img>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}        
         </div>
       )}
     </div>

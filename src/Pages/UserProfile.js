@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { getAnime } from "../Collections/Anime";
 import { getManga } from "../Collections/Manga";
 import LoadComponent from "../components/Loading";
+import { getFriends } from "../Collections/Users";
 export default function UserProfile() {
   const { id } = useParams();
   const [user, setUser] = useState();
@@ -13,14 +14,6 @@ export default function UserProfile() {
   const [mangaList, setMangaList] = useState();
   const [friends, setFriends] = useState();
 
-  async function getFriends(friends) {
-    let _friends = [];
-    for (let i of friends) {
-      let data = await axios.get(apiEndPoints.localHost + "users/" + i);
-      _friends.push(data.data.user.name);
-    }
-    return _friends;
-  }
 
   async function setList(List, callback, type) {
     let list = [];
