@@ -84,4 +84,5 @@ async function getAnime(id){
 }
 
 
+
 export {addAnime,getAnimeByMalId,getAnime};
