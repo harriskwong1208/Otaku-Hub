@@ -73,70 +73,74 @@ function HomePage() {
       ) : (
         <div className="Dashboard">
           {upcomingAnime && (
-            <div className="top-upcoming">
+            <div className="list-content">
               <div className="title">Top Upcoming Anime</div>
               <hr></hr>
               <div className="anime-container">
                 {upcomingAnime.map((anime) => (
                   <div key={anime.mal_id} className="anime">
+                    <div className="img-container">
                     <img
                       alt="anime-image"
                       src={anime.images.jpg.image_url}
                       onClick={()=> navigate(`/anime/${anime.mal_id}`)}
-                    ></img>
+                    ></img></div>
                   </div>
                 ))}
               </div>
             </div>
           )}
            {topAnime && (
-            <div className="top-Airing">
+            <div className="list-content">
               <div className="title">Top Airing Anime</div>
               <hr></hr>
               <div className="anime-container">
                 {topAnime.map((anime) => (
                   <div key={anime.mal_id} className="anime">
+                     <div className="img-container">
+
                     <img
                       alt="anime-image"
                       src={anime.images.jpg.image_url}
                       onClick={()=> navigate(`/anime/${anime.mal_id}`)}
-                    ></img>
+                    ></img></div>
                   </div>
                 ))}
               </div>
             </div>
           )}  
            {topManga && (
-            <div className="top-Manga">
+            <div className="list-content">
               <div className="title">Top Manga</div>
               <hr></hr>
               <div className="anime-container">
                 {topManga.map((manga) => (
                   <div key={manga.mal_id} className="anime">
-                    
+                  <div className="img-container">
+
                     <img
                       alt="anime-image"
                       src={manga.images.jpg.image_url}
                       onClick={()=> navigate(`/manga/${manga.mal_id}`)}
-                    ></img>
+                    ></img></div>
                   </div>
                 ))}
               </div>
             </div>
           )}              
           {recentAnime && (
-            <div className="recent-anime">
+            <div className="list-content">
               <div className="title">Recent Added Anime</div>
               <hr></hr>
               <div className="anime-container">
                 {recentAnime.map((anime) => (
                   <div key={anime.mal_id} className="anime">
-                    
+                    <div className="img-container">
                     <img
                       alt="anime-image"
                       src={anime.imageUrl}
                       onClick={()=> navigate(`/anime/${anime.mal_id}`)}
-                    ></img>
+                    ></img> </div>
                   </div>
                 ))}
               </div>
