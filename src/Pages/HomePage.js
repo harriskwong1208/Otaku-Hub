@@ -7,6 +7,7 @@ import { apiEndPoints } from "../apiEndpoints";
 import { getUserWatchList, getUserMangaList } from "../Collections/Users";
 import { useNavigate } from "react-router-dom";
 import { getAnime } from "../Collections/Anime";
+import { getManga } from "../Collections/Manga";
 import axios from "axios";
 function HomePage() {
   document.body.style = "background: #10131f;";
@@ -20,18 +21,18 @@ function HomePage() {
   const [topAnime, setTopAnime] = useState();
   const [topManga, setTopManga] = useState();
   const [error, setError] = useState();
-  
+
   //Set lists with infomation from array of ids
   //Input: array of ids
-  //Returns: array of objects 
-  async function getListInfo(arr, callback){
-    let temp =[];
-    for(let i of arr){
-      const data = await getAnime(i);
-      temp.push(data.data.anime)
+  //Returns: array of objects
+  async function getListInfo(arr, callback, type) {
+    let temp = [];
+    for (let i of arr) {
+      const data = await callback(i);
+      temp.push(data.data[type]);
     }
-    temp = temp.reverse()
-    return temp.slice(0,10);
+    temp = temp.reverse();
+    return temp.slice(0, 8);
   }
 
   async function getData() {
@@ -40,13 +41,17 @@ function HomePage() {
       setUpcomingAnime(topAnimeResponse.data.data);
       // console.log(topAnimeResponse);
       const recentAnime = await getUserWatchList();
-      const recentAnimeList = await getListInfo(recentAnime);
-      console.log(recentAnimeList)
+      const recentAnimeList = await getListInfo(recentAnime, getAnime, "anime");
+      // console.log(recentAnimeList);
       setRecentAnime(recentAnimeList);
+
       const topAiring = await axios.get(apiEndPoints.topAiring);
       setTopAnime(topAiring.data.data);
+
       const recentManga = await getUserMangaList();
-      setRecentManga(recentManga);
+      const recentMangaList = await getListInfo(recentManga, getManga, "manga");
+      console.log(recentMangaList);
+      setRecentManga(recentMangaList);
       const topManga = await axios.get(apiEndPoints.topManga);
       setTopManga(topManga.data.data);
     } catch (e) {
@@ -78,74 +83,85 @@ function HomePage() {
               <hr></hr>
               <div className="anime-container">
                 {upcomingAnime.map((anime) => (
-                  <div key={anime.mal_id} className="anime">
-                    <div className="img-container">
-                    <img
-                      alt="anime-image"
-                      src={anime.images.jpg.image_url}
-                      onClick={()=> navigate(`/anime/${anime.mal_id}`)}
-                    ></img></div>
-                  </div>
+                  <img
+                    key={anime.mal_id}
+                    className="anime"
+                    alt="anime-image"
+                    src={anime.images.jpg.image_url}
+                    onClick={() => navigate(`/anime/${anime.mal_id}`)}
+                  ></img>
                 ))}
               </div>
             </div>
           )}
-           {topAnime && (
+          {topAnime && (
             <div className="list-content">
               <div className="title">Top Airing Anime</div>
               <hr></hr>
               <div className="anime-container">
                 {topAnime.map((anime) => (
-                  <div key={anime.mal_id} className="anime">
-                     <div className="img-container">
-
-                    <img
-                      alt="anime-image"
-                      src={anime.images.jpg.image_url}
-                      onClick={()=> navigate(`/anime/${anime.mal_id}`)}
-                    ></img></div>
-                  </div>
+                  <img
+                    key={anime.mal_id}
+                    className="anime"
+                    alt="anime-image"
+                    src={anime.images.jpg.image_url}
+                    onClick={() => navigate(`/anime/${anime.mal_id}`)}
+                  ></img>
                 ))}
               </div>
             </div>
-          )}  
-           {topManga && (
+          )}
+          {topManga && (
             <div className="list-content">
               <div className="title">Top Manga</div>
               <hr></hr>
               <div className="anime-container">
                 {topManga.map((manga) => (
-                  <div key={manga.mal_id} className="anime">
-                  <div className="img-container">
-
-                    <img
-                      alt="anime-image"
-                      src={manga.images.jpg.image_url}
-                      onClick={()=> navigate(`/manga/${manga.mal_id}`)}
-                    ></img></div>
-                  </div>
+                  <img
+                    key={manga.mal_id}
+                    className="anime"
+                    alt="manga-image"
+                    src={manga.images.jpg.image_url}
+                    onClick={() => navigate(`/manga/${manga.mal_id}`)}
+                  ></img>
                 ))}
               </div>
             </div>
-          )}              
+          )}
           {recentAnime && (
             <div className="list-content">
               <div className="title">Recent Added Anime</div>
               <hr></hr>
               <div className="anime-container">
                 {recentAnime.map((anime) => (
-                  <div key={anime.mal_id} className="anime">
-                    <div className="img-container">
-                    <img
-                      alt="anime-image"
-                      src={anime.imageUrl}
-                      onClick={()=> navigate(`/anime/${anime.mal_id}`)}
-                    ></img> </div>
-                  </div>
+                  <img
+                    key={anime.mal_id}
+                    className="anime"
+                    alt="anime-image"
+                    src={anime.imageUrl}
+                    onClick={() => navigate(`/anime/${anime.mal_id}`)}
+                  ></img>
                 ))}
               </div>
             </div>
-          )}        
+          )}
+          {recentManga && (
+            <div className="list-content">
+              <div className="title">Recent Added Manga</div>
+              <hr></hr>
+              <div className="anime-container">
+                {recentManga.map((manga) => (
+                  <img
+                    key={manga.mal_id}
+                    className="anime"
+                    alt="manga-image"
+                    src={manga.imageUrl}
+                    onClick={() => navigate(`/manga/${manga.mal_id}`)}
+                  ></img>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
