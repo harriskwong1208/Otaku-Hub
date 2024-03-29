@@ -1,0 +1,32 @@
+/* 
+        FriendPage.js
+*/
+
+#FriendPage {
+  color: white;
+}
+#FriendPage .Button-Container {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-top: 2%;
+}
+#FriendPage .Button-Container button {
+  border: none;
+  font-size: larger;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+#FriendPage .Button-Container button:hover {
+  background-color: rgb(11, 59, 99);
+  transition: 0.1s;
+}
+
+#FriendPage .Button-Container #friends-btn {
+  margin-right: 0.1%;
+}
+#FriendPage .Button-Container #users-btn {
+  margin-left: 0.1%;
+}

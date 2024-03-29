@@ -5,7 +5,6 @@ import {
   getCurrentUserId,
   getCurrentUserDatabase,
 } from "../Collections/Users";
-import "../styles/SearchFriend.css";
 import { AuthContext } from "../Context/AuthContext";
 import LoadComponent from "./Loading";
 export default function SearchFriend() {
