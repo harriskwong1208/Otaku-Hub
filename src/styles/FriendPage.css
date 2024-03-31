@@ -18,6 +18,7 @@
   color: white;
   cursor: pointer;
   transition: 0.2s;
+  border-bottom: solid rgb(80, 151, 209) 1px;
 }
 #FriendPage .Button-Container button:hover {
   background-color: rgb(11, 59, 99);
@@ -26,7 +27,9 @@
 
 #FriendPage .Button-Container #friends-btn {
   margin-right: 0.1%;
+  border-right: solid 0.01px rgb(80, 151, 209);
 }
 #FriendPage .Button-Container #users-btn {
   margin-left: 0.1%;
+  border-left: solid 0.01px rgb(80, 151, 209);
 }
