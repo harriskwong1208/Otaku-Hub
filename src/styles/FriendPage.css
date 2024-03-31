@@ -13,7 +13,7 @@
 }
 #FriendPage .Button-Container button {
   border: none;
-  font-size: larger;
+  font-size: 25px;
   background-color: transparent;
   color: white;
   cursor: pointer;
@@ -32,4 +32,26 @@
 #FriendPage .Button-Container #users-btn {
   margin-left: 0.1%;
   border-left: solid 0.01px rgb(80, 151, 209);
+}
+
+/*          SearchFriend Page            */
+#ListFriendComponent {
+  color: white;
+}
+#ListFriendComponent .header {
+  display: flex;
+  font-size: 25px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2%;
+}
+#ListFriendComponent .header #title {
+}
+#ListFriendComponent .header #friends-count {
+  font-size: 18px;
+  margin-left: 2%;
+  padding: 0 0.5% 0 0.5%;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(80, 151, 209);
 }

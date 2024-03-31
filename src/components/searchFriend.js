@@ -7,6 +7,7 @@ import {
 } from "../Collections/Users";
 import { AuthContext } from "../Context/AuthContext";
 import LoadComponent from "./Loading";
+import "../styles/FriendPage.css";
 export default function SearchFriend() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
