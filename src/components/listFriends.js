@@ -41,6 +41,17 @@ export default function ListFriends() {
     return <LoadComponent />;
   }
 
+  const temp = [
+    { _id: "123", name: "harris2" },
+    { _id: "123", name: "harris3" },
+    { _id: "123", name: "harris4" },
+    { _id: "123", name: "harris4" },
+    { _id: "123", name: "harris4" },
+    { _id: "123", name: "harris4" },
+    { _id: "123", name: "harris4" },
+    { _id: "123", name: "harris4" },
+    { _id: "123", name: "harris4" },
+  ];
   return (
     <div id="ListFriendComponent">
       <div className="header">
@@ -49,15 +60,22 @@ export default function ListFriends() {
       </div>
       <div id="friends-list">
         {/* item includes: email, friends [], mangalist[], name, watchList[], _id */}
-        {listItems &&
+        {/* {listItems &&
           listItems.map((item) => (
             <div key={item._id} className="friend">
-              <div className="Img">
-                Img
+              <div className="Img">Img</div>
+              <div className="name">{item.name}</div>
+            </div>
+          ))} */}
+        {temp &&
+          temp.map((item) => (
+            <div key={item._id} className="friend">
+              <div className="top-section">
+                <div className="Img">Img</div>
+                <div className="name">{item.name}</div>
               </div>
-              <div className="name">
-                {item.name}
-              </div>
+
+              <div className="bottom-section"></div>
             </div>
           ))}
       </div>

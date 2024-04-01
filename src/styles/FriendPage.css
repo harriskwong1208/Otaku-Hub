@@ -55,12 +55,28 @@
   border: none;
   background-color: rgb(80, 151, 209);
 }
-#ListFriendComponent #friends-list{
+#ListFriendComponent #friends-list {
   border: solid white;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 60px;
+  margin: 1%;
 }
-#ListFriendComponent #friends-list .friend{
-  border: solid rgb(80, 151, 209);
+#ListFriendComponent #friends-list .friend {
+  margin: 0 auto;
+  border: solid red;
+  width: 50%;
+  height: 200px;
+}
+#ListFriendComponent #friends-list .friend * {
+  width: 100%;
+}
 
+#ListFriendComponent #friends-list .friend .top-section {
+  background-color: rgb(77, 40, 126);
+  height: 90%;
+}
+#ListFriendComponent #friends-list .friend .bottom-section {
+  background-color: rgb(72, 216, 28);
+  height: 10%;
 }
