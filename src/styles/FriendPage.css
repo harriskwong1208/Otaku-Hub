@@ -55,3 +55,12 @@
   border: none;
   background-color: rgb(80, 151, 209);
 }
+#ListFriendComponent #friends-list{
+  border: solid white;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+#ListFriendComponent #friends-list .friend{
+  border: solid rgb(80, 151, 209);
+
+}

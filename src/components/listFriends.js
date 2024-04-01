@@ -47,17 +47,20 @@ export default function ListFriends() {
         <div id="title">Friends</div>
         <div id="friends-count">{friendCount}</div>
       </div>
-      <ul id="friends-list">
+      <div id="friends-list">
         {/* item includes: email, friends [], mangalist[], name, watchList[], _id */}
         {listItems &&
           listItems.map((item) => (
-            <li key={item._id} className="friend">
-              <a target="_blank" href={`user/${item._id}`}>
+            <div key={item._id} className="friend">
+              <div className="Img">
+                Img
+              </div>
+              <div className="name">
                 {item.name}
-              </a>
-            </li>
+              </div>
+            </div>
           ))}
-      </ul>
+      </div>
     </div>
   );
 }
