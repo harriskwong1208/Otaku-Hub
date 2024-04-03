@@ -125,4 +125,79 @@
   box-shadow: 0 0 10px rgb(80, 151, 209);
 }
 .SearchFriendsComponent .friends {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 170px;
+}
+
+
+.SearchFriendsComponent .friends .friend{
+  margin-top: 6%;
+}
+
+.SearchFriendsComponent .friends .friend .itemContainer{
+  border: none;
+  box-shadow: 0 0 10px rgb(80, 151, 209);
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  border-radius: 10px;
+}
+.SearchFriendsComponent .friends .friend .itemContainer:hover{
+  box-shadow: 0 0 10px red;
+  transition:.8s;
+}
+.SearchFriendsComponent .friends .friend .picture{
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.SearchFriendsComponent .picture .img-container{
+  height: 95%;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.SearchFriendsComponent .friends .friend .picture img{
+  width: 100%;
+}
+.SearchFriendsComponent .friends .friend .nameAndButton{
+  width: 70%; 
+}
+.SearchFriendsComponent .friends .friend .nameAndButton .name{
+  height: 50%;
+  position: relative;
+}
+.SearchFriendsComponent .friends .friend .nameAndButton .name a,a:visited{
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  font-size: larger;
+  text-decoration: none;
+  color: white;
+}
+
+.SearchFriendsComponent .friends .friend .nameAndButton .button-container{
+  height: 50%;
+  position: relative;
+}
+.SearchFriendsComponent .friends .friend .nameAndButton .button-container button{
+  position: absolute;
+  bottom: 20%;
+  border: none ;
+  padding: 1.5% 3%;
+  border-radius: 2px;
+  background-color: rgb(80, 151, 209);
+  color: white;
+  font-weight: bolde;
+  left: 5%;
+  cursor: pointer;
+}
+.SearchFriendsComponent .friends .friend .nameAndButton .button-container button:active{
+  background-color: rgb(57, 58, 102);
 }

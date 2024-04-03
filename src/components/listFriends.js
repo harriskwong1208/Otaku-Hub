@@ -63,7 +63,6 @@ export default function ListFriends() {
                 </div>
                 <div className="name">{item.name}</div>
               </div>
-
               <div className="bottom-section"></div>
             </div>
           ))}
