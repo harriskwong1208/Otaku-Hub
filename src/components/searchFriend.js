@@ -72,7 +72,7 @@ export default function SearchFriend() {
       <ul className="friends">
         {filteredUsers &&
           filteredUsers.map((user) => (
-            <>
+            <div>
               {userId != user._id && (
                 <li className="friend" key={user._id}>
                   <div>{user.name}</div>
@@ -81,7 +81,7 @@ export default function SearchFriend() {
                   </button>
                 </li>
               )}
-            </>
+            </div>
           ))}
       </ul>
     </div>
