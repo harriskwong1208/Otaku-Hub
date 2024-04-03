@@ -3,12 +3,14 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { apiEndPoints } from "../apiEndpoints";
 import LoadComponent from "./Loading";
+import { useNavigate } from "react-router-dom";
 import "../styles/FriendPage.css";
 export default function ListFriends() {
   const [friends, setFriends] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [listItems, setListItems] = useState([]);
   const [friendCount, setFriendCount] = useState(0);
+  const navigate = useNavigate();
   async function loadList() {
     const _friends = [];
     try {
@@ -41,17 +43,6 @@ export default function ListFriends() {
     return <LoadComponent />;
   }
 
-  const temp = [
-    { _id: "123", name: "harris2" },
-    { _id: "123", name: "harris3" },
-    { _id: "123", name: "harris4" },
-    { _id: "123", name: "harris4" },
-    { _id: "123", name: "harris4" },
-    { _id: "123", name: "harris4" },
-    { _id: "123", name: "harris4" },
-    { _id: "123", name: "harris4" },
-    { _id: "123", name: "harris4" },
-  ];
   return (
     <div id="ListFriendComponent">
       <div className="header">
@@ -59,19 +50,17 @@ export default function ListFriends() {
         <div id="friends-count">{friendCount}</div>
       </div>
       <div id="friends-list">
-        {/* item includes: email, friends [], mangalist[], name, watchList[], _id */}
-        {/* {listItems &&
+        {listItems &&
           listItems.map((item) => (
-            <div key={item._id} className="friend">
-              <div className="Img">Img</div>
-              <div className="name">{item.name}</div>
-            </div>
-          ))} */}
-        {temp &&
-          temp.map((item) => (
-            <div key={item._id} className="friend">
+            <div
+              key={item._id}
+              className="friend"
+              onClick={() => navigate(`/user/${item._id}`)}
+            >
               <div className="top-section">
-                <div className="Img">Img</div>
+                <div className="Img">
+                  <img src={item.imageUrl}></img>
+                </div>
                 <div className="name">{item.name}</div>
               </div>
 

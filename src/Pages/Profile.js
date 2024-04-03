@@ -5,15 +5,46 @@ import {
   addUserSubId,
   getUserFromCognito,
   findEmail,
+  getCurrentUserId,
 } from "../Collections/Users";
 import axios from "axios";
 import { getSession, getCurrentUser } from "../auth";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/Profile.css";
+import LoadComponent from "../components/Loading";
 // import "../styles/FontStyle.css";
 
 export default function Profile() {
   const { user, signOut } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState();
+
+  async function loadingUserData() {
+    try {
+      const id = await getCurrentUserId();
+      const response = await axios.get(apiEndPoints.localHost + "users/" + id);
+      setData(response.data.user);
+      return response;
+    } catch (e) {
+      return new Error(e);
+    }
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+    loadingUserData()
+      .then((data) => {
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <LoadComponent />;
+  }
 
   if (!user) {
     return (
@@ -41,10 +72,7 @@ export default function Profile() {
       </head>
       <div className="card">
         <div className="image">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/en/7/72/Bleachanime.png"
-            alt="Profile-Picture"
-          ></img>
+          <img src={data && data.imageUrl} alt="Profile-Picture"></img>
         </div>
         <div className="section" id="Username">
           <span>{user ? user.username : "User"}</span>

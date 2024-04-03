@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
@@ -18,17 +18,20 @@ const userSchema = new Schema({
   },
   subId: {
     type: String,
-    unique:true
+    unique: true,
   },
-  watchList:{
-    type: [String]
+  watchList: {
+    type: [String],
   },
-  friends:{
-    type: [String]
+  friends: {
+    type: [String],
   },
-  mangaList:{
-    type:[String]
-  }
+  mangaList: {
+    type: [String],
+  },
+  imageUrl: {
+    type: String,
+  },
 });
 
-module.exports = mongoose.model("User",userSchema);
+module.exports = mongoose.model("User", userSchema);

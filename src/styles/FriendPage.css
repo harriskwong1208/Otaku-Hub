@@ -56,7 +56,6 @@
   background-color: rgb(80, 151, 209);
 }
 #ListFriendComponent #friends-list {
-  border: solid white;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 60px;
@@ -64,19 +63,41 @@
 }
 #ListFriendComponent #friends-list .friend {
   margin: 0 auto;
-  border: solid red;
   width: 50%;
   height: 200px;
+  box-shadow: 0 0 10px grey;
+  cursor: pointer;
 }
 #ListFriendComponent #friends-list .friend * {
   width: 100%;
 }
 
 #ListFriendComponent #friends-list .friend .top-section {
-  background-color: rgb(77, 40, 126);
+  background-color: transparent;
   height: 90%;
 }
+
+#ListFriendComponent #friends-list .friend .top-section .Img {
+  height: 70%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#ListFriendComponent #friends-list .friend .top-section .Img img {
+  width: 100%;
+}
+#ListFriendComponent #friends-list .friend .top-section .name {
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  font-size: larger;
+  font-weight: bolder;
+}
 #ListFriendComponent #friends-list .friend .bottom-section {
-  background-color: rgb(72, 216, 28);
+  background-color: rgb(41, 42, 83);
   height: 10%;
 }

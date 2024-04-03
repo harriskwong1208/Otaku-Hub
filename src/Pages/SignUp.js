@@ -1,46 +1,47 @@
-import { useState } from "react"
-import { signUp } from "../auth"
+import { useState } from "react";
+import { signUp } from "../auth";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { findEmail } from "../Collections/Users";
 export default function SignUp() {
-  const [username, setUsername] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState(false)
-
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError(""); 
+    e.preventDefault();
+    setError("");
     try {
       const _findEmail = await findEmail(email);
-      if(_findEmail === 1){
+      if (_findEmail === 1) {
         throw new Error("Email already in use!!");
       }
-      await signUp(username, email, password);         
+      await signUp(username, email, password);
       /*****************************************************************/
       //TEMP API ENDPOINT FOR DEVELOPEMENT
-      await axios.post('https://otakuhubexpress.ue.r.appspot.com/api/users/',{
+      await axios.post("https://otakuhubexpress.ue.r.appspot.com/api/users/", {
         name: username,
         email: email,
-      }); 
-      setSuccess(true)
-      console.log('Successfully added user in database and auth.');
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg",
+      });
+      setSuccess(true);
+      console.log("Successfully added user in database and auth.");
     } catch (err) {
-      setError(err.message)
+      setError(err.message);
     }
-  }
+  };
 
   if (success) {
     return (
       <div>
         <h2>SignUp successful!</h2>
         <p>Please check your email for the confirmation code.</p>
-        <Link to='/confirm-sign-up'>Click here to confirm account</Link>
+        <Link to="/confirm-sign-up">Click here to confirm account</Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -69,5 +70,5 @@ export default function SignUp() {
       </form>
       {error && <p>{error}</p>}
     </div>
-  )
+  );
 }
