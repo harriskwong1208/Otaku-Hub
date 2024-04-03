@@ -34,7 +34,7 @@
   border-left: solid 0.01px rgb(80, 151, 209);
 }
 
-/*          SearchFriend Page            */
+/*          ListFriend Page            */
 #ListFriendComponent {
   color: white;
 }
@@ -100,4 +100,27 @@
 #ListFriendComponent #friends-list .friend .bottom-section {
   background-color: rgb(41, 42, 83);
   height: 10%;
+}
+
+/*          SearchFriends Page            */
+.SearchFriendsComponent .searchbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5%;
+  height: 40px;
+}
+.SearchFriendsComponent .searchbar input {
+  height: 100%;
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 50px;
+  border: none;
+}
+.SearchFriendsComponent .searchbar input:focus {
+  outline: none;
+  border: none;
+  transition: 0.1s;
+  box-shadow: 0 0 10px rgb(80, 151, 209);
 }

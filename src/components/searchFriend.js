@@ -8,6 +8,7 @@ import {
 import { AuthContext } from "../Context/AuthContext";
 import LoadComponent from "./Loading";
 import "../styles/FriendPage.css";
+import icon from "../static/searchIcon.png";
 export default function SearchFriend() {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -64,9 +65,10 @@ export default function SearchFriend() {
     return <LoadComponent />;
   }
   return (
-    <div>
-      Search Friend component
-      <input onChange={handleInputChange} placeholder="Search Friend"></input>
+    <div className="SearchFriendsComponent">
+      <div className="searchbar">
+        <input onChange={handleInputChange} placeholder="Search Friend"></input>
+      </div>
       <ul className="friends">
         {filteredUsers &&
           filteredUsers.map((user) => (
