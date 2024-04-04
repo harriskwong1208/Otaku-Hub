@@ -5,6 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { getManga } from "../Collections/Manga";
 import LoadComponent from "../components/Loading";
+import "../styles/ListPage.css";
 export default function ListPage() {
   //After setting anime, to get anime, use anime[index].data.anime
   const [anime, setAnime] = useState([]);
@@ -68,7 +69,7 @@ export default function ListPage() {
   }
 
   return (
-    <>
+    <div className="ListPage">
       Anime watchlist:
       {anime &&
         anime.map((data, index) => (
@@ -79,6 +80,6 @@ export default function ListPage() {
         manga.map((data, index) => (
           <div key={index}>Manga name:{data.data.manga.title}</div>
         ))}
-    </>
+    </div>
   );
 }
