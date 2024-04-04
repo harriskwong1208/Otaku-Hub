@@ -1,3 +1,30 @@
 .ListPage {
   color: white;
 }
+.ListPage #AnimeList{
+  width: 70%;
+  margin: 0 auto;
+}
+.ListPage .List .Title{
+  font-size: 40px;
+  margin-left: 1%;
+}
+.ListPage .List .items-container{
+  width: 100%;
+  margin-top: .5%;
+  box-shadow: 0 0 10px rgb(82, 124, 179);
+  border-radius: 10px;
+}
+.ListPage .List .items-container .tableHeader {
+  border: solid white;
+}
+
+.ListPage .List .items-container .tableHeader .title{
+  width: 60%;
+  border: solid white;
+  text-align: end;
+  padding-right: 20%;
+}
+.ListPage .List .items-container .tableHeader .score,.counts{
+  width: 15%;
+}

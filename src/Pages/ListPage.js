@@ -49,7 +49,7 @@ export default function ListPage() {
     getList()
       .then((data) => {
         setIsLoading(false);
-        console.log(manga);
+        console.log(anime);
       })
       .catch((e) => {
         setIsLoading(false);
@@ -70,7 +70,33 @@ export default function ListPage() {
 
   return (
     <div className="ListPage">
-      Anime watchlist:
+      <div id="AnimeList" className="List">
+        <div className="Title">Anime List</div>
+        <table className="items-container">
+          <tr className="tableHeader">
+            <th className="title">Title</th>
+            <th className="score">Score</th>
+            <th className="counts">Episodes</th>
+            <th className="type">Type</th>
+          </tr>
+          {anime &&
+          anime.map((data, index) => (
+            <div key={index} className="item">
+              {/* Anime name:{data.data.anime.name} */}
+                <div className="Img">
+                  <img src={data.data.anime.imageUrl}></img>
+                </div>
+                <div className="title">{data.data.anime.name}</div>
+                <div className=""></div>
+              </div>
+          ))}
+                    
+        </table>
+      </div>
+      <div id="MangaList" className="List">
+
+      </div>
+      {/* Anime watchlist:
       {anime &&
         anime.map((data, index) => (
           <div key={index}>Anime name:{data.data.anime.name}</div>
@@ -79,7 +105,7 @@ export default function ListPage() {
       {manga &&
         manga.map((data, index) => (
           <div key={index}>Manga name:{data.data.manga.title}</div>
-        ))}
+        ))} */}
     </div>
   );
 }
