@@ -72,29 +72,27 @@ export default function SearchFriend() {
         <input onChange={handleInputChange} placeholder="Search Friend"></input>
       </div>
       <div className="friends">
-          {filteredUsers &&
+        {filteredUsers &&
           filteredUsers.map((user) => (
             <>
               {userId != user._id && (
                 <div className="friend" key={user._id}>
-                  <div className="itemContainer" >
+                  <div className="itemContainer">
                     <div className="picture">
                       <div className="img-container">
-                      <img src={user.imageUrl && user.imageUrl}>
-                      </img>
+                        <img src={user.imageUrl && user.imageUrl}></img>
                       </div>
                     </div>
                     <div className="nameAndButton">
-                      <div className="name" >
+                      <div className="name">
                         <a href={`/user/${user._id}`} target="_blank">
                           {user.name ? user.name : "UnKnown"}
                         </a>
                       </div>
                       <div id="addFriendBtn" className="button-container">
-                      <button onClick={() => 
-                        addFriendToUser(user._id)}>
-                        Add friend
-                      </button>
+                        <button onClick={() => addFriendToUser(user._id)}>
+                          Add friend
+                        </button>
                       </div>
                     </div>
                   </div>
