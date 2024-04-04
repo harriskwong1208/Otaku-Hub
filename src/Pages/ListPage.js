@@ -77,23 +77,18 @@ export default function ListPage() {
             <th className="title">Title</th>
             <th className="score">Score</th>
             <th className="counts">Episodes</th>
+            <th className="type">Type</th>
           </tr>
           {anime &&
           anime.map((data, index) => (
-            <tr key={index} className="item">
-                <td className="ImgAndTitle">
-                  <div className="Img">
-                    <img src={data.data.anime.imageUrl}></img>
-                  </div>
-                  <div className="title">{data.data.anime.name}</div>
-                </td>
-                <td className="score">
-                  {data.data.anime.score}
-                </td>
-                <td className="counts">
-                  {data.data.anime.episodes}
-                </td>
-            </tr>
+            <div key={index} className="item">
+              {/* Anime name:{data.data.anime.name} */}
+                <div className="Img">
+                  <img src={data.data.anime.imageUrl}></img>
+                </div>
+                <div className="title">{data.data.anime.name}</div>
+                <div className=""></div>
+              </div>
           ))}
                     
         </table>
