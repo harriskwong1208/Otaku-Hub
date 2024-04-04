@@ -1,3 +1,42 @@
 .ListPage {
   color: white;
 }
+.ListPage .List{
+  border: solid red;
+  width: 70%;
+  margin: 0 auto;
+}
+.ListPage .List .header{
+  display: flex;
+}
+.ListPage .List .header *{
+  text-align: center;
+}
+.ListPage .List .header .title{
+  width: 70%;
+}
+.ListPage .List .header .score,.counts{
+  width: 15%;
+}
+.ListPage .List .itemContainer {
+  border: solid white;
+}
+.ListPage .List .itemContainer .item{
+  height: 75px;
+  display: flex;
+  width: 100%;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle{
+  width: 70%;
+  display: flex;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle .Img{
+  width: 10%;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle .title{
+  width: 90%;
+  
+}
+.ListPage .List .itemContainer .item .score,.counts{
+  width: 15%;
+}
