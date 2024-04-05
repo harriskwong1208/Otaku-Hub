@@ -1,42 +1,60 @@
 .ListPage {
   color: white;
 }
-.ListPage .List{
+.ListPage .List {
   border: solid red;
-  width: 70%;
+  width: 60%;
   margin: 0 auto;
 }
-.ListPage .List .header{
+.ListPage .List .header {
   display: flex;
 }
-.ListPage .List .header *{
+.ListPage .List .header * {
   text-align: center;
 }
-.ListPage .List .header .title{
+.ListPage .List .header .title {
   width: 70%;
 }
-.ListPage .List .header .score,.counts{
+.ListPage .List .header .score,
+.counts {
   width: 15%;
 }
 .ListPage .List .itemContainer {
-  border: solid white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgb(35, 155, 185);
 }
-.ListPage .List .itemContainer .item{
+.ListPage .List .itemContainer .item {
   height: 75px;
   display: flex;
   width: 100%;
+  padding: 1% 0 1% 0;
+  border-bottom: solid 0.1px rgb(35, 155, 185);
 }
-.ListPage .List .itemContainer .item .ImgAndTitle{
+.ListPage .List .itemContainer .item .ImgAndTitle {
   width: 70%;
   display: flex;
 }
-.ListPage .List .itemContainer .item .ImgAndTitle .Img{
+.ListPage .List .itemContainer .item .ImgAndTitle .Img {
   width: 10%;
 }
-.ListPage .List .itemContainer .item .ImgAndTitle .title{
-  width: 90%;
-  
+.ListPage .List .itemContainer .item .ImgAndTitle .Img img {
+  width: 100%;
+  height: 100%;
 }
-.ListPage .List .itemContainer .item .score,.counts{
+.ListPage .List .itemContainer .item .ImgAndTitle .title {
+  width: 90%;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle .title a,
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle .title a:hover {
+  color: rgb(35, 155, 185);
+  transition: 0.7s;
+}
+.ListPage .List .itemContainer .item .score,
+.counts {
   width: 15%;
 }

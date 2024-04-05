@@ -49,7 +49,7 @@ export default function ListPage() {
     getList()
       .then((data) => {
         setIsLoading(false);
-        console.log(manga);
+        console.log(anime);
       })
       .catch((e) => {
         setIsLoading(false);
@@ -71,34 +71,38 @@ export default function ListPage() {
   return (
     <div className="ListPage">
       <div className="List" id="AnimeList">
-        <div className="title">
-                Anime List
-        </div>
+        <div className="title">Anime List</div>
         <div className="header">
           <div className="title">Title</div>
           <div className="score">Score</div>
           <div className="counts">Episodes</div>
-
         </div>
         <div className="itemContainer">
           {anime &&
-          anime.map((data, index) => (
-            // <div key={index}>Anime name:{data.data.anime.name}</div>
-            <div key={index} className="item">
-              <div className="ImgAndTitle">
-                <div className="Img">
-                  Img
+            anime.map((data, index) => (
+              // <div key={index}>Anime name:{data.data.anime.name}</div>
+              <div key={index} className="item">
+                <div className="ImgAndTitle">
+                  <div className="Img">
+                    <img src={data.data.anime.imageUrl}></img>
+                  </div>
+                  <div className="title">
+                    <a
+                      target="_blank"
+                      href={`/anime/${data.data.anime.mal_id}`}
+                    >
+                      {data.data.anime.name}
+                    </a>
+                  </div>
                 </div>
-                <div className="title">Name</div>
+                <div className="score">{data.data.anime.score || "~"}</div>
+                <div className="counts">{data.data.anime.episodes || "~"}</div>
               </div>
-              <div className="score">score</div>
-              <div className="counts">counts</div>
-            </div>
-          ))}
-          </div>
+            ))}
         </div>
+      </div>
 
-        {/* Manga list:
+      {/* Manga list:
         {manga &&
           manga.map((data, index) => (
             <div key={index}>Manga name:{data.data.manga.title}</div>
