@@ -71,13 +71,13 @@ export default function ListPage() {
   return (
     <div className="ListPage">
       <div className="List" id="AnimeList">
-        <div className="title">Anime List</div>
-        <div className="header">
-          <div className="title">Title</div>
-          <div className="score">Score</div>
-          <div className="counts">Episodes</div>
-        </div>
+        <div className="typeTitle">Watching</div>
         <div className="itemContainer">
+          <div className="header">
+            <div className="title">Title</div>
+            <div className="score">Score</div>
+            <div className="header-counts">Episodes</div>
+          </div>
           {anime &&
             anime.map((data, index) => (
               // <div key={index}>Anime name:{data.data.anime.name}</div>
