@@ -49,7 +49,7 @@ export default function ListPage() {
     getList()
       .then((data) => {
         setIsLoading(false);
-        console.log(anime);
+        console.log(data);
       })
       .catch((e) => {
         setIsLoading(false);
@@ -101,12 +101,38 @@ export default function ListPage() {
             ))}
         </div>
       </div>
-
-      {/* Manga list:
-        {manga &&
-          manga.map((data, index) => (
-            <div key={index}>Manga name:{data.data.manga.title}</div>
-          ))} */}
+      <div className="List" id="MangaList">
+        <div className="typeTitle" id="mangaListTitle">
+          Reading
+        </div>
+        <div className="itemContainer">
+          <div className="header">
+            <div className="title">Title</div>
+            <div className="score">Score</div>
+            <div className="header-counts">Chapters</div>
+          </div>
+          {manga &&
+            manga.map((data, index) => (
+              <div key={index} className="item">
+                <div className="ImgAndTitle">
+                  <div className="Img">
+                    <img src={data.data.manga.imageUrl}></img>
+                  </div>
+                  <div className="title">
+                    <a
+                      target="_blank"
+                      href={`/manga/${data.data.manga.mal_id}`}
+                    >
+                      {data.data.manga.title}
+                    </a>
+                  </div>
+                </div>
+                <div className="score">{data.data.manga.score || "~"}</div>
+                <div className="counts">{data.data.manga.episodes || "~"}</div>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 }

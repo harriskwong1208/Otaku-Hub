@@ -13,7 +13,7 @@
 .ListPage .List .header {
   display: flex;
   padding: 2% 0 2% 0;
-  border-bottom: solid 0.1px rgb(149, 54, 212);
+  border-bottom: solid 0.1px rgb(68, 125, 201);
 }
 .ListPage .List .header * {
   text-align: center;
@@ -74,4 +74,14 @@ a:visited {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#MangaList #mangaListTitle {
+  margin: 1%;
+}
+#MangaList .itemContainer {
+  box-shadow: 0 0 5px rgb(111, 54, 202);
+}
+
+#MangaList .itemContainer .header {
+  border-bottom: rgb(74, 47, 197) solid 0.1px;
 }
