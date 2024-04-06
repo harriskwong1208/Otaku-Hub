@@ -3,6 +3,8 @@ import { signUp } from "../auth";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { findEmail } from "../Collections/Users";
+import "../styles/SignUp.css";
+import { apiEndPoints } from "../apiEndpoints";
 export default function SignUp() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +23,7 @@ export default function SignUp() {
       await signUp(username, email, password);
       /*****************************************************************/
       //TEMP API ENDPOINT FOR DEVELOPEMENT
-      await axios.post("https://otakuhubexpress.ue.r.appspot.com/api/users/", {
+      await axios.post(apiEndPoints.localHost + "users/", {
         name: username,
         email: email,
         imageUrl:
@@ -45,30 +47,47 @@ export default function SignUp() {
   }
 
   return (
-    <div>
-      <h2>SignUp</h2>
+    <div id="SignUpPage">
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">SignUp</button>
+        <div className="SignUpContainer">
+          <div className="title">
+            <h1>Sign Up</h1>
+          </div>
+          <div className="Message">
+            Please enter your Username, Email, and Password
+          </div>
+          <div className="inputFields">
+            <div className="inputContainer">
+              <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                id="Username"
+              ></input>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                id="PasswordInput"
+              ></input>
+            </div>
+          </div>
+          <div className="btnContainer">
+            <button type="submit" className="SignUpBtn">
+              Sign Up
+            </button>
+          </div>
+        </div>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="error">Error: {error}</p>}
     </div>
   );
 }

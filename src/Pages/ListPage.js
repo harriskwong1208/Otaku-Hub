@@ -49,7 +49,7 @@ export default function ListPage() {
     getList()
       .then((data) => {
         setIsLoading(false);
-        console.log(data);
+        // console.log(data);
       })
       .catch((e) => {
         setIsLoading(false);
