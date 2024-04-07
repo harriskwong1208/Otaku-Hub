@@ -5,7 +5,9 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { getManga } from "../Collections/Manga";
 import LoadComponent from "../components/Loading";
+import Login from "./LogIn";
 import "../styles/ListPage.css";
+import { Error } from "../components/Error";
 export default function ListPage() {
   //After setting anime, to get anime, use anime[index].data.anime
   const [anime, setAnime] = useState([]);
@@ -58,9 +60,8 @@ export default function ListPage() {
 
   if (!user) {
     return (
-      <div>
-        Sign in to see your list! <a href="/login">Here</a>
-      </div>
+      // <Error type="NotLoggedIn"/>
+        <Login/>
     );
   }
 

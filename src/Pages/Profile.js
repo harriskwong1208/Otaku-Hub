@@ -12,8 +12,7 @@ import { getSession, getCurrentUser } from "../auth";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/Profile.css";
 import LoadComponent from "../components/Loading";
-// import "../styles/FontStyle.css";
-
+import Login from "./LogIn";
 export default function Profile() {
   const { user, signOut } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,9 +47,7 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div>
-        Log in <a href="login">here</a>
-      </div>
+        <Login/>
     );
   }
 
