@@ -5,7 +5,7 @@ import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/DetailsPage.css";
 import { addAnime } from "../Collections/Anime";
-
+import Error from "../components/Error";
 import LoadComponent from "../components/Loading";
 export default function DetailsPage() {
   const { id } = useParams();
@@ -35,6 +35,9 @@ export default function DetailsPage() {
 
   if (isLoading) {
     return <LoadComponent />;
+  }
+  if(error){
+    return <Error/>
   }
 
   const suffix = (number) => {

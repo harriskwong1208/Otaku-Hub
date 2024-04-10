@@ -7,7 +7,7 @@ import "../styles/DetailsPage.css";
 import { addAnime } from "../Collections/Anime";
 import LoadComponent from "../components/Loading";
 import { addManga } from "../Collections/Manga";
-
+import Error from "../components/Error";
 export default function MangaDetailsPage() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -36,6 +36,9 @@ export default function MangaDetailsPage() {
 
   if (isLoading) {
     return <LoadComponent />;
+  }
+  if(error){
+    return <Error/>
   }
   const suffix = (number) => {
     let temp = number % 10;
