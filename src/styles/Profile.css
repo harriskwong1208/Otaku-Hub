@@ -1,78 +1,48 @@
-.Profile * {
-  font-size: larger;
-  font-family: "Bebas Neue", "kanit", sans-serif;
+.Profile{
+  color: white;
 }
-/* .Profile .card {
-  position: relative;
-  margin-top: 3%;
-  margin-left: 5%;
-  margin-right: 5%;
-  height: 800px;
-  box-shadow: 0 0 10px grey;
-  border-radius: 50px;
-} */
-.Profile .card {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1.2fr 1fr;
-  margin-top: 3%;
-  margin-left: 5%;
-  margin-right: 5%;
-  height: 800px;
-  box-shadow: 0 0 10px grey;
-  border-radius: 50px;
+.Profile #card{
+  border: red solid;
+  width: 80%;
+  margin: 3% auto 0 auto;
 }
-.Profile .card * {
-  /* border: solid; */
-}
-
-.Profile .card .image {
-  /* border: solid;
+.Profile #card{
   display: flex;
-  justify-content: center;
-  height: 30%; */
-  padding-top: 1%;
 }
-.Profile .card .image img {
-  margin-top: 0;
-  margin-bottom: 0;
-  height: 170px;
-  border-radius: 10px;
-  /* clip-path: circle(); */
-}
-.Profile .card div {
-  text-align: center;
-}
-.card .section {
+.Profile #pictureContainer{
+  flex: .4;
+  border: solid white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.card #Bio {
-  position: relative;
+.Profile img{
+  width: 50%;
+  height: 95%;
 }
-.card #Email {
-  position: relative;
+.Profile #infoContainer{
+  border: solid red;
+  flex: .6;
+  display: flex;
+  flex-direction: column;
 }
-.card #Email span {
-  position: absolute;
-  top: -10%;
+.Profile #usernameContainer{
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  flex: .3;
 }
-.card #Bio span {
-  width: 70%;
-  position: absolute;
-  top: -30%;
-  font-size: large;
-}
-.card #btn {
-  position: relative;
-}
-
-.Edit-Btn {
-  border-radius: 10%;
-  position: absolute;
-  top: -5%;
-  padding: 0.25% 1% 0.25% 1%;
-  color: white;
-  background-color: rgb(29, 146, 241);
+.Profile #username{
+  border-radius: 5px;
+  background-color: rgb(43, 101, 155);
   border: none;
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 2% 0 2% 0;
+
+}
+.Profile #info{
+  border: solid red;
+  flex: .7;
 }

@@ -53,7 +53,7 @@ export default function Profile() {
 
   return (
     <div className="Profile">
-      <head>
+      {/* <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -92,6 +92,23 @@ export default function Profile() {
         </div>
         <div className="section" id="btn">
           <button className="Edit-Btn">Edit</button>
+        </div>
+      </div> */}
+      <div id="card">
+        <div id="pictureContainer">
+          <img src={data && data.imageUrl }></img>
+        </div>
+        <div id="infoContainer">
+          <div id="usernameContainer">
+            <div id="username">{user ? user.username : "User"}</div>
+          </div>
+          <div id="info">
+            <div id="email">email</div>
+            <div id="name">name</div>
+            <div id="anime">Favorite Anime: </div>
+            <div id="manga">Favorite Manga:</div>
+            <div id="character">Favorite Character: </div>
+          </div>
         </div>
       </div>
     </div>
