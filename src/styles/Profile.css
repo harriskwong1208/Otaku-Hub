@@ -1,48 +1,79 @@
-.Profile{
+.Profile {
   color: white;
 }
-.Profile #card{
-  border: red solid;
+.Profile #card {
   width: 80%;
   margin: 3% auto 0 auto;
+  border: none;
+  box-shadow: 0 0 10px grey;
+  border-radius: 10px;
+  padding-top: 0.5%;
+  padding-bottom: 1%;
 }
-.Profile #card{
+.Profile #card {
   display: flex;
 }
-.Profile #pictureContainer{
-  flex: .4;
-  border: solid white;
+.Profile #pictureContainer {
+  flex: 0.4;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.Profile img{
+.Profile img {
   width: 50%;
   height: 95%;
+  max-height: 290px;
 }
-.Profile #infoContainer{
-  border: solid red;
-  flex: .6;
+.Profile #infoContainer {
+  flex: 0.6;
   display: flex;
   flex-direction: column;
 }
-.Profile #usernameContainer{
+.Profile #usernameContainer {
   margin-top: 3%;
   margin-left: auto;
   margin-right: auto;
   width: 60%;
-  flex: .3;
+  flex: 0.3;
 }
-.Profile #username{
+.Profile #username {
   border-radius: 5px;
   background-color: rgb(43, 101, 155);
   border: none;
   text-align: center;
   font-size: 1.4rem;
   padding: 2% 0 2% 0;
-
 }
-.Profile #info{
-  border: solid red;
-  flex: .7;
+.Profile #info {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.Profile #info div {
+  font-size: 1.4rem;
+  color: rgb(74, 178, 226);
+  padding-left: 7%;
+  padding-top: 0.5%;
+  padding-bottom: 0.1%;
+  font-weight: bold;
+}
+.Profile #info span {
+  margin-left: 4%;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+.Profile #Description {
+  margin: 2% auto 0 auto;
+  width: 80%;
+}
+.Profile #Description #title {
+  color: rgb(212, 160, 62);
+  font-size: 1.4rem;
+}
+
+.Profile #Description #bio {
+  font-size: 1.2rem;
+  margin-top: 1%;
 }

@@ -46,9 +46,7 @@ export default function Profile() {
   }
 
   if (!user) {
-    return (
-        <Login/>
-    );
+    return <Login />;
   }
 
   return (
@@ -96,20 +94,34 @@ export default function Profile() {
       </div> */}
       <div id="card">
         <div id="pictureContainer">
-          <img src={data && data.imageUrl }></img>
+          <img src={data && data.imageUrl}></img>
         </div>
         <div id="infoContainer">
           <div id="usernameContainer">
             <div id="username">{user ? user.username : "User"}</div>
           </div>
           <div id="info">
-            <div id="email">email</div>
-            <div id="name">name</div>
-            <div id="anime">Favorite Anime: </div>
-            <div id="manga">Favorite Manga:</div>
-            <div id="character">Favorite Character: </div>
+            <div id="email">
+              email: <span>{user && user.email}</span>
+            </div>
+            <div id="name">
+              Name: <span>...</span>
+            </div>
+            <div id="anime">
+              Favorite Anime: <span>...</span>
+            </div>
+            <div id="manga">
+              Favorite Manga: <span>...</span>
+            </div>
+            <div id="character">
+              Favorite Character: <span>...</span>
+            </div>
           </div>
         </div>
+      </div>
+      <div id="Description">
+        <div id="title">About me:</div>
+        <div id="bio">Lorem Ipsum</div>
       </div>
     </div>
   );
