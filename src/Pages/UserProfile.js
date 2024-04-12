@@ -6,6 +6,7 @@ import { getAnime } from "../Collections/Anime";
 import { getManga } from "../Collections/Manga";
 import LoadComponent from "../components/Loading";
 import { getFriends } from "../Collections/Users";
+import "../styles/UserProfile.css";
 export default function UserProfile() {
   const { id } = useParams();
   const [user, setUser] = useState();
@@ -13,7 +14,6 @@ export default function UserProfile() {
   const [watchList, setWatchList] = useState();
   const [mangaList, setMangaList] = useState();
   const [friends, setFriends] = useState();
-
 
   async function setList(List, callback, type) {
     let list = [];
@@ -68,8 +68,8 @@ export default function UserProfile() {
   }
 
   return (
-    <div>
-      Name: {user && <div>{user.name}</div>}
+    <div id="UserProfile">
+      {/* Name: {user && <div>{user.name}</div>}
       Friends:{" "}
       {friends && (
         <ul>
@@ -101,7 +101,31 @@ export default function UserProfile() {
             </li>
           ))}
         </ul>
-      )}
+      )} */}
+      <div id="Profile">
+        <div id="ProfileCard">
+          <div id="username">Username</div>
+          <div id="imgContainer">Img</div>
+          <div id="info">
+            <div id="name">Name</div>
+            <div id="email">Email</div>
+            <div id="favorite">
+              Favorite:
+              <div id="anime">Anime</div>
+              <div id="manga">Manga</div>
+              <div id="character">character</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Details">
+        <div id="Bio">
+          Bio:
+          <div id="description">Lorem Ipsum</div>
+        </div>
+        <div id="watchlist">Anime1</div>
+        <div id="mangalist">Manga1</div>
+      </div>
     </div>
   );
 }

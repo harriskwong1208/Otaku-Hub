@@ -1,0 +1,19 @@
+#UserProfile {
+  color: white;
+  display: flex;
+}
+#UserProfile #Profile {
+  border: solid red;
+  flex: 0.45;
+}
+#UserProfile #Profile #ProfileCard {
+  border: none;
+  width: 60%;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px grey;
+}
+#UserProfile #Details {
+  flex: 0.55;
+  border: red solid;
+}
