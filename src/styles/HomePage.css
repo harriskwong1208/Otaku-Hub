@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap");
 
+
 /* .animePic {
   border-radius: 100px;
   width: 5%;
@@ -7,45 +8,28 @@
   object-position: center;
   vertical-align: middle;
 } */
+
+
 .homepage {
   color: white;
   font-family: "Cabin", sans-serif;
 }
-.homepage header {
-  font-size: larger;
 
-  margin: 2% 10% 0 10%;
-  border-radius: 10px;
-  /* padding: 5% 0 5% 0; */
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 0.3fr;
-  box-shadow: 0 0 10px rgb(42, 112, 192);
-  height: 600px;
+#welcomePage{
+ background-image: url("../static/homepage.png");
+ background-repeat: no-repeat;
+ background-size: cover;
+ height: 90vh;
 }
-.homepage header div {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+#welcomePage .title {
+  border: solid red;
+  padding-top: 5%;
+
 }
-.homepage header .welcome-message {
-  line-height: 1.5;
-  text-align: center;
-  padding: 0.1% 10% 0 10%;
-  height: 100%;
-}
-.homepage header .animation {
-  margin-bottom: 1%;
-}
-.homepage header .animation img {
-  height: 90%;
-}
-.homepage header > .sign-in a,
-.sign-in a:visited {
-  color: rgb(69, 141, 223);
-  text-decoration: none;
-}
+
+
+
 
 .Dashboard .list-content {
   margin-left: auto;
