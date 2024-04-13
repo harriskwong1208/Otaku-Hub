@@ -72,7 +72,7 @@ function HomePage() {
   if (isLoading) {
     return <LoadComponent />;
   }
-  if (!user) {
+  if (user) {
     return (
       <div className="Dashboard">
         {upcomingAnime && (
@@ -168,24 +168,24 @@ function HomePage() {
 }
 
 function WelcomePage() {
+  const navigate = useNavigate();
   return (
     <div id="welcomePage">
       <div id="Intro">
         <div id="title">OtakuHub</div>
         <div id="description">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book.
+        Welcome to OtakuHub! 
+        Explore new series, track your favorites, and 
+        connect with friends who share your passion.
         </div>
         <div id="btnContainer">
-          <button>Get Started</button>
+          <button onClick={()=>navigate('/login')}>Get Started</button>
         </div>
       </div>
       <div id="imgContainer">
         <div id="container">
-          Img
-          {/* <img id="homeImg" src={hellsing}></img> */}
+          
+          <img id="homeImg" src={hellsing}></img>
         </div>
       </div>
     </div>

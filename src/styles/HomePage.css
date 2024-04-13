@@ -18,7 +18,6 @@
   display: flex;
   flex-direction: column;
   padding-top: 9%;
-  border: solid red;
 }
 #Intro * {
   padding-left: 25%;
@@ -29,13 +28,13 @@
   font-weight: bolder;
 }
 #Intro #description {
-  margin-top: 1.1%;
+  margin-top: 2%;
   font-size: 1.1rem;
   color: rgb(153, 150, 150);
   max-width: 400px;
 }
 #Intro #btnContainer {
-  margin-top: 2%;
+  margin-top: 4%;
 }
 #Intro button {
   border-radius: 100px;
@@ -50,19 +49,26 @@
 }
 
 #welcomePage #imgContainer {
-  border: solid red;
   flex: 0.5;
   min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #welcomePage #imgContainer #container {
-  border: solid white;
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+
+  max-height: 500px;
+  max-width: 600px;
+}
+#welcomePage #imgContainer #container img{
+  width: 100%;
+  height: 100%;
 }
 
-#welcomePage #imgContainer #homeImg {
-  height: 80%;
-  width: 80%;
-}
 
 .Dashboard .list-content {
   margin-left: auto;
