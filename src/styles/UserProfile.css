@@ -7,11 +7,38 @@
   flex: 0.45;
 }
 #UserProfile #Profile #ProfileCard {
+
   border: none;
   width: 60%;
-  margin: 0 auto;
+  margin: 5% auto 0 auto;
   border-radius: 10px;
   box-shadow: 0 0 10px grey;
+}
+#UserProfile #Profile #ProfileCard #username{
+  border-bottom: solid rgb(41, 102, 233) .1px;
+  padding: 2% 0 2% 5%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background-color: rgb(7, 18, 54);
+}
+#UserProfile  #imgContainer{
+  border: solid red ;
+  width: 200px;
+  margin: 2% auto 2% auto;
+  height: 200px;  
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#info{
+  border-top: solid rgb(41, 102, 233) .1px;
+}
+#info .information{
+  margin: 1% 0 1% 3%;
+}
+#info #favorite * {
+  margin-left: 3%;
 }
 #UserProfile #Details {
   flex: 0.55;

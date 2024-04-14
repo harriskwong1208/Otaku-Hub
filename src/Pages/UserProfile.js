@@ -107,9 +107,9 @@ export default function UserProfile() {
           <div id="username">Username</div>
           <div id="imgContainer">Img</div>
           <div id="info">
-            <div id="name">Name</div>
-            <div id="email">Email</div>
-            <div id="favorite">
+            <div className="information" id="name">Name</div>
+            <div className="information" id="email">Email</div>
+            <div className="information" id="favorite">
               Favorite:
               <div id="anime">Anime</div>
               <div id="manga">Manga</div>
