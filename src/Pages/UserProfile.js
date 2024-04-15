@@ -107,13 +107,23 @@ export default function UserProfile() {
           <div id="username">Username</div>
           <div id="imgContainer">Img</div>
           <div id="info">
-            <div className="information" id="name">Name</div>
-            <div className="information" id="email">Email</div>
+            <div className="information" id="name">
+              Name
+            </div>
+            <div className="information" id="email">
+              Email
+            </div>
             <div className="information" id="favorite">
               Favorite:
-              <div  className="item" id="anime">Anime</div>
-              <div  className="item" id="manga">Manga</div>
-              <div className="item" id="character">character</div>
+              <div className="item" id="anime">
+                Anime
+              </div>
+              <div className="item" id="manga">
+                Manga
+              </div>
+              <div className="item" id="character">
+                character
+              </div>
             </div>
           </div>
         </div>
@@ -121,13 +131,36 @@ export default function UserProfile() {
       <div id="Details">
         <div id="Bio">
           <h2 className="title">About Me:</h2>
-          <p id="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+          <p id="description">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+          </p>
         </div>
         <div id="watchlist">
           <h2>Watch List</h2>
-          
+          <div id="animeList">
+            {watchList && (
+              <ul>
+                {watchList.map((anime, index) => (
+                  <li key={index}>
+                    <a href={`/anime/${anime.mal_id}`} target="_blank">
+                      {anime.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <h2>Manga List</h2>
+          <div id="mangalist"></div>
         </div>
-        <div id="mangalist">Manga1</div>
       </div>
     </div>
   );
