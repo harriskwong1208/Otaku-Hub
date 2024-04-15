@@ -66,9 +66,45 @@
 #animeList {
   border: solid red;
 }
-#animeList ul {
-}
-#animeList li {
+.listItem{
+  transition: .2s;
+  width: 95%;
+  margin: 1% auto;
   border: solid white;
   list-style: none;
+  display: flex; 
+  min-height: 90px;
+  height: 90px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+}
+.listItem:active, .listItem:active{
+  color: white;
+  text-decoration: none;
+}
+.listItem:hover{
+  transition: .2s;
+  background-color: rgb(200, 202, 202);
+  cursor: pointer;
+}
+.listItem .imgContainer{
+
+  height: 100%;
+  flex: .3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.imgContainer .itemImg{
+  width: 50%;
+  height: 100%;
+}
+.listItem .itemName{
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  flex: .7;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

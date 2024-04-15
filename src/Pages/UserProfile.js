@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getAnime } from "../Collections/Anime";
 import { getManga } from "../Collections/Manga";
 import LoadComponent from "../components/Loading";
@@ -14,7 +14,7 @@ export default function UserProfile() {
   const [watchList, setWatchList] = useState();
   const [mangaList, setMangaList] = useState();
   const [friends, setFriends] = useState();
-
+  const navigate = useNavigate();
   async function setList(List, callback, type) {
     let list = [];
     for (let i of List) {
@@ -143,23 +143,37 @@ export default function UserProfile() {
             PageMaker including versions of Lorem Ipsum.
           </p>
         </div>
-        <div id="watchlist">
-          <h2>Watch List</h2>
-          <div id="animeList">
+        <div id="watchlist" >
+          <h2 className="listTitle">Watch List</h2>
+          <div id="animeList" className="list">
             {watchList && (
-              <ul>
+              <>
                 {watchList.map((anime, index) => (
-                  <li key={index}>
-                    <a href={`/anime/${anime.mal_id}`} target="_blank">
-                      {anime.name}
-                    </a>
-                  </li>
+                  <a id="anime" href={`/anime/${anime.mal_id}`} target="_blank" className="listItem" key={anime.mal_id}>
+                    <div className="imgContainer">
+                      <img className="itemImg" id="animeImg" src={anime.imageUrl && anime.imageUrl}/>
+                    </div>
+                    <div id="animeName" className="itemName">{anime.name}</div>
+                  </a>
                 ))}
-              </ul>
+              </>
             )}
           </div>
-          <h2>Manga List</h2>
-          <div id="mangalist"></div>
+          <h2 className="listTitle">Manga List</h2>
+          <div id="mangaList" className="list">
+            {mangaList && (
+              <>
+                {mangaList.map((manga, index) => (
+                  <a id="manga" href={`/manga/${manga.mal_id}`} target="_blank" className="listItem" key={manga.mal_id}>
+                    <div className="imgContainer">
+                      <img className="itemImg" id="mangaImg" src={manga.imageUrl && manga.imageUrl}/>
+                    </div>
+                    <div id="mangaName" className="itemName">{manga.name && manga.name}</div>
+                  </a>
+                ))}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
