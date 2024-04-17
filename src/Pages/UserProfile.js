@@ -143,17 +143,29 @@ export default function UserProfile() {
             PageMaker including versions of Lorem Ipsum.
           </p>
         </div>
-        <div id="watchlist" >
+        <div id="watchlist">
           <h2 className="listTitle">Watch List</h2>
           <div id="animeList" className="list">
             {watchList && (
               <>
                 {watchList.map((anime, index) => (
-                  <a id="anime" href={`/anime/${anime.mal_id}`} target="_blank" className="listItem" key={anime.mal_id}>
+                  <a
+                    id="anime"
+                    href={`/anime/${anime.mal_id}`}
+                    target="_blank"
+                    className="listItem"
+                    key={anime.mal_id}
+                  >
                     <div className="imgContainer">
-                      <img className="itemImg" id="animeImg" src={anime.imageUrl && anime.imageUrl}/>
+                      <img
+                        className="itemImg"
+                        id="animeImg"
+                        src={anime.imageUrl && anime.imageUrl}
+                      />
                     </div>
-                    <div id="animeName" className="itemName">{anime.name}</div>
+                    <div id="animeName" className="itemName">
+                      {anime.name}
+                    </div>
                   </a>
                 ))}
               </>
@@ -164,11 +176,23 @@ export default function UserProfile() {
             {mangaList && (
               <>
                 {mangaList.map((manga, index) => (
-                  <a id="manga" href={`/manga/${manga.mal_id}`} target="_blank" className="listItem" key={manga.mal_id}>
+                  <a
+                    id="manga"
+                    href={`/manga/${manga.mal_id}`}
+                    target="_blank"
+                    className="listItem"
+                    key={manga.mal_id}
+                  >
                     <div className="imgContainer">
-                      <img className="itemImg" id="mangaImg" src={manga.imageUrl && manga.imageUrl}/>
+                      <img
+                        className="itemImg"
+                        id="mangaImg"
+                        src={manga.imageUrl && manga.imageUrl}
+                      />
                     </div>
-                    <div id="mangaName" className="itemName">{manga.name && manga.name}</div>
+                    <div id="mangaName" className="itemName">
+                      {manga.title && manga.title}
+                    </div>
                   </a>
                 ))}
               </>

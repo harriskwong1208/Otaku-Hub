@@ -64,11 +64,13 @@
   max-height: 500px;
   max-width: 600px;
 }
-#welcomePage #imgContainer #container img{
+#welcomePage #imgContainer #container img {
   width: 100%;
   height: 100%;
 }
-
+.Dashboard {
+  color: white;
+}
 
 .Dashboard .list-content {
   margin-left: auto;
