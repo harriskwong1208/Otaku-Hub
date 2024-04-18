@@ -36,8 +36,8 @@ export default function DetailsPage() {
   if (isLoading) {
     return <LoadComponent />;
   }
-  if(error){
-    return <Error/>
+  if (error) {
+    return <Error />;
   }
 
   const suffix = (number) => {
@@ -61,25 +61,28 @@ export default function DetailsPage() {
     <div className="DetailsPage">
       <div className="left-section">
         <div className="img">
-          <img src={anime.images && anime.images.jpg.large_image_url} />
+          <img
+            src={anime?.images && anime.images.jpg.large_image_url}
+            alt="anime-Picture"
+          />
         </div>
         <div className="information">
           <div className="airDate">
-            <strong>Air Date:</strong> {anime.aired && anime.aired.string}
+            <strong>Air Date:</strong> {anime?.aired && anime.aired.string}
           </div>
           <div className="demographic">
             <strong>Demographic:</strong>{" "}
-            {anime.demographics &&
+            {anime?.demographics &&
               anime.demographics[0] &&
               anime.demographics[0].name}
           </div>
           <div className="duration">
             <strong>Duration: </strong>
-            {anime.duration && anime.duration}
+            {anime?.duration && anime.duration}
           </div>
           <div className="genres">
             <strong>Genres: </strong>
-            {anime.genres &&
+            {anime?.genres &&
               anime.genres.map((genre, index) =>
                 index != anime.genres.length - 1
                   ? ` ${genre.name},`
@@ -88,7 +91,7 @@ export default function DetailsPage() {
           </div>
           <div className="studio">
             <strong>Studios: </strong>
-            {anime.studios &&
+            {anime?.studios &&
               anime.studios.map((studio, index) =>
                 index != anime.studios.length - 1
                   ? ` ${studio.name},`
@@ -97,23 +100,23 @@ export default function DetailsPage() {
           </div>
           <div className="episodes">
             <strong>Episodes: </strong>
-            {anime.episodes ? anime.episodes : "Still airing"}
+            {anime?.episodes ? anime.episodes : "Still airing"}
           </div>
           <div className="rating">
             <strong>Rating: </strong>
-            {anime.rating}
+            {anime?.rating}
           </div>
           <div className="season">
             <strong>Season Aired: </strong>
-            {anime.season}
+            {anime?.season}
           </div>
           <div className="source">
             <strong>Source Material: </strong>
-            {anime.source}
+            {anime?.source}
           </div>
           <div className="producers">
             <strong>Producers:</strong>
-            {anime.producers &&
+            {anime?.producers &&
               anime.producers.map((producer, index) =>
                 index != anime.producers.length - 1
                   ? ` ${producer.name},`
@@ -122,7 +125,7 @@ export default function DetailsPage() {
           </div>
           <div className="mal-link">
             <strong>More Details:</strong>{" "}
-            <a id="mal_link" target="_blank" href={anime.url}>
+            <a id="mal_link" target="_blank" href={anime?.url || "#"}>
               MyAnimeList
             </a>
           </div>
@@ -134,7 +137,7 @@ export default function DetailsPage() {
             <div id="Anime-Title">
               <span>
                 {" "}
-                {anime.title_english
+                {anime?.title_english
                   ? titleShorten(anime.title_english)
                   : titleShorten(anime.title)}
               </span>
@@ -160,24 +163,24 @@ export default function DetailsPage() {
             <div id="score-title">
               <span>Score:</span>
             </div>
-            <div id="score">{anime.score} / 10.00</div>
-            <div id="users">by {anime.scored_by} users</div>
+            <div id="score">{anime?.score} / 10.00</div>
+            <div id="users">by {anime?.scored_by} users</div>
           </div>
           <div className="vertical-line"></div>
           <div className="popularity">
             <div id="title">Popularity:</div>
             <div id="number">
               {" "}
-              {anime.popularity}
-              {suffix(anime.popularity)}
+              {anime?.popularity}
+              {suffix(anime?.popularity)}
             </div>
           </div>
           <div className="vertical-line"></div>
           <div className="rank">
             <div id="title">Ranking: </div>
             <div id="number">
-              {anime.rank}
-              {suffix(anime.rank)}
+              {anime?.rank}
+              {suffix(anime?.rank)}
             </div>
           </div>
         </section>
@@ -185,19 +188,19 @@ export default function DetailsPage() {
           <br></br>
           <span id="title">Synopsis</span>
           <hr></hr>
-          <div className="synopsis">{anime.synopsis}</div>
+          <div className="synopsis">{anime?.synopsis}</div>
         </article>
         <div className="trailers">
           <br></br>
           <span id="title">Trailer</span>
           <hr></hr>
-          {anime.trailer && anime.trailer.embed_url ? (
+          {anime?.trailer && anime.trailer.embed_url ? (
             <div id="video-container">
               <iframe
                 id="video"
                 width="420"
                 height="345"
-                src={anime.trailer.embed_url}
+                src={anime?.trailer.embed_url}
               ></iframe>
             </div>
           ) : (
