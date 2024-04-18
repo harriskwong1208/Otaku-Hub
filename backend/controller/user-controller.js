@@ -17,11 +17,11 @@ const getAllUsers = async (req, res, next) => {
 };
 
 const addUser = async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { userName, email, password } = req.body;
   let user;
   try {
     user = new User({
-      name,
+      userName,
       email,
       password,
     });
