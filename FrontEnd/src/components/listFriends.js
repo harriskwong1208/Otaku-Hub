@@ -17,7 +17,7 @@ export default function ListFriends() {
       const friends = await getFriendsFromUser();
       setFriends(friends);
       for (let i of friends) {
-        const response = await axios.get(apiEndPoints.localHost + "users/" + i);
+        const response = await axios.get(apiEndPoints.backEndApi + "users/" + i);
         const data = response.data.user;
         _friends.push(data);
       }
