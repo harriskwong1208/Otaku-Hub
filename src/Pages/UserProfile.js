@@ -29,20 +29,21 @@ export default function UserProfile() {
     let data = await axios.get(apiEndPoints.localHost + "users/" + id);
     const userinfo = data;
     setUser(data.data.user);
-
+    console.log("userInfo:")
+    console.log(userinfo)
     //Get friends' names
     const friends = await getFriends(data.data.user.friends);
     setFriends(friends);
 
     //Set anime and manga lists
     data = await setList(data.data.user.watchList, getAnime, "anime");
-    // console.log('WatchList:');
-    // console.log(data);
+    console.log('WatchList:');
+    console.log(data);
     setWatchList(data);
 
     data = await setList(userinfo.data.user.mangaList, getManga, "manga");
-    // console.log('MangaList:');
-    // console.log(data);
+    console.log('MangaList:');
+    console.log(data);
     setMangaList(data);
   }
 
@@ -69,60 +70,33 @@ export default function UserProfile() {
 
   return (
     <div id="UserProfile">
-      {/* Name: {user && <div>{user.name}</div>}
-      Friends:{" "}
-      {friends && (
-        <ul>
-          {friends.map((friend, index) => (
-            <li key={index}>{friend}</li>
-          ))}
-        </ul>
-      )}
-      Watch List:{" "}
-      {watchList && (
-        <ul>
-          {watchList.map((anime, index) => (
-            <li key={index}>
-              <a href={`/anime/${anime.mal_id}`} target="_blank">
-                {anime.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
-      Manga List:
-      {mangaList && (
-        <ul>
-          {mangaList.map((manga, index) => (
-            <li key={index}>
-              <a href={`/manga/${manga.mal_id}`} target="_blank">
-                {manga.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )} */}
-      <div id="Profile">
+
+     <div id="Profile">
         <div id="ProfileCard">
-          <div id="username">Username</div>
-          <div id="imgContainer">Img</div>
+          <div id="username">
+            {user?.name ? user?.name : "Unknown"}</div>
+          <div id="imgContainer">
+            <img id="pfp" src={user?.imageUrl && user.imageUrl}
+              alt="User profile img"
+            ></img>
+          </div>
           <div id="info">
             <div className="information" id="name">
-              Name
+              <strong>Name:</strong><span>{user?.name ? user?.name : "Unknown"}</span>
             </div>
             <div className="information" id="email">
-              Email
+              <strong>Email:</strong><span>{user?.email ? user?.email : "Unknown"}</span>
             </div>
             <div className="information" id="favorite">
-              Favorite:
+              <strong>Favorite</strong> ~
               <div className="item" id="anime">
-                Anime
+                <strong>Anime:</strong><span>{user?.anime ? user?.anime : "Unknown"}</span>
               </div>
               <div className="item" id="manga">
-                Manga
+                <strong>Manga:</strong><span>{user?.manga ? user?.manga : "Unknown"}</span>
               </div>
               <div className="item" id="character">
-                character
+                <strong>character:</strong><span>{user?.character ? user?.character : "Unknown"}</span>
               </div>
             </div>
           </div>
@@ -132,23 +106,16 @@ export default function UserProfile() {
         <div id="Bio">
           <h2 className="title">About Me:</h2>
           <p id="description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
+            {user?.bio ? user.bio : "Can we get much higher? "}
           </p>
         </div>
         <div id="watchlist">
           <h2 className="listTitle">Watch List</h2>
+          <hr></hr>
           <div id="animeList" className="list">
             {watchList && (
               <>
-                {watchList.map((anime, index) => (
+                {watchList?.map((anime, index) => (
                   <a
                     id="anime"
                     href={`/anime/${anime.mal_id}`}
@@ -160,11 +127,12 @@ export default function UserProfile() {
                       <img
                         className="itemImg"
                         id="animeImg"
-                        src={anime.imageUrl && anime.imageUrl}
+                        src={anime?.imageUrl && anime?.imageUrl}
+                        
                       />
                     </div>
                     <div id="animeName" className="itemName">
-                      {anime.name}
+                      {anime?.name ? anime.name : "Unknown"}
                     </div>
                   </a>
                 ))}
@@ -172,10 +140,11 @@ export default function UserProfile() {
             )}
           </div>
           <h2 className="listTitle">Manga List</h2>
+          <hr></hr>
           <div id="mangaList" className="list">
             {mangaList && (
               <>
-                {mangaList.map((manga, index) => (
+                {mangaList?.map((manga, index) => (
                   <a
                     id="manga"
                     href={`/manga/${manga.mal_id}`}
@@ -187,7 +156,7 @@ export default function UserProfile() {
                       <img
                         className="itemImg"
                         id="mangaImg"
-                        src={manga.imageUrl && manga.imageUrl}
+                        src={manga?.imageUrl && manga?.imageUrl}
                       />
                     </div>
                     <div id="mangaName" className="itemName">
@@ -199,7 +168,7 @@ export default function UserProfile() {
             )}
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   );
 }
