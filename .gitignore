@@ -1,9 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-FrontEnd/src/.env
+# FrontEnd/src/.env
 FrontEnd/src/cognitoConfig.js
 FrontEnd/build
-
-
+.env
+backend/.env
 # dependencies
 FrontEnd/node_modules
 /.pnp
