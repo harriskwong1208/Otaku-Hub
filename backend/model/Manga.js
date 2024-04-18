@@ -13,6 +13,12 @@ const mangaSchema = new Schema({
     imageUrl:{
         type:String,
     },
+    imageUrlLarge:{
+        type:String,
+    },
+    imageUrlSmall:{
+        type:String,
+    },    
     published:{
         type:String,
     },

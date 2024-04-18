@@ -13,6 +13,12 @@ const animeSchema = new Schema({
     imageUrl:{
         type:String,
     },
+    imageUrlLarge:{
+        type:String,
+    },
+    imageUrlSmall:{
+        type:String,
+    },
     aired:{
         type:String,
     },
