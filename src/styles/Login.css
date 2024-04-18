@@ -1,0 +1,64 @@
+#LoginPage {
+  color: white;
+}
+#LoginPage .LoginContainer {
+  width: 70%;
+  margin: 4% auto;
+}
+#LoginPage .LoginContainer .title {
+  text-align: center;
+}
+#LoginPage .LoginContainer .Message {
+  color: rgb(156, 154, 154);
+  text-align: center;
+}
+#LoginPage .LoginContainer .inputFields {
+  margin-top: 4%;
+}
+#LoginPage .LoginContainer .inputFields .inputContainer {
+  width: 45%;
+  margin: 0 auto;
+}
+#LoginPage .LoginContainer .inputFields input {
+  display: block;
+  width: 100%;
+  padding: 2% 0 2% 0;
+  text-align: center;
+  background-color: transparent;
+  border: solid 0.1px rgb(61, 120, 231);
+  border-radius: 50px;
+  color: white;
+}
+#LoginPage .LoginContainer .inputFields #Username {
+  margin-bottom: 4%;
+}
+#LoginPage .LoginContainer .ForgotPassword {
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+}
+#LoginPage .LoginContainer .ForgotPassword a {
+  color: rgb(156, 154, 154);
+}
+#LoginPage .LoginContainer .ForgotPassword a:visited {
+  color: rgb(156, 154, 154);
+}
+#LoginPage .LoginContainer .btnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3%;
+}
+#LoginPage .LoginContainer .LogInBtn {
+  border: solid 0.1px rgb(79, 185, 30);
+  background-color: transparent;
+  color: white;
+  padding: 1% 2%;
+  border-radius: 20px;
+  font-size: large;
+}
+#LoginPage .LoginContainer .LogInBtn:hover {
+  background-color: rgb(136, 162, 211);
+  color: black;
+  transition: 0.2s;
+  cursor: pointer;
+}

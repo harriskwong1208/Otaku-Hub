@@ -7,7 +7,7 @@ import "../styles/DetailsPage.css";
 import { addAnime } from "../Collections/Anime";
 import LoadComponent from "../components/Loading";
 import { addManga } from "../Collections/Manga";
-
+import Error from "../components/Error";
 export default function MangaDetailsPage() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -36,6 +36,9 @@ export default function MangaDetailsPage() {
 
   if (isLoading) {
     return <LoadComponent />;
+  }
+  if (error) {
+    return <Error />;
   }
   const suffix = (number) => {
     let temp = number % 10;
@@ -66,28 +69,28 @@ export default function MangaDetailsPage() {
     <div className="DetailsPage">
       <div className="left-section">
         <div className="img">
-          <img src={manga.images && manga.images.jpg.large_image_url} />
+          <img src={manga?.images && manga.images.jpg.large_image_url} />
         </div>
         <div className="information">
           <div className="publishDate">
             <strong>Air Date: </strong>
-            {manga.published
+            {manga?.published
               ? publishAttribute(manga.published)
               : "Unavailable"}
           </div>
           <div className="demographic">
             <strong>Demographic:</strong>{" "}
-            {manga.demographics &&
+            {manga?.demographics &&
               manga.demographics[0] &&
               manga.demographics[0].name}
           </div>
           <div className="volume">
             <strong>Volume: </strong>
-            {manga.volumes ? manga.volumes : "Unavailable"}
+            {manga?.volumes ? manga.volumes : "Unavailable"}
           </div>
           <div className="genres">
             <strong>Genres: </strong>
-            {manga.genres &&
+            {manga?.genres &&
               manga.genres.map((genre, index) =>
                 index != manga.genres.length - 1
                   ? ` ${genre.name},`
@@ -96,7 +99,7 @@ export default function MangaDetailsPage() {
           </div>
           <div className="serializations">
             <strong>Serialization: </strong>
-            {manga.serializations
+            {manga?.serializations
               ? manga.serializations.map((serialization, index) =>
                   index != manga.serializations.length - 1
                     ? ` ${serialization.name},`
@@ -106,11 +109,11 @@ export default function MangaDetailsPage() {
           </div>
           <div className="status">
             <strong>Status: </strong>
-            {manga.status ? manga.status : "Unknown"}
+            {manga?.status ? manga.status : "Unknown"}
           </div>
           <div className="theme">
             <strong>Theme(s): </strong>
-            {manga.themes
+            {manga?.themes
               ? manga.themes.map((theme, index) =>
                   index != manga.themes.length - 1
                     ? ` ${theme.name},`
@@ -120,15 +123,15 @@ export default function MangaDetailsPage() {
           </div>
           <div className="chapters">
             <strong>Chapters: </strong>
-            {manga.chapters ? manga.chapters : "Unavailable"}
+            {manga?.chapters ? manga.chapters : "Unavailable"}
           </div>
           <div className="type">
             <strong>Type: </strong>
-            {manga.type ? manga.type : "Unknown"}
+            {manga?.type ? manga.type : "Unknown"}
           </div>
           <div className="authors">
             <strong>Author(s):</strong>
-            {manga.authors
+            {manga?.authors
               ? manga.authors.map((author, index) =>
                   index != manga.authors.length - 1
                     ? ` ${author.name},`
@@ -138,7 +141,7 @@ export default function MangaDetailsPage() {
           </div>
           <div className="mal-link">
             <strong>More Details:</strong>{" "}
-            <a id="mal_link" target="_blank" href={manga.url}>
+            <a id="mal_link" target="_blank" href={manga?.url || "#"}>
               MyAnimeList
             </a>
           </div>
@@ -149,7 +152,7 @@ export default function MangaDetailsPage() {
           <div className="List-setting">
             <div id="Anime-Title">
               <span>
-                {manga.title_english
+                {manga?.title_english
                   ? titleShorten(manga.title_english)
                   : titleShorten(manga.title)}
               </span>
@@ -175,24 +178,24 @@ export default function MangaDetailsPage() {
             <div id="score-title">
               <span>Score:</span>
             </div>
-            <div id="score">{manga.score} / 10.00 </div>
-            <div id="users">by {manga.scored_by} users</div>
+            <div id="score">{manga?.score} / 10.00 </div>
+            <div id="users">by {manga?.scored_by} users</div>
           </div>
           <div className="vertical-line"></div>
           <div className="popularity">
             <div id="title">Popularity:</div>
             <div id="number">
               {" "}
-              {manga.popularity}
-              {suffix(manga.popularity)}
+              {manga?.popularity}
+              {suffix(manga?.popularity)}
             </div>
           </div>
           <div className="vertical-line"></div>
           <div className="rank">
             <div id="title">Ranking: </div>
             <div id="number">
-              {manga.rank}
-              {suffix(manga.rank)}
+              {manga?.rank}
+              {suffix(manga?.rank)}
             </div>
           </div>
         </section>
@@ -201,13 +204,13 @@ export default function MangaDetailsPage() {
           <span id="title">Synopsis</span>
           <hr></hr>
           <div className="synopsis">
-            {manga.synopsis ? manga.synopsis : "Unavailable"}
+            {manga?.synopsis ? manga.synopsis : "Unavailable"}
           </div>
           <br></br>
           <span id="title">Background</span>
           <hr></hr>
           <div className="background">
-            {manga.background ? manga.background : "Unavailable"}
+            {manga?.background ? manga.background : "Unavailable"}
           </div>
         </article>
       </div>

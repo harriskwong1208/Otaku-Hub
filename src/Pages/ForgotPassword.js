@@ -1,49 +1,67 @@
-import { useState } from "react"
-import { forgotPassword } from "../auth"
-import { Link } from "react-router-dom"
-
+import { useState } from "react";
+import { forgotPassword } from "../auth";
+import { Link } from "react-router-dom";
+import "../styles/ForgotPassword.css";
 export default function ForgotPassword() {
-  const [username, setUsername] = useState("")
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState(false)
+  const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError("")
+    e.preventDefault();
+    setError("");
 
     try {
-      await forgotPassword(username)
-      setSuccess(true)
+      await forgotPassword(username);
+      setSuccess(true);
     } catch (err) {
-      setError(err.message)
+      setError(err.message);
     }
-  }
+  };
 
   if (success) {
     return (
-      <div>
-        <h2>Reset password</h2>
-        <p>
+      <div className="SuccessPage">
+        <h1>Reset password</h1>
+        <p className="MessageContainer">
           Check your email for the confirmation code to reset your password.
         </p>
+        <p className="resetContainer">
+          <a id="resetLink" href="/reset-password">
+            Click here to reset password !
+          </a>
+        </p>
       </div>
-    )
+    );
   }
 
   return (
-    <div>
-      <h2>Forgot Password</h2>
+    <div id="ForgotPasswordPage">
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <button type="submit">Submit</button>
+        <div className="ForgotPasswordContainer">
+          <div className="title">
+            <h1>Forgot Password ?</h1>
+          </div>
+          <div className="Message">Please enter your username</div>
+          <div className="inputFields">
+            <div className="inputContainer">
+              <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                id="Username"
+              ></input>
+            </div>
+          </div>
+          <div className="btnContainer">
+            <button type="submit" className="ForgotPasswordBtn">
+              Submit
+            </button>
+          </div>
+        </div>
       </form>
-      {error && <p>{error}</p>}
-      <Link to="/login">Sign In</Link>
+      {error && <p className="error">Error: {error}</p>}
     </div>
-  )
+  );
 }

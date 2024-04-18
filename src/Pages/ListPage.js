@@ -5,6 +5,9 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { getManga } from "../Collections/Manga";
 import LoadComponent from "../components/Loading";
+import Login from "./LogIn";
+import "../styles/ListPage.css";
+import Error from "../components/Error";
 export default function ListPage() {
   //After setting anime, to get anime, use anime[index].data.anime
   const [anime, setAnime] = useState([]);
@@ -48,18 +51,17 @@ export default function ListPage() {
     getList()
       .then((data) => {
         setIsLoading(false);
-        console.log(manga);
+        // console.log(data);
       })
       .catch((e) => {
         setIsLoading(false);
       });
   }, []);
 
+
   if (!user) {
     return (
-      <div>
-        Sign in to see your list! <a href="/login">Here</a>
-      </div>
+        <Login/>
     );
   }
 
@@ -68,17 +70,70 @@ export default function ListPage() {
   }
 
   return (
-    <>
-      Anime watchlist:
-      {anime &&
-        anime.map((data, index) => (
-          <div key={index}>Anime name:{data.data.anime.name}</div>
-        ))}
-      Manga list:
-      {manga &&
-        manga.map((data, index) => (
-          <div key={index}>Manga name:{data.data.manga.title}</div>
-        ))}
-    </>
+    <div className="ListPage">
+      <div className="List" id="AnimeList">
+        <div className="typeTitle">Watching</div>
+        <div className="itemContainer">
+          <div className="header">
+            <div className="title">Title</div>
+            <div className="score">Score</div>
+            <div className="header-counts">Episodes</div>
+          </div>
+          {anime &&
+            anime.map((data, index) => (
+              // <div key={index}>Anime name:{data.data.anime.name}</div>
+              <div key={index} className="item">
+                <div className="ImgAndTitle">
+                  <div className="Img">
+                    <img src={data.data.anime.imageUrl}></img>
+                  </div>
+                  <div className="title">
+                    <a
+                      target="_blank"
+                      href={`/anime/${data.data.anime.mal_id}`}
+                    >
+                      {data.data.anime.name}
+                    </a>
+                  </div>
+                </div>
+                <div className="score">{data.data.anime.score || "~"}</div>
+                <div className="counts">{data.data.anime.episodes || "~"}</div>
+              </div>
+            ))}
+        </div>
+      </div>
+      <div className="List" id="MangaList">
+        <div className="typeTitle" id="mangaListTitle">
+          Reading
+        </div>
+        <div className="itemContainer">
+          <div className="header">
+            <div className="title">Title</div>
+            <div className="score">Score</div>
+            <div className="header-counts">Chapters</div>
+          </div>
+          {manga &&
+            manga.map((data, index) => (
+              <div key={index} className="item">
+                <div className="ImgAndTitle">
+                  <div className="Img">
+                    <img src={data.data.manga.imageUrl}></img>
+                  </div>
+                  <div className="title">
+                    <a
+                      target="_blank"
+                      href={`/manga/${data.data.manga.mal_id}`}
+                    >
+                      {data.data.manga.title}
+                    </a>
+                  </div>
+                </div>
+                <div className="score">{data.data.manga.score || "~"}</div>
+                <div className="counts">{data.data.manga.episodes || "~"}</div>
+              </div>
+            ))}
+        </div>
+      </div>
+    </div>
   );
 }

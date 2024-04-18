@@ -8,6 +8,7 @@ import { getUserWatchList, getUserMangaList } from "../Collections/Users";
 import { useNavigate } from "react-router-dom";
 import { getAnime } from "../Collections/Anime";
 import { getManga } from "../Collections/Manga";
+import hellsing from "../static/hellsing.png";
 import axios from "axios";
 function HomePage() {
   document.body.style = "background: #10131f;";
@@ -71,124 +72,123 @@ function HomePage() {
   if (isLoading) {
     return <LoadComponent />;
   }
-  return (
-    <div className="homepage">
-      {!user ? (
-        <WelcomePage />
-      ) : (
-        <div className="Dashboard">
-          {upcomingAnime && (
-            <div className="list-content">
-              <div className="title">Top Upcoming Anime</div>
-              <hr></hr>
-              <div className="anime-container">
-                {upcomingAnime.map((anime) => (
-                  <img
-                    key={anime.mal_id}
-                    className="anime"
-                    alt="anime-image"
-                    src={anime.images.jpg.image_url}
-                    onClick={() => navigate(`/anime/${anime.mal_id}`)}
-                  ></img>
-                ))}
-              </div>
+  if (user) {
+    return (
+      <div className="Dashboard">
+        {upcomingAnime && (
+          <div className="list-content">
+            <div className="title">Top Upcoming Anime</div>
+            <hr></hr>
+            <div className="anime-container">
+              {upcomingAnime.map((anime) => (
+                <img
+                  key={anime.mal_id}
+                  className="anime"
+                  alt="anime-image"
+                  src={anime.images.jpg.image_url}
+                  onClick={() => navigate(`/anime/${anime.mal_id}`)}
+                ></img>
+              ))}
             </div>
-          )}
-          {topAnime && (
-            <div className="list-content">
-              <div className="title">Top Airing Anime</div>
-              <hr></hr>
-              <div className="anime-container">
-                {topAnime.map((anime) => (
-                  <img
-                    key={anime.mal_id}
-                    className="anime"
-                    alt="anime-image"
-                    src={anime.images.jpg.image_url}
-                    onClick={() => navigate(`/anime/${anime.mal_id}`)}
-                  ></img>
-                ))}
-              </div>
+          </div>
+        )}
+        {topAnime && (
+          <div className="list-content">
+            <div className="title">Top Airing Anime</div>
+            <hr></hr>
+            <div className="anime-container">
+              {topAnime.map((anime) => (
+                <img
+                  key={anime.mal_id}
+                  className="anime"
+                  alt="anime-image"
+                  src={anime.images.jpg.image_url}
+                  onClick={() => navigate(`/anime/${anime.mal_id}`)}
+                ></img>
+              ))}
             </div>
-          )}
-          {topManga && (
-            <div className="list-content">
-              <div className="title">Top Manga</div>
-              <hr></hr>
-              <div className="anime-container">
-                {topManga.map((manga) => (
-                  <img
-                    key={manga.mal_id}
-                    className="anime"
-                    alt="manga-image"
-                    src={manga.images.jpg.image_url}
-                    onClick={() => navigate(`/manga/${manga.mal_id}`)}
-                  ></img>
-                ))}
-              </div>
+          </div>
+        )}
+        {topManga && (
+          <div className="list-content">
+            <div className="title">Top Manga</div>
+            <hr></hr>
+            <div className="anime-container">
+              {topManga.map((manga) => (
+                <img
+                  key={manga.mal_id}
+                  className="anime"
+                  alt="manga-image"
+                  src={manga.images.jpg.image_url}
+                  onClick={() => navigate(`/manga/${manga.mal_id}`)}
+                ></img>
+              ))}
             </div>
-          )}
-          {recentAnime && (
-            <div className="list-content">
-              <div className="title">Recent Added Anime</div>
-              <hr></hr>
-              <div className="anime-container">
-                {recentAnime.map((anime) => (
-                  <img
-                    key={anime.mal_id}
-                    className="anime"
-                    alt="anime-image"
-                    src={anime.imageUrl}
-                    onClick={() => navigate(`/anime/${anime.mal_id}`)}
-                  ></img>
-                ))}
-              </div>
+          </div>
+        )}
+        {recentAnime && (
+          <div className="list-content">
+            <div className="title">Recent Added Anime</div>
+            <hr></hr>
+            <div className="anime-container">
+              {recentAnime.map((anime) => (
+                <img
+                  key={anime.mal_id}
+                  className="anime"
+                  alt="anime-image"
+                  src={anime.imageUrl}
+                  onClick={() => navigate(`/anime/${anime.mal_id}`)}
+                ></img>
+              ))}
             </div>
-          )}
-          {recentManga && (
-            <div className="list-content">
-              <div className="title">Recent Added Manga</div>
-              <hr></hr>
-              <div className="anime-container">
-                {recentManga.map((manga) => (
-                  <img
-                    key={manga.mal_id}
-                    className="anime"
-                    alt="manga-image"
-                    src={manga.imageUrl}
-                    onClick={() => navigate(`/manga/${manga.mal_id}`)}
-                  ></img>
-                ))}
-              </div>
+          </div>
+        )}
+        {recentManga && (
+          <div className="list-content">
+            <div className="title">Recent Added Manga</div>
+            <hr></hr>
+            <div className="anime-container">
+              {recentManga.map((manga) => (
+                <img
+                  key={manga.mal_id}
+                  className="anime"
+                  alt="manga-image"
+                  src={manga.imageUrl}
+                  onClick={() => navigate(`/manga/${manga.mal_id}`)}
+                ></img>
+              ))}
             </div>
-          )}
-        </div>
-      )}
-    </div>
-  );
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return <WelcomePage />;
 }
 
 function WelcomePage() {
+  const navigate = useNavigate();
   return (
-    <header>
-      <div className="welcome-message">
-        Welcome to OtakuHub, the ultimate destination for all your anime and
-        manga tracking needs! Whether you're a seasoned otaku or just starting
-        your journey into the world of anime and manga, this platform is
-        designed to enhance your experience and connect you with fellow
-        enthusiasts. With OtakuHub, you can discover new anime and manga titles,
-        add them to your personalized watch list, and keep track of your
-        progress. Connect with friends, share recommendations, and explore their
-        watch lists to find your next favorite series.
+    <div id="welcomePage">
+      <div id="Intro">
+        <div id="title">OtakuHub</div>
+        <div id="description">
+        Welcome to OtakuHub! 
+        Explore new series, track your favorites, and 
+        connect with friends who share your passion.
+        </div>
+        <div id="btnContainer">
+          <button onClick={()=>navigate('/login')}>Get Started</button>
+        </div>
       </div>
-      <div className="animation">
-        <img src={frieren}></img>
+      <div id="imgContainer">
+        <div id="container">
+          
+          <img id="homeImg" src={hellsing}></img>
+        </div>
       </div>
-      <div className="sign-in">
-        <a href="/signup">Sign up</a>&nbsp;or&nbsp;
-        <a href="/login">Log in</a>&nbsp;here!
-      </div>
-    </header>
+    </div>
   );
 }
 

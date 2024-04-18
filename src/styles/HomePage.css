@@ -7,44 +7,69 @@
   object-position: center;
   vertical-align: middle;
 } */
-.homepage {
-  color: white;
-  font-family: "Cabin", sans-serif;
-}
-.homepage header {
-  font-size: larger;
 
-  margin: 2% 10% 0 10%;
-  border-radius: 10px;
-  /* padding: 5% 0 5% 0; */
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 0.3fr;
-  box-shadow: 0 0 10px rgb(42, 112, 192);
-  height: 600px;
+#welcomePage {
+  color: white;
+  /* height: 90vh; */
+  display: flex;
 }
-.homepage header div {
-  height: 100%;
+#welcomePage #Intro {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  padding-top: 9%;
+}
+#Intro * {
+  padding-left: 25%;
+}
+
+#Intro #title {
+  font-size: 1.8rem;
+  font-weight: bolder;
+}
+#Intro #description {
+  margin-top: 2%;
+  font-size: 1.1rem;
+  color: rgb(153, 150, 150);
+  max-width: 400px;
+}
+#Intro #btnContainer {
+  margin-top: 4%;
+}
+#Intro button {
+  border-radius: 100px;
+  border: none;
+  padding: 1.5% 4%;
+  color: white;
+  background-color: rgb(54, 141, 190);
+}
+#Intro button:active {
+  transition: 0.1s;
+  background-color: rgb(22, 104, 136);
+}
+
+#welcomePage #imgContainer {
+  flex: 0.5;
+  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.homepage header .welcome-message {
-  line-height: 1.5;
-  text-align: center;
-  padding: 0.1% 10% 0 10%;
+#welcomePage #imgContainer #container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+
+  max-height: 500px;
+  max-width: 600px;
+}
+#welcomePage #imgContainer #container img {
+  width: 100%;
   height: 100%;
 }
-.homepage header .animation {
-  margin-bottom: 1%;
-}
-.homepage header .animation img {
-  height: 90%;
-}
-.homepage header > .sign-in a,
-.sign-in a:visited {
-  color: rgb(69, 141, 223);
-  text-decoration: none;
+.Dashboard {
+  color: white;
 }
 
 .Dashboard .list-content {

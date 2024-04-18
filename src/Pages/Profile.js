@@ -5,27 +5,53 @@ import {
   addUserSubId,
   getUserFromCognito,
   findEmail,
+  getCurrentUserId,
 } from "../Collections/Users";
 import axios from "axios";
 import { getSession, getCurrentUser } from "../auth";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/Profile.css";
-// import "../styles/FontStyle.css";
-
+import LoadComponent from "../components/Loading";
+import Login from "./LogIn";
 export default function Profile() {
   const { user, signOut } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState();
+
+  async function loadingUserData() {
+    try {
+      const id = await getCurrentUserId();
+      const response = await axios.get(apiEndPoints.localHost + "users/" + id);
+      setData(response.data.user);
+      return response;
+    } catch (e) {
+      return new Error(e);
+    }
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+    loadingUserData()
+      .then((data) => {
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <LoadComponent />;
+  }
 
   if (!user) {
-    return (
-      <div>
-        Log in <a href="login">here</a>
-      </div>
-    );
+    return <Login />;
   }
 
   return (
     <div className="Profile">
-      <head>
+      {/* <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -41,10 +67,7 @@ export default function Profile() {
       </head>
       <div className="card">
         <div className="image">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/en/7/72/Bleachanime.png"
-            alt="Profile-Picture"
-          ></img>
+          <img src={data && data.imageUrl} alt="Profile-Picture"></img>
         </div>
         <div className="section" id="Username">
           <span>{user ? user.username : "User"}</span>
@@ -68,6 +91,37 @@ export default function Profile() {
         <div className="section" id="btn">
           <button className="Edit-Btn">Edit</button>
         </div>
+      </div> */}
+      <div id="card">
+        <div id="pictureContainer">
+          <img src={data && data.imageUrl}></img>
+        </div>
+        <div id="infoContainer">
+          <div id="usernameContainer">
+            <div id="username">{user ? user.username : "User"}</div>
+          </div>
+          <div id="info">
+            <div id="email">
+              email: <span>{user && user.email}</span>
+            </div>
+            <div id="name">
+              Name: <span>...</span>
+            </div>
+            <div id="anime">
+              Favorite Anime: <span>...</span>
+            </div>
+            <div id="manga">
+              Favorite Manga: <span>...</span>
+            </div>
+            <div id="character">
+              Favorite Character: <span>...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Description">
+        <div id="title">About me:</div>
+        <div id="bio">Lorem Ipsum</div>
       </div>
     </div>
   );

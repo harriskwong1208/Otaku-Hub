@@ -3,11 +3,14 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { apiEndPoints } from "../apiEndpoints";
 import LoadComponent from "./Loading";
+import { useNavigate } from "react-router-dom";
+import "../styles/FriendPage.css";
 export default function ListFriends() {
   const [friends, setFriends] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [listItems, setListItems] = useState([]);
-
+  const [friendCount, setFriendCount] = useState(0);
+  const navigate = useNavigate();
   async function loadList() {
     const _friends = [];
     try {
@@ -18,6 +21,7 @@ export default function ListFriends() {
         const data = response.data.user;
         _friends.push(data);
       }
+      setFriendCount(_friends.length);
       return _friends;
     } catch (e) {
       console.log(e);
@@ -40,18 +44,29 @@ export default function ListFriends() {
   }
 
   return (
-    <div>
-      <ul>
-        {/* item includes: email, friends [], mangalist[], name, watchList[], _id */}
+    <div id="ListFriendComponent">
+      <div className="header">
+        <div id="title">Friends</div>
+        <div id="friends-count">{friendCount}</div>
+      </div>
+      <div id="friends-list">
         {listItems &&
           listItems.map((item) => (
-            <li key={item._id}>
-              <a target="_blank" href={`user/${item._id}`}>
-                {item.name}
-              </a>
-            </li>
+            <div
+              key={item._id}
+              className="friend"
+              onClick={() => navigate(`/user/${item._id}`)}
+            >
+              <div className="top-section">
+                <div className="Img">
+                  <img src={item.imageUrl}></img>
+                </div>
+                <div className="name">{item.name}</div>
+              </div>
+              <div className="bottom-section"></div>
+            </div>
           ))}
-      </ul>
+      </div>
     </div>
   );
 }
