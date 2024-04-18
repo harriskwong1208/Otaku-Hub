@@ -21,7 +21,7 @@ export default function Profile() {
   async function loadingUserData() {
     try {
       const id = await getCurrentUserId();
-      const response = await axios.get(apiEndPoints.localHost + "users/" + id);
+      const response = await axios.get(apiEndPoints.backEndApi + "users/" + id);
       setData(response.data.user);
       return response;
     } catch (e) {
