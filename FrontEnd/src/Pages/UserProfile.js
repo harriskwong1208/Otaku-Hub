@@ -26,23 +26,23 @@ export default function UserProfile() {
   }
 
   async function setAllLists() {
-    let data = await axios.get(apiEndPoints.localHost + "users/" + id);
+    let data = await axios.get(apiEndPoints.backEndApi + "users/" + id);
     const userinfo = data;
     setUser(data.data.user);
-    console.log("userInfo:")
-    console.log(userinfo)
+    console.log("userInfo:");
+    console.log(userinfo);
     //Get friends' names
     const friends = await getFriends(data.data.user.friends);
     setFriends(friends);
 
     //Set anime and manga lists
     data = await setList(data.data.user.watchList, getAnime, "anime");
-    console.log('WatchList:');
+    console.log("WatchList:");
     console.log(data);
     setWatchList(data);
 
     data = await setList(userinfo.data.user.mangaList, getManga, "manga");
-    console.log('MangaList:');
+    console.log("MangaList:");
     console.log(data);
     setMangaList(data);
   }
@@ -70,33 +70,38 @@ export default function UserProfile() {
 
   return (
     <div id="UserProfile">
-
-     <div id="Profile">
+      <div id="Profile">
         <div id="ProfileCard">
-          <div id="username">
-            {user?.name ? user?.name : "Unknown"}</div>
+          <div id="username">{user?.userName ? user.userName : "Unknown"}</div>
           <div id="imgContainer">
-            <img id="pfp" src={user?.imageUrl && user.imageUrl}
+            <img
+              id="pfp"
+              src={user?.imageUrl && user.imageUrl}
               alt="User profile img"
             ></img>
           </div>
           <div id="info">
             <div className="information" id="name">
-              <strong>Name:</strong><span>{user?.name ? user?.name : "Unknown"}</span>
+              <strong>Name:</strong>
+              <span>{user?.name ? user?.name : "Unknown"}</span>
             </div>
             <div className="information" id="email">
-              <strong>Email:</strong><span>{user?.email ? user?.email : "Unknown"}</span>
+              <strong>Email:</strong>
+              <span>{user?.email ? user?.email : "Unknown"}</span>
             </div>
             <div className="information" id="favorite">
               <strong>Favorite</strong> ~
               <div className="item" id="anime">
-                <strong>Anime:</strong><span>{user?.anime ? user?.anime : "Unknown"}</span>
+                <strong>Anime:</strong>
+                <span>{user?.anime ? user.anime : "Unknown"}</span>
               </div>
               <div className="item" id="manga">
-                <strong>Manga:</strong><span>{user?.manga ? user?.manga : "Unknown"}</span>
+                <strong>Manga:</strong>
+                <span>{user?.manga ? user.manga : "Unknown"}</span>
               </div>
               <div className="item" id="character">
-                <strong>character:</strong><span>{user?.character ? user?.character : "Unknown"}</span>
+                <strong>character:</strong>
+                <span>{user?.character ? user.character : "Unknown"}</span>
               </div>
             </div>
           </div>
@@ -128,7 +133,6 @@ export default function UserProfile() {
                         className="itemImg"
                         id="animeImg"
                         src={anime?.imageUrl && anime?.imageUrl}
-                        
                       />
                     </div>
                     <div id="animeName" className="itemName">
@@ -168,7 +172,7 @@ export default function UserProfile() {
             )}
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 }

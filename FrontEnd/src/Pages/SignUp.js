@@ -23,8 +23,8 @@ export default function SignUp() {
       await signUp(username, email, password);
       /*****************************************************************/
       //TEMP API ENDPOINT FOR DEVELOPEMENT
-      await axios.post(apiEndPoints.localHost + "users/", {
-        name: username,
+      await axios.post(apiEndPoints.backEndApi + "users/", {
+        userName: username,
         email: email,
         imageUrl:
           "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg",

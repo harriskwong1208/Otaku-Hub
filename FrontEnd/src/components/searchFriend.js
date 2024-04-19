@@ -80,13 +80,13 @@ export default function SearchFriend() {
                   <div className="itemContainer">
                     <div className="picture">
                       <div className="img-container">
-                        <img src={user.imageUrl && user.imageUrl}></img>
+                        <img src={user?.imageUrl && user.imageUrl}></img>
                       </div>
                     </div>
                     <div className="nameAndButton">
                       <div className="name">
                         <a href={`/user/${user._id}`} target="_blank">
-                          {user.name ? user.name : "UnKnown"}
+                          {user.userName ? user.userName : "UnKnown"}
                         </a>
                       </div>
                       <div id="addFriendBtn" className="button-container">

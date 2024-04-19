@@ -58,8 +58,9 @@ export async function getCurrentUserId() {
 //RETURN ARRAY OF USERS
 export async function getAllUsersFromDatabase() {
   let users;
+  const endpoint = apiEndPoints.backEndApi + "users";
   try {
-    users = await axios.get(apiEndPoints.backEndApi + "users");
+    users = await axios.get(endpoint);
   } catch (e) {
     console.log(e);
     return new Error("Error while search for users in database");

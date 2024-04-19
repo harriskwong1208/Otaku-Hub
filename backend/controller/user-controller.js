@@ -7,7 +7,7 @@ const getAllUsers = async (req, res, next) => {
 
   //Only return name, email, and Id.
   users = await User.find().select(
-    "name email subId friends watchList mangaList imageUrl"
+    "name email subId friends watchList mangaList imageUrl userName"
   );
   if (!users) {
     return res.status(500).json({ message: "Internal; Server Error." });
@@ -37,8 +37,17 @@ const addUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   const id = req.params.id;
-  const { name, email, password, subId, animeId, friendId, mangaId, imageUrl } =
-    req.body;
+  const {
+    name,
+    email,
+    password,
+    subId,
+    animeId,
+    friendId,
+    mangaId,
+    imageUrl,
+    userName,
+  } = req.body;
 
   let user;
   try {
@@ -87,7 +96,7 @@ const getUser = async (req, res, next) => {
   let user;
   try {
     user = await User.findById(id).select(
-      "name email watchList friends mangaList imageUrl"
+      "name email watchList friends mangaList imageUrl userName"
     );
   } catch (e) {
     return next(e);
