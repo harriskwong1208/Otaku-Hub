@@ -83,7 +83,14 @@ export default function MangaSearchPage(e) {
                 <div className="synopsis">{manga.synopsis}</div>
               </div>
               <div className="anime-pic">
-                <img alt="anime-visual" src={manga.images.jpg.image_url} />
+                <img
+                  alt="anime-visual"
+                  src={
+                    manga?.images?.jpg.large_image_url ||
+                    manga?.images?.jpg.image_url ||
+                    manga?.images?.jpg.small_image_url
+                  }
+                />
               </div>
             </div>
           ))}

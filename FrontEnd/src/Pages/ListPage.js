@@ -58,11 +58,8 @@ export default function ListPage() {
       });
   }, []);
 
-
   if (!user) {
-    return (
-        <Login/>
-    );
+    return <Login />;
   }
 
   if (isLoading) {
@@ -80,12 +77,18 @@ export default function ListPage() {
             <div className="header-counts">Episodes</div>
           </div>
           {anime &&
-            anime.map((data, index) => (
+            anime?.map((data, index) => (
               // <div key={index}>Anime name:{data.data.anime.name}</div>
               <div key={index} className="item">
                 <div className="ImgAndTitle">
                   <div className="Img">
-                    <img src={data.data.anime.imageUrl}></img>
+                    <img
+                      src={
+                        data?.data.anime.imageUrlLarge ||
+                        data?.data.anime.imageUrl ||
+                        data?.data.anime.imageUrlSmall
+                      }
+                    ></img>
                   </div>
                   <div className="title">
                     <a
@@ -117,7 +120,13 @@ export default function ListPage() {
               <div key={index} className="item">
                 <div className="ImgAndTitle">
                   <div className="Img">
-                    <img src={data.data.manga.imageUrl}></img>
+                    <img
+                      src={
+                        data?.data?.manga.imageUrlLarge ||
+                        data?.data?.manga.imageUrl ||
+                        data?.data?.manga.imageUrlSmall
+                      }
+                    ></img>
                   </div>
                   <div className="title">
                     <a

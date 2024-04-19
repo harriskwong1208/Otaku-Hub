@@ -69,7 +69,13 @@ export default function MangaDetailsPage() {
     <div className="DetailsPage">
       <div className="left-section">
         <div className="img">
-          <img src={manga?.images && manga.images.jpg.large_image_url} />
+          <img
+            src={
+              manga?.images?.jpg.large_image_url ||
+              manga?.images?.jpg._image_url ||
+              manga?.images?.jpg.small_image_url
+            }
+          />
         </div>
         <div className="information">
           <div className="publishDate">

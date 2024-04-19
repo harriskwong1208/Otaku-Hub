@@ -132,7 +132,11 @@ export default function UserProfile() {
                       <img
                         className="itemImg"
                         id="animeImg"
-                        src={anime?.imageUrl && anime?.imageUrl}
+                        src={
+                          anime?.imageUrlLarge ||
+                          anime?.imageUrl ||
+                          anime?.imageUrlSmall
+                        }
                       />
                     </div>
                     <div id="animeName" className="itemName">
@@ -160,7 +164,11 @@ export default function UserProfile() {
                       <img
                         className="itemImg"
                         id="mangaImg"
-                        src={manga?.imageUrl && manga?.imageUrl}
+                        src={
+                          manga?.imageUrlLarge ||
+                          manga?.imageUrl ||
+                          manga?.imageUrlSmall
+                        }
                       />
                     </div>
                     <div id="mangaName" className="itemName">

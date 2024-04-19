@@ -35,7 +35,7 @@ async function addAnime(anime) {
       const animeInfo = await axios.post(apiEndPoints.backEndApi + "anime", {
         name: title,
         mal_id: mal_id,
-        imageUrl: images.jpg.image_url,
+        imageUrl: images?.jpg.image_url,
         aired: aired.string,
         demographic: _demographics,
         studio: _studios,
@@ -43,6 +43,8 @@ async function addAnime(anime) {
         source: source,
         malLink: url,
         score: score,
+        imageUrlLarge: images?.jpg.large_image_url,
+        imageUrlSmall: images?.jpg.small_image_url,
       });
       animeId = animeInfo.data.anime._id;
     } else {

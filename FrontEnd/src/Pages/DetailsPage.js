@@ -62,7 +62,11 @@ export default function DetailsPage() {
       <div className="left-section">
         <div className="img">
           <img
-            src={anime?.images && anime.images.jpg.large_image_url}
+            src={
+              anime.images?.jpg.large_image_url ||
+              anime.images?.jpg.image_url ||
+              anime.images?.jpg.small_image_url
+            }
             alt="anime-Picture"
           />
         </div>

@@ -84,7 +84,11 @@ export default function AnimeSearchPage(e) {
               <div className="anime-pic">
                 <img
                   alt="anime-visual"
-                  src={anime.images.jpg.large_image_url}
+                  src={
+                    anime?.images?.jpg.large_image_url ||
+                    anime?.images?.jpg.image_url ||
+                    anime?.images?.jpg.small_image_url
+                  }
                 />
               </div>
             </div>

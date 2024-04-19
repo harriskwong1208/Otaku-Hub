@@ -20,7 +20,7 @@
   background-color: rgb(7, 18, 54);
 }
 #UserProfile #imgContainer {
-  border: solid .1px rgb(122, 122, 122);
+  border: solid 0.1px rgb(122, 122, 122);
   width: 200px;
   margin: 2% auto 2% auto;
   height: 200px;
@@ -36,7 +36,7 @@
 #info .information {
   margin: 5% 0 5% 3%;
 }
-#info span{
+#info span {
   margin-left: 2%;
 }
 #info #favorite * {
@@ -52,7 +52,7 @@
   flex: 0.55;
 }
 
-#Details  {
+#Details {
   box-shadow: 0 0 10px grey;
   padding: 0 1% 1% 1%;
   border-radius: 10px;
@@ -73,53 +73,51 @@
 }
 #animeList {
 }
-.listItem{
-  transition: .2s;
+.listItem {
+  transition: 0.2s;
   width: 95%;
   margin: 1% auto;
-  box-shadow:  0 0 5px rgb(116, 116, 116);
+  box-shadow: 0 0 5px rgb(116, 116, 116);
   list-style: none;
-  display: flex; 
+  display: flex;
   min-height: 90px;
   height: 90px;
   border-radius: 10px;
   text-decoration: none;
   color: white;
 }
-.listItem:active, .listItem:active{
+.listItem:active,
+.listItem:active {
   color: white;
   text-decoration: none;
 }
-.listItem:hover{
-  transition: .2s;
+.listItem:hover {
+  transition: 0.2s;
   background-color: rgb(200, 202, 202);
   cursor: pointer;
 }
-.listItem .imgContainer{
-
+.listItem .imgContainer {
   height: 100%;
-  flex: .3;
+  flex: 0.3;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#pfp{
+#pfp {
   width: 100%;
 }
-.imgContainer .itemImg{
-  width: 50%;
+.imgContainer .itemImg {
+  width: 40%;
   height: 100%;
-  
 }
-.listItem .itemName{
+.listItem .itemName {
   display: flex;
   align-items: center;
   font-size: 1.1rem;
-  flex: .7;
+  flex: 0.7;
   font-weight: bold;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-hr{
+hr {
   border: solid 0.1px rgb(100, 89, 192);
-  
 }
