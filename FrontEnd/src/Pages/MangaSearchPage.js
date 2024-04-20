@@ -9,7 +9,7 @@ export default function MangaSearchPage(e) {
   const [manga, setManga] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
-  document.body.style = "background: #10131f;";
+  // document.body.style = "background: #10131f;";
 
   useEffect(() => {
     console.log(results);
