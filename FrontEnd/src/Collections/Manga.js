@@ -75,7 +75,7 @@ async function addManga(manga) {
           mangaId: mangaId,
         }
       );
-      console.log("Added to Manga List!");
+      alert("Added to Manga List!");
       console.log(message);
     }
   } catch (e) {

@@ -62,7 +62,7 @@ async function addAnime(anime) {
           animeId: animeId,
         }
       );
-      console.log("Added to watch List!");
+      alert("Added to watch List!");
       console.log(message);
     }
   } catch (e) {

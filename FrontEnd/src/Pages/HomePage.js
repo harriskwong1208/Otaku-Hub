@@ -174,8 +174,8 @@ function WelcomePage() {
       <div id="Intro">
         <div id="title">OtakuHub</div>
         <div id="description">
-          Welcome to OtakuHub! Explore new series, track your favorites, and
-          connect with friends who share your passion.
+          Welcome to OtakuHub! Explore new series, track your favorite
+          anime/manga, and connect with friends who share your passion.
         </div>
         <div id="btnContainer">
           <button onClick={() => navigate("/login")}>Get Started</button>
