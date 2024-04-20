@@ -6,7 +6,6 @@
   flex: 0.45;
 }
 #UserProfile #Profile #ProfileCard {
-  border: none;
   width: 60%;
   margin: 5% auto 0 auto;
   border-radius: 10px;
@@ -35,6 +34,7 @@
 }
 #info .information {
   margin: 5% 0 5% 3%;
+  overflow: hidden;
 }
 #info span {
   margin-left: 2%;
@@ -98,7 +98,7 @@
 }
 .listItem .imgContainer {
   height: 100%;
-  flex: 0.3;
+  flex: 0.1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,14 +107,14 @@
   width: 100%;
 }
 .imgContainer .itemImg {
-  width: 40%;
   height: 100%;
 }
 .listItem .itemName {
+  padding-left: 1%;
   display: flex;
   align-items: center;
   font-size: 1.1rem;
-  flex: 0.7;
+  flex: 0.9;
   font-weight: bold;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }

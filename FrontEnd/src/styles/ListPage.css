@@ -19,11 +19,11 @@
   text-align: center;
 }
 .ListPage .List .header .title {
-  width: 70%;
+  flex: 0.7;
 }
 .ListPage .List .header .score,
 .header-counts {
-  width: 15%;
+  flex: 0.15;
 }
 .ListPage .List .itemContainer {
   border: none;
@@ -46,18 +46,17 @@
   display: flex;
 }
 .ListPage .List .itemContainer .item .ImgAndTitle .Img {
-  width: 10%;
+  flex: 0.1;
   padding: 0 1% 0 1%;
 }
 .ListPage .List .itemContainer .item .ImgAndTitle .Img img {
-  width: 100%;
   height: 100%;
 }
 .ListPage .List .itemContainer .item .ImgAndTitle .title {
-  width: 90%;
+  flex: 0.9;
   display: flex;
   align-items: center;
-  padding-left: 1%;
+  padding-left: 2%;
 }
 .ListPage .List .itemContainer .item .ImgAndTitle .title a,
 a:visited {

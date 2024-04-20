@@ -78,7 +78,6 @@ export default function ListPage() {
           </div>
           {anime &&
             anime?.map((data, index) => (
-              // <div key={index}>Anime name:{data.data.anime.name}</div>
               <div key={index} className="item">
                 <div className="ImgAndTitle">
                   <div className="Img">

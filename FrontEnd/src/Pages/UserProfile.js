@@ -172,7 +172,7 @@ export default function UserProfile() {
                       />
                     </div>
                     <div id="mangaName" className="itemName">
-                      {manga.title && manga.title}
+                      {manga?.title && manga.title}
                     </div>
                   </a>
                 ))}
