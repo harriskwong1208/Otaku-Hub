@@ -25,26 +25,31 @@ async function addManga(manga) {
     published.to && published.to.split("T")[0]
   }`;
 
+  console.log(_published);
   let _demographic = null;
   if (demographics.length > 0) {
     _demographic = demographics[0].name;
   }
-  let _serializations;
-  if (serializations) {
-    _serializations = serializations;
+  console.log(_demographic);
+
+  let _serializations = [];
+  if (serializations && serializations[0].name) {
+    _serializations.push(serializations[0].name);
   }
+  console.log(_serializations[0]);
 
   try {
     //Check if manga is already added into watch list
     //returns manga if found
     const result = await getMangaByMalId(mal_id);
     let mangaId;
+
     if (result === null) {
       //add manga to animes collection
       const mangaInfo = await axios.post(apiEndPoints.backEndApi + "manga", {
         title: title,
         mal_id: mal_id,
-        imageUrl: images.jpg.image_url,
+        imageUrl: images?.jpg.image_url,
         published: _published,
         demographic: _demographic,
         serializations: _serializations,
@@ -53,6 +58,7 @@ async function addManga(manga) {
         malLink: url,
         score: score,
       });
+
       mangaId = mangaInfo.data.manga._id;
     } else {
       mangaId = result._id;
