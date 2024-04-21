@@ -43,6 +43,9 @@ const userSchema = new Schema({
   favorite: {
     type: [String],
   },
+  bio: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);

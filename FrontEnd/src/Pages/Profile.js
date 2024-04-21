@@ -18,11 +18,28 @@ export default function Profile() {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState();
   const [edit, setEdit] = useState(false);
+  const [name, setName] = useState();
+  const [anime, setAnime] = useState();
+  const [manga, setManga] = useState();
+  const [character, setCharacter] = useState();
+
   async function loadingUserData() {
     try {
       const id = await getCurrentUserId();
       const response = await axios.get(apiEndPoints.backEndApi + "users/" + id);
       setData(response.data.user);
+      setName(response.data.user.name);
+      if (response.data.user.favorite) {
+        if (response.data.user.favorite[0]) {
+          setAnime(response.data.user.favorite[0]);
+        }
+        if (response.data.user.favorite[1]) {
+          setManga(response.data.user.favorite[1]);
+        }
+        if (response.data.user.favorite[2]) {
+          setCharacter(response.data.user.favorite[2]);
+        }
+      }
       return response;
     } catch (e) {
       return new Error(e);
@@ -89,30 +106,59 @@ export default function Profile() {
               )}
             </div>
             <div id="anime">
-              Favorite Anime:{" "}
-              <span>
-                {data?.favorite ? data.favorite[0] || "Unknown" : "Unknown"}
-              </span>
+              <label for="favorite-anime-input">Favorite Anime:</label>{" "}
+              {edit ? (
+                <input
+                  className="input"
+                  id="favorite-anime-input"
+                  placeholder="Enter anime here"
+                ></input>
+              ) : (
+                <span>
+                  {data?.favorite ? data.favorite[0] || "Unknown" : "Unknown"}
+                </span>
+              )}
             </div>
             <div id="manga">
-              Favorite Manga:{" "}
-              <span>
-                {" "}
-                {data?.favorite ? data.favorite[1] || "Unknown" : "Unknown"}
-              </span>
+              <label for="favorite-manga-input">Favorite Manga:</label>{" "}
+              {edit ? (
+                <input
+                  className="input"
+                  id="favorite-manga-input"
+                  placeholder="Enter manga here"
+                ></input>
+              ) : (
+                <span>
+                  {data?.favorite ? data.favorite[1] || "Unknown" : "Unknown"}
+                </span>
+              )}
             </div>
             <div id="character">
-              Favorite Character:{" "}
-              <span>
-                {data?.favorite ? data.favorite[2] || "Unknown" : "Unknown"}
-              </span>
+              <label for="favorite-character-input">Favorite character:</label>{" "}
+              {edit ? (
+                <input
+                  className="input"
+                  id="favorite-character-input"
+                  placeholder="Enter character here"
+                ></input>
+              ) : (
+                <span>
+                  {data?.favorite ? data.favorite[2] || "Unknown" : "Unknown"}
+                </span>
+              )}
             </div>
           </div>
         </div>
       </div>
       <div id="Description">
-        <div id="title">About me:</div>
-        <div id="bio">Lorem Ipsum</div>
+        <div id="title">
+          <label for="bio-input">About me:</label>
+        </div>
+        {edit ? (
+          <textarea id="bio-input">{user?.bio}</textarea>
+        ) : (
+          <div id="bio">Lorem Ipsum</div>
+        )}
       </div>
     </div>
   );
