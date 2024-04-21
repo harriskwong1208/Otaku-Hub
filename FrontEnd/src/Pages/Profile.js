@@ -22,13 +22,14 @@ export default function Profile() {
   const [anime, setAnime] = useState();
   const [manga, setManga] = useState();
   const [character, setCharacter] = useState();
-
+  const [bio, setBio] = useState();
   async function loadingUserData() {
     try {
       const id = await getCurrentUserId();
       const response = await axios.get(apiEndPoints.backEndApi + "users/" + id);
       setData(response.data.user);
       setName(response.data.user.name);
+      response.data.user.bio && setBio(response.data.user.bio);
       if (response.data.user.favorite) {
         if (response.data.user.favorite[0]) {
           setAnime(response.data.user.favorite[0]);
@@ -67,6 +68,8 @@ export default function Profile() {
     return <Login />;
   }
 
+  //Change interface based on if edit or save mode
+  // Save data to database if user saves changes
   function editMode() {
     if (edit) {
       setEdit(false);
@@ -100,9 +103,11 @@ export default function Profile() {
                   className="input"
                   id="user-name-input"
                   placeholder="Enter name here"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 ></input>
               ) : (
-                <span>{data?.name || "Unknown"}</span>
+                <span>{name || "Unknown"}</span>
               )}
             </div>
             <div id="anime">
@@ -112,11 +117,11 @@ export default function Profile() {
                   className="input"
                   id="favorite-anime-input"
                   placeholder="Enter anime here"
+                  value={anime}
+                  onChange={(e) => setAnime(e.target.value)}
                 ></input>
               ) : (
-                <span>
-                  {data?.favorite ? data.favorite[0] || "Unknown" : "Unknown"}
-                </span>
+                <span>{anime || "Unknown"}</span>
               )}
             </div>
             <div id="manga">
@@ -126,11 +131,11 @@ export default function Profile() {
                   className="input"
                   id="favorite-manga-input"
                   placeholder="Enter manga here"
+                  value={manga}
+                  onChange={(e) => setManga(e.target.value)}
                 ></input>
               ) : (
-                <span>
-                  {data?.favorite ? data.favorite[1] || "Unknown" : "Unknown"}
-                </span>
+                <span>{manga || "Unknown"}</span>
               )}
             </div>
             <div id="character">
@@ -140,11 +145,11 @@ export default function Profile() {
                   className="input"
                   id="favorite-character-input"
                   placeholder="Enter character here"
+                  value={character}
+                  onChange={(e) => setCharacter(e.target.value)}
                 ></input>
               ) : (
-                <span>
-                  {data?.favorite ? data.favorite[2] || "Unknown" : "Unknown"}
-                </span>
+                <span>{character || "Unknown"}</span>
               )}
             </div>
           </div>
@@ -155,9 +160,15 @@ export default function Profile() {
           <label for="bio-input">About me:</label>
         </div>
         {edit ? (
-          <textarea id="bio-input">{user?.bio}</textarea>
+          <textarea
+            id="bio-input"
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+          >
+            {user?.bio}
+          </textarea>
         ) : (
-          <div id="bio">Lorem Ipsum</div>
+          <div id="bio">{bio || "Can we get much higher ? "}</div>
         )}
       </div>
     </div>
