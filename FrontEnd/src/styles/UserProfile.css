@@ -39,11 +39,11 @@
 #UserProfile #info span {
   margin-left: 2%;
 }
-#UserProfile #info #favorite * {
+#UserProfile #info #favorite {
   margin-left: 3%;
 }
 #UserProfile #favorite .item {
-  margin: 2% 0;
+  margin: 2% 0 0 3%;
 }
 #UserProfile #character {
   padding-bottom: 2%;

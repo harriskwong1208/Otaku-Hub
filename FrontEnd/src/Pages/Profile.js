@@ -33,6 +33,7 @@ export default function Profile() {
     setIsLoading(true);
     loadingUserData()
       .then((data) => {
+        console.log(data);
         setIsLoading(false);
       })
       .catch((e) => {
@@ -53,27 +54,37 @@ export default function Profile() {
     <div className="Profile">
       <div id="card">
         <div id="pictureContainer">
-          <img src={data && data.imageUrl}></img>
+          <img src={data?.imageUrl}></img>
         </div>
         <div id="infoContainer">
           <div id="usernameContainer">
-            <div id="username">{user ? user.username : "User"}</div>
+            <div id="username">{data?.userName || "User"}</div>
           </div>
           <div id="info">
             <div id="email">
-              email: <span>{user && user.email}</span>
+              email: <span>{user?.email || "Unknown"}</span>
             </div>
             <div id="name">
-              Name: <span>...</span>
+              Name: <span>{data?.name || "Unknown"}</span>
             </div>
             <div id="anime">
-              Favorite Anime: <span>...</span>
+              Favorite Anime:{" "}
+              <span>
+                {data?.favorite ? data.favorite[0] || "Unknown" : "Unknown"}
+              </span>
             </div>
             <div id="manga">
-              Favorite Manga: <span>...</span>
+              Favorite Manga:{" "}
+              <span>
+                {" "}
+                {data?.favorite ? data.favorite[1] || "Unknown" : "Unknown"}
+              </span>
             </div>
             <div id="character">
-              Favorite Character: <span>...</span>
+              Favorite Character:{" "}
+              <span>
+                {data?.favorite ? data.favorite[2] || "Unknown" : "Unknown"}
+              </span>
             </div>
           </div>
         </div>
