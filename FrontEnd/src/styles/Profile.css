@@ -9,10 +9,10 @@
   border-radius: 10px;
   padding-top: 0.5%;
   padding-bottom: 1%;
-}
-.Profile #card {
   display: flex;
+  overflow: hidden;
 }
+
 .Profile #pictureContainer {
   flex: 0.4;
   display: flex;
@@ -33,8 +33,35 @@
   margin-top: 3%;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 90%;
   flex: 0.3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Profile #usernameContainer #username {
+  flex: 0.8;
+}
+.Profile #editBtnContainer {
+  flex: 0.2;
+  display: flex;
+  justify-content: center;
+}
+.Profile #editBtn {
+  font-size: 1.1rem;
+  color: white;
+  background-color: rgb(107, 36, 148);
+  padding: 3% 10%;
+  border: none;
+  border-radius: 3px;
+}
+.Profile #editBtn:hover {
+  background-color: rgb(81, 28, 112);
+  transition: 0.2s;
+}
+.Profile #editBtn:active {
+  background-color: rgb(49, 16, 68);
+  transition: 0.2s;
 }
 .Profile #username {
   border-radius: 5px;
@@ -76,4 +103,15 @@
 .Profile #Description #bio {
   font-size: 1.2rem;
   margin-top: 1%;
+}
+.Profile .input {
+  border: none;
+  border-radius: 5px;
+  margin-left: 3%;
+  text-align: center;
+  padding: 0.2% 0;
+  color: white;
+
+  background-color: transparent;
+  box-shadow: 0 0 4px grey;
 }

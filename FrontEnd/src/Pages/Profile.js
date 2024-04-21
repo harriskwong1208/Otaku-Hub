@@ -17,7 +17,7 @@ export default function Profile() {
   const { user, signOut } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState();
-
+  const [edit, setEdit] = useState(false);
   async function loadingUserData() {
     try {
       const id = await getCurrentUserId();
@@ -50,22 +50,43 @@ export default function Profile() {
     return <Login />;
   }
 
+  function editMode() {
+    if (edit) {
+      setEdit(false);
+    } else {
+      setEdit(true);
+    }
+  }
   return (
     <div className="Profile">
       <div id="card">
         <div id="pictureContainer">
-          <img src={data?.imageUrl}></img>
+          <img src={data?.imageUrl} alt="ProfilePicture"></img>
         </div>
         <div id="infoContainer">
           <div id="usernameContainer">
             <div id="username">{data?.userName || "User"}</div>
+            <div id="editBtnContainer">
+              <button id="editBtn" onClick={editMode}>
+                {edit == true ? "Save" : "Edit"}
+              </button>
+            </div>
           </div>
           <div id="info">
             <div id="email">
               email: <span>{user?.email || "Unknown"}</span>
             </div>
             <div id="name">
-              Name: <span>{data?.name || "Unknown"}</span>
+              <label for="user-name">Name:</label>
+              {edit ? (
+                <input
+                  className="input"
+                  id="user-name-input"
+                  placeholder="Enter name here"
+                ></input>
+              ) : (
+                <span>{data?.name || "Unknown"}</span>
+              )}
             </div>
             <div id="anime">
               Favorite Anime:{" "}
