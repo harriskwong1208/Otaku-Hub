@@ -23,6 +23,7 @@ export default function Profile() {
   const [manga, setManga] = useState();
   const [character, setCharacter] = useState();
   const [bio, setBio] = useState();
+  const [image, setImage] = useState();
   async function loadingUserData() {
     try {
       const id = await getCurrentUserId();
@@ -35,7 +36,7 @@ export default function Profile() {
       setAnime(response.data.user.fav_anime);
       setManga(response.data.user.fav_manga);
       setCharacter(response.data.user.fav_character);
-
+      setImage(response.data.user.imageUrl);
       return response;
     } catch (e) {
       return new Error(e);
@@ -66,6 +67,10 @@ export default function Profile() {
   // Save data to database if user saves changes
   async function editMode() {
     if (edit) {
+      let url = image
+        ? image
+        : "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg";
+
       try {
         const id = await getCurrentUserId();
         const response = await axios.put(
@@ -76,6 +81,7 @@ export default function Profile() {
             fav_manga: manga,
             fav_character: character,
             bio: bio,
+            imageUrl: url,
           }
         );
         console.log(response);
@@ -92,7 +98,17 @@ export default function Profile() {
     <div className="Profile">
       <div id="card">
         <div id="pictureContainer">
-          <img src={data?.imageUrl} alt="ProfilePicture"></img>
+          <img src={image} alt="ProfilePicture"></img>
+          {edit == true && (
+            <label for="ImgUrl">
+              <input
+                id="ImgUrl"
+                placeholder="Enter Image Url here"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              ></input>
+            </label>
+          )}
         </div>
         <div id="infoContainer">
           <div id="usernameContainer">
