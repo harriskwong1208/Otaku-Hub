@@ -40,12 +40,14 @@ const userSchema = new Schema({
   imageUrlSmall: {
     type: String,
   },
-  //Index meaning:
-  // 0 : favorite Anime
-  // 1 : favorite Manga
-  // 2 : favorite Character
-  favorite: {
-    type: [String],
+  fav_anime: {
+    type: String,
+  },
+  fav_manga: {
+    type: String,
+  },
+  fav_character: {
+    type: String,
   },
   bio: {
     type: String,

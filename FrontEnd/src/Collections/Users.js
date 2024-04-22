@@ -45,6 +45,7 @@ export async function findEmail(email) {
 
 export async function getCurrentUserId() {
   const user = await getUserFromCognito();
+
   const subId = user.sub;
   const users = await getAllUsersFromDatabase();
   for (let i of users) {

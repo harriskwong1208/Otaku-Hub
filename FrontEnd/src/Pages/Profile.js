@@ -26,21 +26,16 @@ export default function Profile() {
   async function loadingUserData() {
     try {
       const id = await getCurrentUserId();
+
       const response = await axios.get(apiEndPoints.backEndApi + "users/" + id);
+      console.log(response);
       setData(response.data.user);
       setName(response.data.user.name);
-      response.data.user.bio && setBio(response.data.user.bio);
-      if (response.data.user.favorite) {
-        if (response.data.user.favorite[0]) {
-          setAnime(response.data.user.favorite[0]);
-        }
-        if (response.data.user.favorite[1]) {
-          setManga(response.data.user.favorite[1]);
-        }
-        if (response.data.user.favorite[2]) {
-          setCharacter(response.data.user.favorite[2]);
-        }
-      }
+      setBio(response.data.user.bio);
+      setAnime(response.data.user.fav_anime);
+      setManga(response.data.user.fav_manga);
+      setCharacter(response.data.user.fav_character);
+
       return response;
     } catch (e) {
       return new Error(e);
@@ -51,7 +46,6 @@ export default function Profile() {
     setIsLoading(true);
     loadingUserData()
       .then((data) => {
-        console.log(data);
         setIsLoading(false);
       })
       .catch((e) => {
@@ -70,9 +64,26 @@ export default function Profile() {
 
   //Change interface based on if edit or save mode
   // Save data to database if user saves changes
-  function editMode() {
+  async function editMode() {
     if (edit) {
-      setEdit(false);
+      try {
+        const id = await getCurrentUserId();
+        const response = await axios.put(
+          apiEndPoints.backEndApi + "users/" + id,
+          {
+            fav_anime: anime,
+            name: name,
+            fav_manga: manga,
+            fav_character: character,
+            bio: bio,
+          }
+        );
+        console.log(response);
+        setEdit(false);
+      } catch (e) {
+        console.log(e);
+        alert("Something went wrong. Cannot save. Please try again later.");
+      }
     } else {
       setEdit(true);
     }

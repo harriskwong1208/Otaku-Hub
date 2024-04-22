@@ -1,5 +1,5 @@
 export const apiEndPoints = {
-  localHost: "http://localhost:8000/api/",
+  // localHost: "http://localhost:8000/api/",
   backEndApi: "http://localhost:8000/api/",
   jikan: "https://api.jikan.moe/v4/anime?q=",
   jikanById: "https://api.jikan.moe/v4/anime/",
