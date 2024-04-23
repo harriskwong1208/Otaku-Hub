@@ -83,7 +83,7 @@ export default function UserProfile() {
           <div id="info">
             <div className="information" id="name">
               <strong>Name:</strong>
-              <span>{user?.name ? user?.name : "Unknown"}</span>
+              <span>{user?.name || "Unknown"}</span>
             </div>
             <div className="information" id="email">
               <strong>Email:</strong>
@@ -93,15 +93,15 @@ export default function UserProfile() {
               <strong>Favorite</strong> ~
               <div className="item" id="anime">
                 <strong>Anime:</strong>
-                <span>{user?.anime ? user.anime : "Unknown"}</span>
+                <span>{user?.fav_anime || "Unknown"}</span>
               </div>
               <div className="item" id="manga">
                 <strong>Manga:</strong>
-                <span>{user?.manga ? user.manga : "Unknown"}</span>
+                <span>{user?.fav_manga || "Unknown"}</span>
               </div>
               <div className="item" id="character">
                 <strong>character:</strong>
-                <span>{user?.character ? user.character : "Unknown"}</span>
+                <span>{user?.fav_character || "Unknown"}</span>
               </div>
             </div>
           </div>
@@ -110,9 +110,7 @@ export default function UserProfile() {
       <div id="Details">
         <div id="Bio">
           <h2 className="title">About Me:</h2>
-          <p id="description">
-            {user?.bio ? user.bio : "Can we get much higher? "}
-          </p>
+          <p id="description">{user?.bio || "Can we get much higher? "}</p>
         </div>
         <div id="watchlist">
           <h2 className="listTitle">Watch List</h2>
