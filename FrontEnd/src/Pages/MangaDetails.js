@@ -167,7 +167,7 @@ export default function MangaDetailsPage() {
               <div id="SignInMessage">
                 <a href="/login" target="_blank">
                   Sign in
-                </a>{" "}
+                </a>
                 to add to list!
               </div>
             ) : (
