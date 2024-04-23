@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap");
-
 /* .animePic {
   border-radius: 100px;
   width: 5%;
@@ -71,8 +69,27 @@
 .Dashboard {
   color: white;
 }
-
 .Dashboard .list-content {
+  /* border: solid red 1px; */
+}
+.Dashboard .title {
+  padding-left: 2%;
+  border-bottom: 1px white solid;
+  padding-bottom: 1%;
+}
+.Dashboard .anime-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.Dashboard .img-container {
+  flex: 1;
+  max-width: 200px;
+}
+.Dashboard img {
+  width: 100%;
+}
+/* .Dashboard .list-content {
   margin-left: auto;
   margin-right: auto;
   width: 95%;
@@ -98,4 +115,4 @@
 .Dashboard .anime {
   display: flex;
   justify-content: center;
-}
+} */
