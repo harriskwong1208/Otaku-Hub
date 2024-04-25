@@ -110,8 +110,24 @@ const getUser = async (req, res, next) => {
   return res.status(200).json({ user });
 };
 
+const removeManga = async (req, res, next) => {
+  const { id, mangaId } = req.params;
+  try {
+    const user = await User.findByIdAndUpdate(id, {
+      $pull: { mangaList: mangaId },
+    });
+    if (!user) {
+      return res.status(500).json({ message: "User not found" });
+    }
+  } catch (e) {
+    return next(e);
+  }
+  return res.status(200).json({ message: "Removed manga!" });
+};
+
 exports.getAllUsers = getAllUsers;
 exports.addUser = addUser;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
 exports.getUser = getUser;
+exports.removeManga = removeManga;
