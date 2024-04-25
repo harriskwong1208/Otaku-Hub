@@ -25,18 +25,15 @@ async function addManga(manga) {
     published.to && published.to.split("T")[0]
   }`;
 
-  console.log(_published);
   let _demographic = null;
   if (demographics.length > 0) {
     _demographic = demographics[0].name;
   }
-  console.log(_demographic);
 
   let _serializations = [];
-  if (serializations && serializations[0].name) {
+  if (serializations.length > 0 && serializations[0].name) {
     _serializations.push(serializations[0].name);
   }
-  console.log(_serializations[0]);
 
   try {
     //Check if manga is already added into watch list
