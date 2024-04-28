@@ -125,9 +125,24 @@ const removeManga = async (req, res, next) => {
   }
 };
 
+const removeAnime = async (req, res, next) => {
+  const { id, animeId } = req.params;
+  try {
+    const user = await User.findByIdAndUpdate(id, {
+      $pull: { watchList: animeId },
+    });
+    if (!user) {
+      return res.status(500).json({ message: "User not found" });
+    }
+    return res.status(200).json({ message: "Removed Anime!" });
+  } catch (e) {
+    return next(e);
+  }
+};
 exports.getAllUsers = getAllUsers;
 exports.addUser = addUser;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
 exports.getUser = getUser;
 exports.removeManga = removeManga;
+exports.removeAnime = removeAnime;

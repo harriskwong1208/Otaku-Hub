@@ -220,3 +220,18 @@ export async function deleteManga(id, mangaId) {
     return new Error("Error in deleting manga");
   }
 }
+
+//Remove anime from user's list
+// Inputs: userId and animeId from Mongo
+export async function deleteAnime(id, animeId) {
+  try {
+    const response = await axios.put(
+      apiEndPoints.backEndApi + "users/anime/" + id + "/" + animeId
+    );
+    console.log(response);
+    alert("Removed anime !");
+  } catch (e) {
+    console.log(e);
+    return new Error("Error in deleting manga");
+  }
+}

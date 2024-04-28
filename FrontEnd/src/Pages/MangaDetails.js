@@ -69,9 +69,9 @@ export default function MangaDetailsPage() {
   }
 
   const titleShorten = (title) => {
-    // if (title.length > 30) {
-    //   return title.substring(0, 65) + "...";
-    // }
+    if (title?.length > 30) {
+      return title.substring(0, 65) + "...";
+    }
     return title;
   };
   return (

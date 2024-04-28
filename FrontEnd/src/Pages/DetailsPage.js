@@ -4,7 +4,8 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/DetailsPage.css";
-import { addAnime } from "../Collections/Anime";
+import { deleteAnime, getCurrentUserId } from "../Collections/Users";
+import { addAnime, getAnimeByMalId } from "../Collections/Anime";
 import Error from "../components/Error";
 import LoadComponent from "../components/Loading";
 export default function DetailsPage() {
@@ -52,11 +53,20 @@ export default function DetailsPage() {
     return "th";
   };
   const titleShorten = (title) => {
-    // if(title.length > 30) {
-    //   return title.substring(0, 65) + "...";
-    // }
+    if (title?.length > 30) {
+      return title.substring(0, 65) + "...";
+    }
     return title;
   };
+  async function removeAnime() {
+    try {
+      const id = await getCurrentUserId();
+      const _anime = await getAnimeByMalId(anime.mal_id);
+      const response = await deleteAnime(id, _anime._id);
+    } catch (e) {
+      console.error(e);
+    }
+  }
   return (
     <div className="DetailsPage">
       <div className="left-section">
@@ -158,7 +168,9 @@ export default function DetailsPage() {
                 <button id="Add-Btn" onClick={() => addAnime(anime)}>
                   Add to List
                 </button>
-                <button id="Remove-Btn">Remove From List</button>
+                <button id="Remove-Btn" onClick={removeAnime}>
+                  Remove From List
+                </button>
               </div>
             )}
           </div>
