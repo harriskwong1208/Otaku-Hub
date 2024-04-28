@@ -6,7 +6,8 @@ import { apiEndPoints } from "../apiEndpoints";
 import "../styles/DetailsPage.css";
 import { addAnime } from "../Collections/Anime";
 import LoadComponent from "../components/Loading";
-import { addManga } from "../Collections/Manga";
+import { addManga, getMangaByMalId } from "../Collections/Manga";
+import { getCurrentUserId, deleteManga } from "../Collections/Users";
 import Error from "../components/Error";
 export default function MangaDetailsPage() {
   const { id } = useParams();
@@ -15,8 +16,6 @@ export default function MangaDetailsPage() {
   const [manga, setManga] = useState({});
   const [error, setError] = useState(null);
   async function getManga() {
-    document.body.style = "background: #10131f;";
-
     setIsLoading(true);
     try {
       let _manga = await axios.get(apiEndPoints.jikanMangaById + id);
@@ -58,6 +57,16 @@ export default function MangaDetailsPage() {
     }
     return `From ${fromDate} to ${published.to.split("T")[0]}`;
   };
+
+  async function removeManga() {
+    try {
+      const id = await getCurrentUserId();
+      const _manga = await getMangaByMalId(manga.mal_id);
+      await deleteManga(id, _manga._id);
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   const titleShorten = (title) => {
     // if (title.length > 30) {
@@ -175,7 +184,9 @@ export default function MangaDetailsPage() {
                 <button id="Add-Btn" onClick={() => addManga(manga)}>
                   Add to List
                 </button>
-                <button id="Remove-Btn">Remove From List</button>
+                <button id="Remove-Btn" onClick={removeManga}>
+                  Remove From List
+                </button>
               </div>
             )}
           </div>

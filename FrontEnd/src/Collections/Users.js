@@ -206,3 +206,17 @@ export async function getFriends(friends) {
   }
   return _friends;
 }
+//Remove manga from user's list
+// Inputs: userId and mangaId from Mongo
+export async function deleteManga(id, mangaId) {
+  try {
+    const response = await axios.put(
+      apiEndPoints.backEndApi + "users/manga/" + id + "/" + mangaId
+    );
+    console.log(response);
+    alert("Removed manga !");
+  } catch (e) {
+    console.log(e);
+    return new Error("Error in deleting manga");
+  }
+}
