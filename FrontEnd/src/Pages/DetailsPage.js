@@ -4,7 +4,11 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/DetailsPage.css";
-import { deleteAnime, getCurrentUserId } from "../Collections/Users";
+import {
+  deleteAnime,
+  getCurrentUserId,
+  checkUserWatchList,
+} from "../Collections/Users";
 import { addAnime, getAnimeByMalId } from "../Collections/Anime";
 import Error from "../components/Error";
 import LoadComponent from "../components/Loading";
@@ -14,15 +18,22 @@ export default function DetailsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [anime, setAnime] = useState({});
   const [error, setError] = useState(null);
-  document.body.style = "background: #10131f;";
+  const [inList, setInList] = useState(false);
 
-  async function getAnime() {
+  async function loadContent() {
     setIsLoading(true);
     try {
       let _anime = await axios.get(apiEndPoints.jikanById + id);
+      const _id = await getCurrentUserId();
       _anime = _anime.data.data;
       setAnime(_anime);
-      console.log(_anime);
+      const animeByMalId = await getAnimeByMalId(_anime.mal_id);
+      if (animeByMalId) {
+        const animeInList = await checkUserWatchList(_id, animeByMalId._id);
+        if (animeInList) {
+          setInList(true);
+        }
+      }
       setIsLoading(false);
     } catch (e) {
       setError(e);
@@ -31,7 +42,7 @@ export default function DetailsPage() {
     }
   }
   useEffect(() => {
-    getAnime();
+    loadContent();
   }, []);
 
   if (isLoading) {
@@ -62,7 +73,8 @@ export default function DetailsPage() {
     try {
       const id = await getCurrentUserId();
       const _anime = await getAnimeByMalId(anime.mal_id);
-      const response = await deleteAnime(id, _anime._id);
+      await deleteAnime(id, _anime._id);
+      setInList(false);
     } catch (e) {
       console.error(e);
     }
@@ -165,12 +177,22 @@ export default function DetailsPage() {
               </div>
             ) : (
               <div className="buttons">
-                <button id="Add-Btn" onClick={() => addAnime(anime)}>
-                  Add to List
-                </button>
-                <button id="Remove-Btn" onClick={removeAnime}>
-                  Remove From List
-                </button>
+                {!inList ? (
+                  <button
+                    id="Add-Btn"
+                    onClick={() => {
+                      addAnime(anime)
+                        .then(setInList(true))
+                        .catch((e) => console.error(e));
+                    }}
+                  >
+                    Add to List
+                  </button>
+                ) : (
+                  <button id="Remove-Btn" onClick={removeAnime}>
+                    Remove From List
+                  </button>
+                )}
               </div>
             )}
           </div>
