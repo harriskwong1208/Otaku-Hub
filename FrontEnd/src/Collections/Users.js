@@ -44,16 +44,21 @@ export async function findEmail(email) {
 }
 
 export async function getCurrentUserId() {
-  const user = await getUserFromCognito();
+  try {
+    const user = await getUserFromCognito();
 
-  const subId = user.sub;
-  const users = await getAllUsersFromDatabase();
-  for (let i of users) {
-    if (i.subId === subId) {
-      return i._id;
+    const subId = user.sub;
+    const users = await getAllUsersFromDatabase();
+    for (let i of users) {
+      if (i.subId === subId) {
+        return i._id;
+      }
     }
+  } catch (e) {
+    console.log("Error in getting user sub id.");
+
+    return new Error(e);
   }
-  return new Error("Error in getting user sub id.");
 }
 
 //RETURN ARRAY OF USERS
