@@ -14,6 +14,8 @@ OtakuHub is a web application designed for anime and manga enthusiasts. Track, r
 4. Run "npm install" in both directories to install all dependencies.
 5. To start the frontend and backend servers, run npm run dev in the "/FrontEnd" and "/backend" directories respectively.
 
+### Note: This project can still be ran even without the database string in the .env file in /backend directory, however, only the front end can be run.
+
 ## Usage
 
 ### Once the project is set up and running, users can:
