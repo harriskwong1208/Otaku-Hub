@@ -2,7 +2,7 @@
 
 ## What is OtakuHub ?
 
-OtakuHub is a web application designed for anime and manga enthusiasts. Track, rate, and review your favorite series seamlessly with our user-friendly interface. Built with the MERN stack and powered by AWS Cognito for user authentication and Amplify for deployment.
+OtakuHub is a web application designed for anime and manga enthusiasts. Track, rate, and review your favorite series seamlessly with the user-friendly interface. Built with the MERN stack and powered by AWS Cognito for user authentication and Amplify for deployment.
 
 ## Installation
 
