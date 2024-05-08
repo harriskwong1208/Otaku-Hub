@@ -2,7 +2,7 @@
 # FrontEnd/src/.env
 FrontEnd/src/cognitoConfig.js
 FrontEnd/build
-.env
+FrontEnd/.env
 backend/.env
 # dependencies
 FrontEnd/node_modules
