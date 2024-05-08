@@ -1,0 +1,118 @@
+/* .animePic {
+  border-radius: 100px;
+  width: 5%;
+
+  object-position: center;
+  vertical-align: middle;
+} */
+
+#welcomePage {
+  color: white;
+  /* height: 90vh; */
+  display: flex;
+}
+#welcomePage #Intro {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  padding-top: 9%;
+}
+#Intro * {
+  padding-left: 25%;
+}
+
+#Intro #title {
+  font-size: 1.8rem;
+  font-weight: bolder;
+}
+#welcomePage #Intro #description {
+  margin-top: 2%;
+  font-size: 1.1rem;
+  color: rgb(153, 150, 150);
+  max-width: 400px;
+}
+#Intro #btnContainer {
+  margin-top: 4%;
+}
+#Intro button {
+  border-radius: 100px;
+  border: none;
+  padding: 1.5% 4%;
+  color: white;
+  background-color: rgb(54, 141, 190);
+}
+#Intro button:active {
+  transition: 0.1s;
+  background-color: rgb(22, 104, 136);
+}
+
+#welcomePage #imgContainer {
+  flex: 0.5;
+  min-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#welcomePage #imgContainer #container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+
+  max-height: 500px;
+  max-width: 600px;
+}
+#welcomePage #imgContainer #container img {
+  width: 100%;
+  height: 100%;
+}
+.Dashboard {
+  color: white;
+}
+.Dashboard .list-content {
+  /* border: solid red 1px; */
+}
+.Dashboard .title {
+  padding-left: 2%;
+  border-bottom: 1px white solid;
+  padding-bottom: 1%;
+}
+.Dashboard .anime-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.Dashboard .img-container {
+  flex: 1;
+  max-width: 200px;
+}
+.Dashboard img {
+  width: 100%;
+}
+/* .Dashboard .list-content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  height: 90%;
+}
+.Dashboard .title {
+  padding: 0.5% 0 0.5% 1%;
+  font-size: larger;
+}
+.Dashboard .anime-container,
+.manga-container {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Dashboard .anime-container img {
+  cursor: pointer;
+  width: 200px;
+}
+.Dashboard .anime {
+  display: flex;
+  justify-content: center;
+} */

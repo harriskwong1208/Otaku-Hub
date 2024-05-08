@@ -1,0 +1,86 @@
+.ListPage {
+  color: white;
+  margin-bottom: 1%;
+}
+.ListPage .List {
+  width: 60%;
+  margin: 0 auto;
+}
+.ListPage .List .typeTitle {
+  padding: 1% 0 1.2% 1.5%;
+  font-size: 30px;
+}
+.ListPage .List .header {
+  display: flex;
+  padding: 2% 0 2% 0;
+  border-bottom: solid 0.1px rgb(68, 125, 201);
+}
+.ListPage .List .header * {
+  text-align: center;
+}
+.ListPage .List .header .title {
+  flex: 0.7;
+}
+.ListPage .List .header .score,
+.header-counts {
+  flex: 0.15;
+}
+.ListPage .List .itemContainer {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgb(35, 155, 185);
+}
+.ListPage .List .itemContainer .item {
+  height: 75px;
+  display: flex;
+  width: 100%;
+  padding: 1% 0 1% 0;
+  font-size: larger;
+}
+.ListPage .List .itemContainer .item:hover {
+  transition: 0.2s;
+  background-color: rgb(186, 181, 189);
+}
+.ListPage .List .itemContainer .item .ImgAndTitle {
+  width: 70%;
+  display: flex;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle .Img {
+  flex: 0.1;
+  padding: 0 1% 0 1%;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle .Img img {
+  height: 100%;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle .title {
+  flex: 0.9;
+  display: flex;
+  align-items: center;
+  padding-left: 2%;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle .title a,
+a:visited {
+  color: white;
+  text-decoration: none;
+}
+.ListPage .List .itemContainer .item .ImgAndTitle .title a:hover {
+  color: rgb(35, 155, 185);
+  transition: 0.7s;
+}
+.ListPage .List .itemContainer .item .score,
+.counts {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#MangaList #mangaListTitle {
+  margin: 1%;
+}
+#MangaList .itemContainer {
+  box-shadow: 0 0 5px rgb(111, 54, 202);
+}
+
+#MangaList .itemContainer .header {
+  border-bottom: rgb(74, 47, 197) solid 0.1px;
+}

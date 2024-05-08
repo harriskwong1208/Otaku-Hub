@@ -16,7 +16,7 @@ const verifier = CognitoJwtVerifier.create({
   clientId: process.env.ClientId,
 });
 
-app.use(cors()); 
+app.use(cors());
 
 // Middleware function to convert JSON string to JSON object
 app.use(express.json());
@@ -47,10 +47,10 @@ const PORT = process.env.PORT || 8000;
 
 mongoose
   .connect(process.env.MONGOURL, {
-    dbName: "OtakuHub",
+    dbName: process.env.Database,
   })
   .then(() => {
-    console.log("OtakuHub database connected !!");
+    console.log(`${process.env.Database} connected !!`);
   })
   .catch((e) => console.log(e));
 

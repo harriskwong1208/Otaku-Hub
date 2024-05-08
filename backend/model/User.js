@@ -3,9 +3,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+  userName: {
+    type: String,
+  },
   name: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -30,6 +32,24 @@ const userSchema = new Schema({
     type: [String],
   },
   imageUrl: {
+    type: String,
+  },
+  imageUrlLarge: {
+    type: String,
+  },
+  imageUrlSmall: {
+    type: String,
+  },
+  fav_anime: {
+    type: String,
+  },
+  fav_manga: {
+    type: String,
+  },
+  fav_character: {
+    type: String,
+  },
+  bio: {
     type: String,
   },
 });

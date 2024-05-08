@@ -5,9 +5,8 @@ require("dotenv").config();
 const getAllUsers = async (req, res, next) => {
   let users;
 
-  //Only return name, email, and Id.
   users = await User.find().select(
-    "name email subId friends watchList mangaList imageUrl"
+    "name email watchList subId friends mangaList imageUrl userName fav_anime fav_manga fav_character bio"
   );
   if (!users) {
     return res.status(500).json({ message: "Internal; Server Error." });
@@ -17,11 +16,11 @@ const getAllUsers = async (req, res, next) => {
 };
 
 const addUser = async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { userName, email, password } = req.body;
   let user;
   try {
     user = new User({
-      name,
+      userName,
       email,
       password,
     });
@@ -37,28 +36,41 @@ const addUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   const id = req.params.id;
-  const { name, email, password, subId, animeId, friendId, mangaId, imageUrl } =
-    req.body;
+  const {
+    name,
+    email,
+    password,
+    subId,
+    animeId,
+    friendId,
+    mangaId,
+    imageUrl,
+    userName,
+    fav_anime,
+    fav_manga,
+    fav_character,
+    bio,
+  } = req.body;
 
   let user;
   try {
-    user = await User.findByIdAndUpdate(
-      id,
-      // {name,email,password,subId,$push:{watchList: animeId},
-      // $push:{mangaList: mangaId},$push:{friends: friendId}});
-      {
-        name,
-        email,
-        password,
-        subId,
-        imageUrl,
-        $push: {
-          watchList: animeId,
-          mangaList: mangaId,
-          friends: friendId,
-        },
-      }
-    );
+    user = await User.findByIdAndUpdate(id, {
+      name,
+      email,
+      password,
+      subId,
+      imageUrl,
+      userName,
+      bio,
+      fav_anime,
+      fav_manga,
+      fav_character,
+      $push: {
+        watchList: animeId,
+        mangaList: mangaId,
+        friends: friendId,
+      },
+    });
   } catch (e) {
     return next(e);
   }
@@ -87,7 +99,7 @@ const getUser = async (req, res, next) => {
   let user;
   try {
     user = await User.findById(id).select(
-      "name email watchList friends mangaList imageUrl"
+      "name email watchList friends subId mangaList imageUrl userName bio fav_anime fav_manga fav_character"
     );
   } catch (e) {
     return next(e);
@@ -98,8 +110,39 @@ const getUser = async (req, res, next) => {
   return res.status(200).json({ user });
 };
 
+const removeManga = async (req, res, next) => {
+  const { id, mangaId } = req.params;
+  try {
+    const user = await User.findByIdAndUpdate(id, {
+      $pull: { mangaList: mangaId },
+    });
+    if (!user) {
+      return res.status(500).json({ message: "User not found" });
+    }
+    return res.status(200).json({ message: "Removed manga!" });
+  } catch (e) {
+    return next(e);
+  }
+};
+
+const removeAnime = async (req, res, next) => {
+  const { id, animeId } = req.params;
+  try {
+    const user = await User.findByIdAndUpdate(id, {
+      $pull: { watchList: animeId },
+    });
+    if (!user) {
+      return res.status(500).json({ message: "User not found" });
+    }
+    return res.status(200).json({ message: "Removed Anime!" });
+  } catch (e) {
+    return next(e);
+  }
+};
 exports.getAllUsers = getAllUsers;
 exports.addUser = addUser;
 exports.updateUser = updateUser;
 exports.deleteUser = deleteUser;
 exports.getUser = getUser;
+exports.removeManga = removeManga;
+exports.removeAnime = removeAnime;
