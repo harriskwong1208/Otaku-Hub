@@ -38,7 +38,7 @@
   margin-top: 1%;
   border-radius: 20px;
   display: grid;
-  grid-template-columns: 1.1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr;
+  grid-template-columns: 1.1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr;
   grid-template-rows: 150px;
   box-shadow: 0 0 5px rgb(70, 67, 206);
 }

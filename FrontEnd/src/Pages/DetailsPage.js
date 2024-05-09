@@ -19,7 +19,7 @@ export default function DetailsPage() {
   const [anime, setAnime] = useState({});
   const [error, setError] = useState(null);
   const [inList, setInList] = useState(false);
-
+  const ratingScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   async function loadContent() {
     setIsLoading(true);
     try {
@@ -44,18 +44,6 @@ export default function DetailsPage() {
   useEffect(() => {
     loadContent();
   }, []);
-
-  useEffect(() => {
-    const sectionList = document.getElementById("top-section");
-    console.log(sectionList.style);
-    // if (inList == false) {
-    //   sectionList.style.gridTemplateColumns =
-    //     "1.1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr";
-    // } else {
-    //   sectionList.style.gridTemplateColumns =
-    //     "1.1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr";
-    // }
-  }, [inList]);
 
   if (isLoading) {
     return <LoadComponent />;
@@ -213,16 +201,14 @@ export default function DetailsPage() {
             <div id="score-title">
               <span>Score:</span>
             </div>
-            <div id="score">{anime?.score} / 10.00</div>
-            <div id="users">by {anime?.scored_by} users</div>
-          </div>
-          <div className="vertical-line"></div>
-          <div className="user-tating">
-            <div id="rating-title">
-              <span>Your Rating:</span>
+            <div id="score">
+              {anime?.score ? anime.score + " /10.00" : "Unknown"}
             </div>
-            <div id="rating">0</div>
+            <div id="users">
+              {anime?.score ? "by " + anime?.scored_by + " users" : ""}
+            </div>
           </div>
+
           <div className="vertical-line"></div>
           <div className="popularity">
             <div id="title">Popularity:</div>
@@ -241,6 +227,16 @@ export default function DetailsPage() {
             </div>
           </div>
         </section>
+        {inList && (
+          <div id="userRating">
+            Your rating is :<label for="animeRating"></label>
+            <select name="animeRating" id="animeRating">
+              {ratingScale.map((num, index) => (
+                <option value={num}>{num}</option>
+              ))}
+            </select>
+          </div>
+        )}
         <article>
           <br></br>
           <span id="title">Synopsis</span>
