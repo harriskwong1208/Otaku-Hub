@@ -229,8 +229,13 @@ export default function DetailsPage() {
         </section>
         {inList && (
           <div id="userRating">
-            Your rating is :<label for="animeRating"></label>
-            <select name="animeRating" id="animeRating">
+            <span>Your rating is:</span>
+            <label for="animeRating"></label>
+            <select
+              name="animeRating"
+              id="animeRating"
+              onChange={(e) => console.log(e.target.value)}
+            >
               {ratingScale.map((num, index) => (
                 <option value={num}>{num}</option>
               ))}
