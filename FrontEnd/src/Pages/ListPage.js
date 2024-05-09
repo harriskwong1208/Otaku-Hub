@@ -73,7 +73,7 @@ export default function ListPage() {
         <div className="itemContainer">
           <div className="header">
             <div className="title">Title</div>
-            <div className="score">Score</div>
+            <div className="rating">Rating</div>
             <div className="header-counts">Episodes</div>
           </div>
           {anime &&
@@ -98,7 +98,7 @@ export default function ListPage() {
                     </a>
                   </div>
                 </div>
-                <div className="score">{data.data.anime.score || "~"}</div>
+                <div className="rating">0</div>
                 <div className="counts">{data.data.anime.episodes || "~"}</div>
               </div>
             ))}
@@ -111,7 +111,7 @@ export default function ListPage() {
         <div className="itemContainer">
           <div className="header">
             <div className="title">Title</div>
-            <div className="score">Score</div>
+            <div className="rating">Rating</div>
             <div className="header-counts">Chapters</div>
           </div>
           {manga &&
@@ -136,7 +136,7 @@ export default function ListPage() {
                     </a>
                   </div>
                 </div>
-                <div className="score">{data.data.manga.score || "~"}</div>
+                <div className="rating">0</div>
                 <div className="counts">{data.data.manga.episodes || "~"}</div>
               </div>
             ))}

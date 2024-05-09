@@ -33,12 +33,12 @@
 .right-section {
   color: white;
 }
-section {
+#top-section {
   position: relative;
   margin-top: 1%;
   border-radius: 20px;
   display: grid;
-  grid-template-columns: 1.1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr;
+  grid-template-columns: 1.1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr;
   grid-template-rows: 150px;
   box-shadow: 0 0 5px rgb(70, 67, 206);
 }
@@ -47,7 +47,7 @@ section #SignInMessage,
   display: block;
 }
 
-section #SignInMessage{
+section #SignInMessage {
   padding: 1% 0 4% 0;
   left: 0;
   right: 0;
@@ -55,10 +55,11 @@ section #SignInMessage{
   position: absolute;
   text-align: center;
 }
-#SignInMessage >  a, a:visited{
+#SignInMessage > a,
+a:visited {
   color: rgb(95, 174, 248);
 }
-#SignInMessage > a:active{
+#SignInMessage > a:active {
   color: rgb(56, 121, 182);
 }
 .List-setting {

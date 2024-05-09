@@ -45,6 +45,18 @@ export default function DetailsPage() {
     loadContent();
   }, []);
 
+  useEffect(() => {
+    const sectionList = document.getElementById("top-section");
+    console.log(sectionList.style);
+    // if (inList == false) {
+    //   sectionList.style.gridTemplateColumns =
+    //     "1.1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr";
+    // } else {
+    //   sectionList.style.gridTemplateColumns =
+    //     "1.1fr 0.01fr 1fr 0.01fr 1fr 0.01fr 1fr";
+    // }
+  }, [inList]);
+
   if (isLoading) {
     return <LoadComponent />;
   }
@@ -158,7 +170,7 @@ export default function DetailsPage() {
         </div>
       </div>
       <div className="right-section">
-        <section>
+        <section id="top-section">
           <div className="List-setting">
             <div id="Anime-Title">
               <span>
@@ -203,6 +215,13 @@ export default function DetailsPage() {
             </div>
             <div id="score">{anime?.score} / 10.00</div>
             <div id="users">by {anime?.scored_by} users</div>
+          </div>
+          <div className="vertical-line"></div>
+          <div className="user-tating">
+            <div id="rating-title">
+              <span>Your Rating:</span>
+            </div>
+            <div id="rating">0</div>
           </div>
           <div className="vertical-line"></div>
           <div className="popularity">
