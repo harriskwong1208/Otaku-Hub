@@ -80,7 +80,7 @@ export async function checkUserWatchList(id, animeId) {
   try {
     const response = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
     const user = response.data.user;
-    const found = user.watchList.find((u) => u == animeId);
+    const found = user.watchList.find((u) => u[0] == animeId);
     if (found) {
       return true;
     }
@@ -179,7 +179,7 @@ export async function checkUserMangaList(id, mangaId) {
   try {
     const response = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
     const user = response.data.user;
-    const found = user.mangaList.find((u) => u == mangaId);
+    const found = user.mangaList.find((u) => u[0] == mangaId);
     if (found) {
       return true;
     }

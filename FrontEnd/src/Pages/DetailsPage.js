@@ -27,6 +27,7 @@ export default function DetailsPage() {
       const _id = await getCurrentUserId();
       _anime = _anime.data.data;
       setAnime(_anime);
+
       const animeByMalId = await getAnimeByMalId(_anime.mal_id);
       if (animeByMalId) {
         const animeInList = await checkUserWatchList(_id, animeByMalId._id);

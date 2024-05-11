@@ -43,7 +43,7 @@ const updateUser = async (req, res, next) => {
     subId,
     watchItem,
     friendId,
-    mangaId,
+    mangaItem,
     imageUrl,
     userName,
     fav_anime,
@@ -67,7 +67,7 @@ const updateUser = async (req, res, next) => {
       fav_character,
       $push: {
         watchList: watchItem,
-        mangaList: mangaId,
+        mangaList: mangaItem,
         friends: friendId,
       },
     });

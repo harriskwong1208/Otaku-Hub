@@ -29,8 +29,9 @@ const userSchema = new Schema({
   friends: {
     type: [String],
   },
+  //[mal_id,rating,status(Reading,dropped,on Hold)]
   mangaList: {
-    type: [String],
+    type: [[String, Number, String]],
   },
   imageUrl: {
     type: String,

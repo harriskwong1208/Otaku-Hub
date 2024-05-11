@@ -65,11 +65,11 @@ async function addManga(manga) {
     if (found) {
       alert("Already in manga List !!!");
     } else {
-      //add mangaId to user watch List
+      //add mangaId to user manga List
       const message = await axios.put(
         apiEndPoints.backEndApi + "users/" + userId,
         {
-          mangaId: mangaId,
+          mangaItem: [mangaId, 0, "Reading"],
         }
       );
       alert("Added to Manga List!");

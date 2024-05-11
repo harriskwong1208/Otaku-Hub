@@ -59,7 +59,7 @@ async function addAnime(anime) {
       const message = await axios.put(
         apiEndPoints.backEndApi + "users/" + userId,
         {
-          watchItem: [animeId, 0, "watching"],
+          watchItem: [animeId, 0, "Watching"],
         }
       );
       alert("Added to watch List!");
