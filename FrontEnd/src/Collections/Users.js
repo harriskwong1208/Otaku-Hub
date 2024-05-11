@@ -106,6 +106,7 @@ export async function addAnimeToUser(animeId) {
   }
 }
 //Get current user's watch list
+//Returns [[title,rating,status],...]
 export async function getUserWatchList() {
   try {
     const id = await getCurrentUserId();

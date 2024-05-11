@@ -26,7 +26,7 @@ export default function ListPage() {
   async function setAnimeList(animeIdList) {
     const animeInfoList = [];
     for (let i of animeIdList) {
-      animeInfoList.push(await getAnime(i));
+      animeInfoList.push(await getAnime(i[0]));
     }
     return animeInfoList;
   }

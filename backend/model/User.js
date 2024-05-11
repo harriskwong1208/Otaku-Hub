@@ -22,8 +22,9 @@ const userSchema = new Schema({
     type: String,
     unique: true,
   },
+  //[mal_id,rating,status(watch,dropped,on Hold)]
   watchList: {
-    type: [String],
+    type: [[String, Number, String]],
   },
   friends: {
     type: [String],
