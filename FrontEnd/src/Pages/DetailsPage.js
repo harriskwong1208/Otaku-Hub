@@ -20,6 +20,7 @@ export default function DetailsPage() {
   const [error, setError] = useState(null);
   const [inList, setInList] = useState(false);
   const ratingScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const animeStatus = ["Watching", "On Hold", "Dropped"];
   async function loadContent() {
     setIsLoading(true);
     try {
@@ -229,19 +230,31 @@ export default function DetailsPage() {
           </div>
         </section>
         {inList && (
-          <div id="userRating">
-            <span>Your rating is:</span>
-            <label for="animeRating"></label>
-            <select
-              name="animeRating"
-              id="animeRating"
-              onChange={(e) => console.log(e.target.value)}
-            >
-              {ratingScale.map((num, index) => (
-                <option value={num}>{num}</option>
-              ))}
-            </select>
-          </div>
+          <>
+            <div id="userRating">
+              <span>Your rating is:</span>
+              <label for="animeRating"></label>
+              <select
+                name="animeRating"
+                id="animeRating"
+                onChange={(e) => console.log(e.target.value)}
+              >
+                {ratingScale.map((num, index) => (
+                  <option value={num}>{num}</option>
+                ))}
+              </select>
+              <label for="animeStatus"></label>
+              <select
+                name="animeStatus"
+                id="animeStatus"
+                onChange={(e) => console.log(e.target.value)}
+              >
+                {animeStatus.map((status, index) => (
+                  <option value={status}>{status}</option>
+                ))}
+              </select>
+            </div>
+          </>
         )}
         <article>
           <br></br>
