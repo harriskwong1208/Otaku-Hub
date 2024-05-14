@@ -18,7 +18,7 @@ export default function ListPage() {
   async function setMangaList(mangaIdList) {
     const mangaInfoList = [];
     for (let i of mangaIdList) {
-      mangaInfoList.push(await getManga(i));
+      mangaInfoList.push(await getManga(i[0]));
     }
     return mangaInfoList;
   }

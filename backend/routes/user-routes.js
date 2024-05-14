@@ -7,6 +7,7 @@ const {
   getUser,
   removeManga,
   removeAnime,
+  updateUserList,
 } = require("../controller/user-controller");
 
 const UserRouter = express.Router();
@@ -18,5 +19,6 @@ UserRouter.delete("/:id", deleteUser);
 UserRouter.get("/:id", getUser);
 UserRouter.put("/manga/:id/:mangaId", removeManga);
 UserRouter.put("/anime/:id/:animeId", removeAnime);
+UserRouter.put("/anime/update/:id/:animeId", updateUserList);
 
 module.exports = UserRouter;
