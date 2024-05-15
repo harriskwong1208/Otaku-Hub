@@ -21,6 +21,9 @@ export default function DetailsPage() {
   const [inList, setInList] = useState(false);
   const ratingScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const animeStatus = ["Watching", "On Hold", "Dropped"];
+  const [rating, setRating] = useState(0);
+  const [status, setStatus] = useState("Watching");
+
   async function loadContent() {
     setIsLoading(true);
     try {
@@ -46,6 +49,9 @@ export default function DetailsPage() {
   useEffect(() => {
     loadContent();
   }, []);
+  useEffect(() => {
+    console.log(`status: ${status}, rating: ${rating}`);
+  }, [rating, status]);
 
   if (isLoading) {
     return <LoadComponent />;
@@ -81,6 +87,17 @@ export default function DetailsPage() {
       console.error(e);
     }
   }
+  function ratingSelect(num) {
+    if (num == rating) {
+      return (
+        <option selected value={num}>
+          {num}
+        </option>
+      );
+    }
+    return <option value={num}>{num}</option>;
+  }
+
   return (
     <div className="DetailsPage">
       <div className="left-section">
@@ -237,7 +254,7 @@ export default function DetailsPage() {
               <select
                 name="animeRating"
                 id="animeRating"
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => setRating(e.target.value)}
               >
                 {ratingScale.map((num, index) => (
                   <option value={num}>{num}</option>
@@ -247,7 +264,7 @@ export default function DetailsPage() {
               <select
                 name="animeStatus"
                 id="animeStatus"
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => setStatus(e.target.value)}
               >
                 {animeStatus.map((status, index) => (
                   <option value={status}>{status}</option>

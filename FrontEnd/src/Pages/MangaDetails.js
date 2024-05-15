@@ -21,7 +21,8 @@ export default function MangaDetailsPage() {
   const [inList, setInList] = useState(false);
   const ratingScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const mangaStatus = ["Reading", "On Hold", "Dropped"];
-
+  const [rating, setRating] = useState(0);
+  const [status, setStatus] = useState("Reading");
   async function getManga() {
     setIsLoading(true);
     try {
@@ -48,6 +49,10 @@ export default function MangaDetailsPage() {
   useEffect(() => {
     getManga();
   }, []);
+
+  useEffect(() => {
+    console.log(`status: ${status}, rating: ${rating}`);
+  }, [rating, status]);
 
   if (isLoading) {
     return <LoadComponent />;
@@ -91,6 +96,17 @@ export default function MangaDetailsPage() {
     }
     return title;
   };
+  function ratingSelect(num) {
+    if (num == rating) {
+      return (
+        <option selected value={num}>
+          {num}
+        </option>
+      );
+    }
+    return <option value={num}>{num}</option>;
+  }
+
   return (
     <div className="DetailsPage">
       <div className="left-section">
@@ -251,7 +267,7 @@ export default function MangaDetailsPage() {
               <select
                 name="animeRating"
                 id="animeRating"
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => setRating(e.target.value)}
               >
                 {ratingScale.map((num, index) => (
                   <option value={num}>{num}</option>
@@ -261,7 +277,7 @@ export default function MangaDetailsPage() {
               <select
                 name="animeStatus"
                 id="animeStatus"
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => setStatus(e.target.value)}
               >
                 {mangaStatus.map((status, index) => (
                   <option value={status}>{status}</option>
