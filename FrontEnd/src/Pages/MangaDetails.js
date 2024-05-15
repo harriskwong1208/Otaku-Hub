@@ -50,10 +50,23 @@ export default function MangaDetailsPage() {
     getManga();
   }, []);
 
-  useEffect(() => {
-    console.log(`status: ${status}, rating: ${rating}`);
-  }, [rating, status]);
-
+  async function saveAnimeProgress() {
+    try {
+      const userID = await getCurrentUserId();
+      const mangaID = await getMangaByMalId(id);
+      const response = await axios.put(
+        apiEndPoints.backEndApi + `users/manga/update/${userID}/${mangaID._id}`,
+        {
+          rating: rating,
+          status: status,
+        }
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+      alert("Error occured while saving progress");
+    }
+  }
   if (isLoading) {
     return <LoadComponent />;
   }
@@ -283,6 +296,9 @@ export default function MangaDetailsPage() {
                   <option value={status}>{status}</option>
                 ))}
               </select>
+              <button id="saveBtn" onClick={saveAnimeProgress}>
+                Save
+              </button>
             </div>
           </>
         )}

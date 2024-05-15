@@ -211,9 +211,25 @@ article .background {
   font-size: 1.1rem;
 }
 
-#animeRating,
-#animeStatus {
+#animeRating {
   margin-left: 5%;
   border-radius: 5px;
   padding: 2px 10px;
+}
+
+#animeStatus {
+  margin-left: 1%;
+  border-radius: 5px;
+  padding: 2px 10px;
+}
+#saveBtn {
+  margin-left: 1%;
+  background-color: rgb(107, 171, 224);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+#saveBtn:active {
+  background-color: rgb(15, 116, 199);
+  transition: 0.1s;
 }

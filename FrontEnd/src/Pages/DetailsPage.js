@@ -8,6 +8,7 @@ import {
   deleteAnime,
   getCurrentUserId,
   checkUserWatchList,
+  checkAndReturnAnimeFromWatchList,
 } from "../Collections/Users";
 import { addAnime, getAnimeByMalId } from "../Collections/Anime";
 import Error from "../components/Error";
@@ -49,9 +50,24 @@ export default function DetailsPage() {
   useEffect(() => {
     loadContent();
   }, []);
-  useEffect(() => {
-    console.log(`status: ${status}, rating: ${rating}`);
-  }, [rating, status]);
+
+  async function saveAnimeProgress() {
+    try {
+      const userID = await getCurrentUserId();
+      const animeID = await getAnimeByMalId(id);
+      const response = await axios.put(
+        apiEndPoints.backEndApi + `users/anime/update/${userID}/${animeID._id}`,
+        {
+          rating: rating,
+          status: status,
+        }
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+      alert("Error occured while saving progress");
+    }
+  }
 
   if (isLoading) {
     return <LoadComponent />;
@@ -270,6 +286,9 @@ export default function DetailsPage() {
                   <option value={status}>{status}</option>
                 ))}
               </select>
+              <button id="saveBtn" onClick={saveAnimeProgress}>
+                Save
+              </button>
             </div>
           </>
         )}

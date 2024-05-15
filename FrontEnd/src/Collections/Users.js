@@ -90,6 +90,24 @@ export async function checkUserWatchList(id, animeId) {
   return false;
 }
 
+//Check if anime is already in user's watch list
+//RETURNS TRUE if anime already in watch list
+export async function checkAndReturnAnimeFromWatchList(id, animeId) {
+  try {
+    const response = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
+    const user = response.data.user;
+    const found = user.watchList.find((u) => u[0] == animeId);
+    if (found) {
+      return found;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return false;
+}
+
 export async function addAnimeToUser(animeId) {
   try {
     const UserId = await getCurrentUserId();
