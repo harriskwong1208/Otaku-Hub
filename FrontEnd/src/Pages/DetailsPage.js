@@ -42,7 +42,6 @@ export default function DetailsPage() {
             _id,
             animeByMalId._id
           );
-          console.log(foundAnime);
           setRating(foundAnime[1]);
           setStatus(foundAnime[2]);
         }
@@ -269,9 +268,16 @@ export default function DetailsPage() {
                 id="animeRating"
                 onChange={(e) => setRating(e.target.value)}
               >
-                {ratingScale.map((num, index) => (
-                  <option value={num}>{num}</option>
-                ))}
+                {ratingScale.map((num, index) => {
+                  if (num == rating) {
+                    return (
+                      <option selected value={num}>
+                        {num}
+                      </option>
+                    );
+                  }
+                  return <option value={num}>{num}</option>;
+                })}
               </select>
               <label for="animeStatus"></label>
               <select
@@ -279,9 +285,16 @@ export default function DetailsPage() {
                 id="animeStatus"
                 onChange={(e) => setStatus(e.target.value)}
               >
-                {animeStatus.map((_status, index) => (
-                  <option value={_status}>{_status}</option>
-                ))}
+                {animeStatus.map((_status, index) => {
+                  if (_status == status) {
+                    return (
+                      <option selected value={_status}>
+                        {_status}
+                      </option>
+                    );
+                  }
+                  return <option value={_status}>{_status}</option>;
+                })}
               </select>
               <button id="saveBtn" onClick={saveAnimeProgress}>
                 Save

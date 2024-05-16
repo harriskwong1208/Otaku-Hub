@@ -41,6 +41,8 @@ export default function MangaDetailsPage() {
             _id,
             mangaByMalId._id
           );
+          setRating(foundManga[1]);
+          setStatus(foundManga[2]);
         }
       }
 
@@ -114,16 +116,6 @@ export default function MangaDetailsPage() {
     }
     return title;
   };
-  function ratingSelect(num) {
-    if (num == rating) {
-      return (
-        <option selected value={num}>
-          {num}
-        </option>
-      );
-    }
-    return <option value={num}>{num}</option>;
-  }
 
   return (
     <div className="DetailsPage">
@@ -287,9 +279,16 @@ export default function MangaDetailsPage() {
                 id="animeRating"
                 onChange={(e) => setRating(e.target.value)}
               >
-                {ratingScale.map((num, index) => (
-                  <option value={num}>{num}</option>
-                ))}
+                {ratingScale.map((num, index) => {
+                  if (num == rating) {
+                    return (
+                      <option selected value={num}>
+                        {num}
+                      </option>
+                    );
+                  }
+                  return <option value={num}>{num}</option>;
+                })}
               </select>
               <label for="animeStatus"></label>
               <select
@@ -297,9 +296,16 @@ export default function MangaDetailsPage() {
                 id="animeStatus"
                 onChange={(e) => setStatus(e.target.value)}
               >
-                {mangaStatus.map((status, index) => (
-                  <option value={status}>{status}</option>
-                ))}
+                {mangaStatus.map((_status, index) => {
+                  if (_status == status) {
+                    return (
+                      <option selected value={_status}>
+                        {_status}
+                      </option>
+                    );
+                  }
+                  return <option value={_status}>{_status}</option>;
+                })}
               </select>
               <button id="saveBtn" onClick={saveAnimeProgress}>
                 Save
