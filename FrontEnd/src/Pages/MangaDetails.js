@@ -10,6 +10,7 @@ import {
   getCurrentUserId,
   deleteManga,
   checkUserMangaList,
+  checkAndReturnMangaFromWatchList,
 } from "../Collections/Users";
 import Error from "../components/Error";
 export default function MangaDetailsPage() {
@@ -36,6 +37,10 @@ export default function MangaDetailsPage() {
         const mangaInList = await checkUserMangaList(_id, mangaByMalId._id);
         if (mangaInList) {
           setInList(true);
+          const foundManga = await checkAndReturnMangaFromWatchList(
+            _id,
+            mangaByMalId._id
+          );
         }
       }
 

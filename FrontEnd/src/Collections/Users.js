@@ -91,12 +91,30 @@ export async function checkUserWatchList(id, animeId) {
 }
 
 //Check if anime is already in user's watch list
-//RETURNS TRUE if anime already in watch list
+//RETURNS anime if anime already in watch list
 export async function checkAndReturnAnimeFromWatchList(id, animeId) {
   try {
     const response = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
     const user = response.data.user;
     const found = user.watchList.find((u) => u[0] == animeId);
+    if (found) {
+      return found;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return false;
+}
+
+//Check if anime is already in user's watch list
+//RETURNS array if manga already in manga list
+export async function checkAndReturnMangaFromWatchList(id, mangaId) {
+  try {
+    const response = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
+    const user = response.data.user;
+    const found = user.mangaList.find((u) => u[0] == mangaId);
     if (found) {
       return found;
     } else {

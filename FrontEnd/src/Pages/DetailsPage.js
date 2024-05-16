@@ -38,6 +38,13 @@ export default function DetailsPage() {
         const animeInList = await checkUserWatchList(_id, animeByMalId._id);
         if (animeInList) {
           setInList(true);
+          const foundAnime = await checkAndReturnAnimeFromWatchList(
+            _id,
+            animeByMalId._id
+          );
+          console.log(foundAnime);
+          setRating(foundAnime[1]);
+          setStatus(foundAnime[2]);
         }
       }
       setIsLoading(false);
@@ -102,16 +109,6 @@ export default function DetailsPage() {
     } catch (e) {
       console.error(e);
     }
-  }
-  function ratingSelect(num) {
-    if (num == rating) {
-      return (
-        <option selected value={num}>
-          {num}
-        </option>
-      );
-    }
-    return <option value={num}>{num}</option>;
   }
 
   return (
@@ -282,8 +279,8 @@ export default function DetailsPage() {
                 id="animeStatus"
                 onChange={(e) => setStatus(e.target.value)}
               >
-                {animeStatus.map((status, index) => (
-                  <option value={status}>{status}</option>
+                {animeStatus.map((_status, index) => (
+                  <option value={_status}>{_status}</option>
                 ))}
               </select>
               <button id="saveBtn" onClick={saveAnimeProgress}>
