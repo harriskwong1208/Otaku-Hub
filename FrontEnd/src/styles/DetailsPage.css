@@ -233,3 +233,8 @@ article .background {
   background-color: rgb(15, 116, 199);
   transition: 0.1s;
 }
+#detailStatus {
+  padding-top: 1%;
+  width: 90%;
+  margin: 0 auto;
+}

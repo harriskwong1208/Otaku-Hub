@@ -165,7 +165,7 @@ export default function MangaDetailsPage() {
                 )
               : "Unavailable"}
           </div>
-          <div className="status">
+          <div className="status" id="detailStatus">
             <strong>Status: </strong>
             {manga?.status ? manga.status : "Unknown"}
           </div>
