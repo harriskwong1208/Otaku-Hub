@@ -87,7 +87,7 @@ export default function ListPage() {
           <div className="header">
             <div className="title">Title</div>
             <div className="rating">Rating</div>
-            <div className="header-counts">Episodes</div>
+            <div className="header-status">Status</div>
           </div>
           {anime &&
             anime?.map((data, index) => (
@@ -109,7 +109,7 @@ export default function ListPage() {
                   </div>
                 </div>
                 <div className="rating">{data[1] && data[1]}</div>
-                <div className="counts">{data[0]?.episodes || "~"}</div>
+                <div className="status">{data[2] && data[2]}</div>
               </div>
             ))}
         </div>
@@ -122,7 +122,7 @@ export default function ListPage() {
           <div className="header">
             <div className="title">Title</div>
             <div className="rating">Rating</div>
-            <div className="header-counts">Chapters</div>
+            <div className="header-status">Status</div>
           </div>
           {manga &&
             manga.map((data, index) => (
@@ -144,7 +144,7 @@ export default function ListPage() {
                   </div>
                 </div>
                 <div className="rating">{data[1] && data[1]}</div>
-                <div className="counts">{data[0]?.episodes || "~"}</div>
+                <div className="status">{data[2] && data[2]}</div>
               </div>
             ))}
         </div>

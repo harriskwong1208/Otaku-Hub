@@ -22,7 +22,7 @@
   flex: 0.7;
 }
 .ListPage .List .header .rating,
-.header-counts {
+.header-status {
   flex: 0.15;
 }
 .ListPage .List .itemContainer {
@@ -68,7 +68,7 @@ a:visited {
   transition: 0.7s;
 }
 .ListPage .List .itemContainer .item .rating,
-.counts {
+.status {
   width: 15%;
   display: flex;
   justify-content: center;
