@@ -21,7 +21,7 @@ export default function DetailsPage() {
   const [error, setError] = useState(null);
   const [inList, setInList] = useState(false);
   const ratingScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const animeStatus = ["Watching", "On Hold", "Dropped"];
+  const animeStatus = ["Watching", "On Hold", "Dropped", "Finished"];
   const [rating, setRating] = useState(0);
   const [status, setStatus] = useState("Watching");
 

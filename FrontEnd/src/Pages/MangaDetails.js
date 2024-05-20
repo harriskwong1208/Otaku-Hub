@@ -21,7 +21,7 @@ export default function MangaDetailsPage() {
   const [error, setError] = useState(null);
   const [inList, setInList] = useState(false);
   const ratingScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const mangaStatus = ["Reading", "On Hold", "Dropped"];
+  const mangaStatus = ["Reading", "On Hold", "Dropped", "Finished"];
   const [rating, setRating] = useState(0);
   const [status, setStatus] = useState("Reading");
   async function getManga() {
