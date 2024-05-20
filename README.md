@@ -4,6 +4,9 @@
 
 OtakuHub is a web application designed for anime and manga enthusiasts. Track, rate, and review your favorite series seamlessly with the user-friendly interface. Built with the MERN stack and powered by AWS Cognito for user authentication and Amplify for deployment.
 
+ ![](./FrontEnd/src/static/otakuhub.png)
+
+
 ## Installation
 
 - To run this project locally, follow these steps:
@@ -14,7 +17,8 @@ OtakuHub is a web application designed for anime and manga enthusiasts. Track, r
 4. Run "npm install" in both directories to install all dependencies.
 5. To start the frontend and backend servers, run npm run dev in the "/FrontEnd" and "/backend" directories respectively.
 
-### \*Note: This project can still be ran even without the database string in the .env file in /backend directory, however, only the front end can be run.
+### \*Note: This app can still be executed even if the database string is not present in the .env file within the /backend directory; however, only the frontend will be operational.
+
 
 ## Usage
 

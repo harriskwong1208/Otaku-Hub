@@ -8,6 +8,7 @@ import {
   deleteAnime,
   getCurrentUserId,
   checkUserWatchList,
+  checkAndReturnAnimeFromWatchList,
 } from "../Collections/Users";
 import { addAnime, getAnimeByMalId } from "../Collections/Anime";
 import Error from "../components/Error";
@@ -19,6 +20,10 @@ export default function DetailsPage() {
   const [anime, setAnime] = useState({});
   const [error, setError] = useState(null);
   const [inList, setInList] = useState(false);
+  const ratingScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const animeStatus = ["Watching", "On Hold", "Dropped", "Finished"];
+  const [rating, setRating] = useState(0);
+  const [status, setStatus] = useState("Watching");
 
   async function loadContent() {
     setIsLoading(true);
@@ -27,11 +32,18 @@ export default function DetailsPage() {
       const _id = await getCurrentUserId();
       _anime = _anime.data.data;
       setAnime(_anime);
+
       const animeByMalId = await getAnimeByMalId(_anime.mal_id);
       if (animeByMalId) {
         const animeInList = await checkUserWatchList(_id, animeByMalId._id);
         if (animeInList) {
           setInList(true);
+          const foundAnime = await checkAndReturnAnimeFromWatchList(
+            _id,
+            animeByMalId._id
+          );
+          setRating(foundAnime[1]);
+          setStatus(foundAnime[2]);
         }
       }
       setIsLoading(false);
@@ -44,6 +56,24 @@ export default function DetailsPage() {
   useEffect(() => {
     loadContent();
   }, []);
+
+  async function saveAnimeProgress() {
+    try {
+      const userID = await getCurrentUserId();
+      const animeID = await getAnimeByMalId(id);
+      const response = await axios.put(
+        apiEndPoints.backEndApi + `users/anime/update/${userID}/${animeID._id}`,
+        {
+          rating: rating,
+          status: status,
+        }
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+      alert("Error occured while saving progress");
+    }
+  }
 
   if (isLoading) {
     return <LoadComponent />;
@@ -79,6 +109,7 @@ export default function DetailsPage() {
       console.error(e);
     }
   }
+
   return (
     <div className="DetailsPage">
       <div className="left-section">
@@ -158,7 +189,7 @@ export default function DetailsPage() {
         </div>
       </div>
       <div className="right-section">
-        <section>
+        <section id="top-section">
           <div className="List-setting">
             <div id="Anime-Title">
               <span>
@@ -201,9 +232,14 @@ export default function DetailsPage() {
             <div id="score-title">
               <span>Score:</span>
             </div>
-            <div id="score">{anime?.score} / 10.00</div>
-            <div id="users">by {anime?.scored_by} users</div>
+            <div id="score">
+              {anime?.score ? anime.score + " /10.00" : "Unknown"}
+            </div>
+            <div id="users">
+              {anime?.score ? "by " + anime?.scored_by + " users" : ""}
+            </div>
           </div>
+
           <div className="vertical-line"></div>
           <div className="popularity">
             <div id="title">Popularity:</div>
@@ -222,6 +258,50 @@ export default function DetailsPage() {
             </div>
           </div>
         </section>
+        {inList && (
+          <>
+            <div id="userRating">
+              <span>Your rating is:</span>
+              <label for="animeRating"></label>
+              <select
+                name="animeRating"
+                id="animeRating"
+                onChange={(e) => setRating(e.target.value)}
+              >
+                {ratingScale.map((num, index) => {
+                  if (num == rating) {
+                    return (
+                      <option selected value={num}>
+                        {num}
+                      </option>
+                    );
+                  }
+                  return <option value={num}>{num}</option>;
+                })}
+              </select>
+              <label for="animeStatus"></label>
+              <select
+                name="animeStatus"
+                id="animeStatus"
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                {animeStatus.map((_status, index) => {
+                  if (_status == status) {
+                    return (
+                      <option selected value={_status}>
+                        {_status}
+                      </option>
+                    );
+                  }
+                  return <option value={_status}>{_status}</option>;
+                })}
+              </select>
+              <button id="saveBtn" onClick={saveAnimeProgress}>
+                Save
+              </button>
+            </div>
+          </>
+        )}
         <article>
           <br></br>
           <span id="title">Synopsis</span>

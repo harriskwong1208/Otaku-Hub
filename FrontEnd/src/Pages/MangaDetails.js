@@ -4,10 +4,14 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import "../styles/DetailsPage.css";
-import { addAnime } from "../Collections/Anime";
 import LoadComponent from "../components/Loading";
 import { addManga, getMangaByMalId } from "../Collections/Manga";
-import { getCurrentUserId, deleteManga } from "../Collections/Users";
+import {
+  getCurrentUserId,
+  deleteManga,
+  checkUserMangaList,
+  checkAndReturnMangaFromWatchList,
+} from "../Collections/Users";
 import Error from "../components/Error";
 export default function MangaDetailsPage() {
   const { id } = useParams();
@@ -15,13 +19,33 @@ export default function MangaDetailsPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [manga, setManga] = useState({});
   const [error, setError] = useState(null);
+  const [inList, setInList] = useState(false);
+  const ratingScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const mangaStatus = ["Reading", "On Hold", "Dropped", "Finished"];
+  const [rating, setRating] = useState(0);
+  const [status, setStatus] = useState("Reading");
   async function getManga() {
     setIsLoading(true);
     try {
       let _manga = await axios.get(apiEndPoints.jikanMangaById + id);
+      const _id = await getCurrentUserId();
       _manga = _manga.data.data;
       setManga(_manga);
-      console.log(_manga);
+
+      const mangaByMalId = await getMangaByMalId(_manga.mal_id);
+      if (mangaByMalId) {
+        const mangaInList = await checkUserMangaList(_id, mangaByMalId._id);
+        if (mangaInList) {
+          setInList(true);
+          const foundManga = await checkAndReturnMangaFromWatchList(
+            _id,
+            mangaByMalId._id
+          );
+          setRating(foundManga[1]);
+          setStatus(foundManga[2]);
+        }
+      }
+
       setIsLoading(false);
     } catch (e) {
       setError(e);
@@ -33,6 +57,23 @@ export default function MangaDetailsPage() {
     getManga();
   }, []);
 
+  async function saveAnimeProgress() {
+    try {
+      const userID = await getCurrentUserId();
+      const mangaID = await getMangaByMalId(id);
+      const response = await axios.put(
+        apiEndPoints.backEndApi + `users/manga/update/${userID}/${mangaID._id}`,
+        {
+          rating: rating,
+          status: status,
+        }
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+      alert("Error occured while saving progress");
+    }
+  }
   if (isLoading) {
     return <LoadComponent />;
   }
@@ -63,6 +104,7 @@ export default function MangaDetailsPage() {
       const id = await getCurrentUserId();
       const _manga = await getMangaByMalId(manga.mal_id);
       await deleteManga(id, _manga._id);
+      setInList(false);
     } catch (e) {
       console.error(e);
     }
@@ -74,6 +116,7 @@ export default function MangaDetailsPage() {
     }
     return title;
   };
+
   return (
     <div className="DetailsPage">
       <div className="left-section">
@@ -163,7 +206,7 @@ export default function MangaDetailsPage() {
         </div>
       </div>
       <div className="right-section">
-        <section>
+        <section id="top-section">
           <div className="List-setting">
             <div id="Anime-Title">
               <span>
@@ -181,12 +224,22 @@ export default function MangaDetailsPage() {
               </div>
             ) : (
               <div className="buttons">
-                <button id="Add-Btn" onClick={() => addManga(manga)}>
-                  Add to List
-                </button>
-                <button id="Remove-Btn" onClick={removeManga}>
-                  Remove From List
-                </button>
+                {!inList ? (
+                  <button
+                    id="Add-Btn"
+                    onClick={() =>
+                      addManga(manga)
+                        .then(setInList(true))
+                        .catch((e) => console.log(e))
+                    }
+                  >
+                    Add to List
+                  </button>
+                ) : (
+                  <button id="Remove-Btn" onClick={removeManga}>
+                    Remove From List
+                  </button>
+                )}
               </div>
             )}
           </div>
@@ -216,6 +269,50 @@ export default function MangaDetailsPage() {
             </div>
           </div>
         </section>
+        {inList && (
+          <>
+            <div id="userRating">
+              <span>Your rating is:</span>
+              <label for="animeRating"></label>
+              <select
+                name="animeRating"
+                id="animeRating"
+                onChange={(e) => setRating(e.target.value)}
+              >
+                {ratingScale.map((num, index) => {
+                  if (num == rating) {
+                    return (
+                      <option selected value={num}>
+                        {num}
+                      </option>
+                    );
+                  }
+                  return <option value={num}>{num}</option>;
+                })}
+              </select>
+              <label for="animeStatus"></label>
+              <select
+                name="animeStatus"
+                id="animeStatus"
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                {mangaStatus.map((_status, index) => {
+                  if (_status == status) {
+                    return (
+                      <option selected value={_status}>
+                        {_status}
+                      </option>
+                    );
+                  }
+                  return <option value={_status}>{_status}</option>;
+                })}
+              </select>
+              <button id="saveBtn" onClick={saveAnimeProgress}>
+                Save
+              </button>
+            </div>
+          </>
+        )}
         <article>
           <br></br>
           <span id="title">Synopsis</span>

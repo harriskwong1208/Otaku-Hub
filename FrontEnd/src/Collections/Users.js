@@ -80,9 +80,45 @@ export async function checkUserWatchList(id, animeId) {
   try {
     const response = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
     const user = response.data.user;
-    const found = user.watchList.find((u) => u == animeId);
+    const found = user.watchList.find((u) => u[0] == animeId);
     if (found) {
       return true;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return false;
+}
+
+//Check if anime is already in user's watch list
+//RETURNS anime if anime already in watch list
+export async function checkAndReturnAnimeFromWatchList(id, animeId) {
+  try {
+    const response = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
+    const user = response.data.user;
+    const found = user.watchList.find((u) => u[0] == animeId);
+    if (found) {
+      return found;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+  return false;
+}
+
+//Check if anime is already in user's watch list
+//RETURNS array if manga already in manga list
+export async function checkAndReturnMangaFromWatchList(id, mangaId) {
+  try {
+    const response = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
+    const user = response.data.user;
+    const found = user.mangaList.find((u) => u[0] == mangaId);
+    if (found) {
+      return found;
+    } else {
+      return null;
     }
   } catch (e) {
     console.log(e);
@@ -106,6 +142,7 @@ export async function addAnimeToUser(animeId) {
   }
 }
 //Get current user's watch list
+//Returns [[title,rating,status],...]
 export async function getUserWatchList() {
   try {
     const id = await getCurrentUserId();
@@ -178,7 +215,7 @@ export async function checkUserMangaList(id, mangaId) {
   try {
     const response = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
     const user = response.data.user;
-    const found = user.mangaList.find((u) => u == mangaId);
+    const found = user.mangaList.find((u) => u[0] == mangaId);
     if (found) {
       return true;
     }

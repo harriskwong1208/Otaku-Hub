@@ -18,16 +18,29 @@ export default function ListPage() {
   async function setMangaList(mangaIdList) {
     const mangaInfoList = [];
     for (let i of mangaIdList) {
-      mangaInfoList.push(await getManga(i));
+      let _manga = [];
+      let mangaDetails = await getManga(i[0]);
+      _manga.push(mangaDetails.data.manga);
+      _manga.push(i[1]);
+      _manga.push(i[2]);
+      mangaInfoList.push(_manga);
     }
+    console.log(mangaInfoList);
     return mangaInfoList;
   }
 
+  //returns array [ [[anime_details],rating,status],... ]
   async function setAnimeList(animeIdList) {
     const animeInfoList = [];
     for (let i of animeIdList) {
-      animeInfoList.push(await getAnime(i));
+      let _anime = [];
+      let animeDetails = await getAnime(i[0]);
+      _anime.push(animeDetails.data.anime);
+      _anime.push(i[1]);
+      _anime.push(i[2]);
+      animeInfoList.push(_anime);
     }
+
     return animeInfoList;
   }
 
@@ -73,8 +86,8 @@ export default function ListPage() {
         <div className="itemContainer">
           <div className="header">
             <div className="title">Title</div>
-            <div className="score">Score</div>
-            <div className="header-counts">Episodes</div>
+            <div className="rating">Rating</div>
+            <div className="header-status">Status</div>
           </div>
           {anime &&
             anime?.map((data, index) => (
@@ -83,23 +96,20 @@ export default function ListPage() {
                   <div className="Img">
                     <img
                       src={
-                        data?.data.anime.imageUrlLarge ||
-                        data?.data.anime.imageUrl ||
-                        data?.data.anime.imageUrlSmall
+                        data[0]?.imageUrlLarge ||
+                        data[0]?.imageUrl ||
+                        data[0]?.imageUrlSmall
                       }
                     ></img>
                   </div>
                   <div className="title">
-                    <a
-                      target="_blank"
-                      href={`/anime/${data.data.anime.mal_id}`}
-                    >
-                      {data.data.anime.name}
+                    <a target="_blank" href={`/anime/${data[0]?.mal_id}`}>
+                      {data[0]?.name}
                     </a>
                   </div>
                 </div>
-                <div className="score">{data.data.anime.score || "~"}</div>
-                <div className="counts">{data.data.anime.episodes || "~"}</div>
+                <div className="rating">{data[1] && data[1]}</div>
+                <div className="status">{data[2] && data[2]}</div>
               </div>
             ))}
         </div>
@@ -111,8 +121,8 @@ export default function ListPage() {
         <div className="itemContainer">
           <div className="header">
             <div className="title">Title</div>
-            <div className="score">Score</div>
-            <div className="header-counts">Chapters</div>
+            <div className="rating">Rating</div>
+            <div className="header-status">Status</div>
           </div>
           {manga &&
             manga.map((data, index) => (
@@ -121,23 +131,20 @@ export default function ListPage() {
                   <div className="Img">
                     <img
                       src={
-                        data?.data?.manga.imageUrlLarge ||
-                        data?.data?.manga.imageUrl ||
-                        data?.data?.manga.imageUrlSmall
+                        data[0]?.imageUrlLarge ||
+                        data[0]?.imageUrl ||
+                        data[0]?.imageUrlSmall
                       }
                     ></img>
                   </div>
                   <div className="title">
-                    <a
-                      target="_blank"
-                      href={`/manga/${data.data.manga.mal_id}`}
-                    >
-                      {data.data.manga.title}
+                    <a target="_blank" href={`/manga/${data[0]?.mal_id}`}>
+                      {data[0]?.title}
                     </a>
                   </div>
                 </div>
-                <div className="score">{data.data.manga.score || "~"}</div>
-                <div className="counts">{data.data.manga.episodes || "~"}</div>
+                <div className="rating">{data[1] && data[1]}</div>
+                <div className="status">{data[2] && data[2]}</div>
               </div>
             ))}
         </div>

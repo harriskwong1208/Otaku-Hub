@@ -29,7 +29,7 @@ function HomePage() {
   async function getListInfo(arr, callback, type) {
     let temp = [];
     for (let i of arr) {
-      const data = await callback(i);
+      const data = await callback(i[0]);
       temp.push(data.data[type]);
     }
     temp = temp.reverse();

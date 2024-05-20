@@ -33,7 +33,7 @@
 .right-section {
   color: white;
 }
-section {
+#top-section {
   position: relative;
   margin-top: 1%;
   border-radius: 20px;
@@ -47,7 +47,7 @@ section #SignInMessage,
   display: block;
 }
 
-section #SignInMessage{
+section #SignInMessage {
   padding: 1% 0 4% 0;
   left: 0;
   right: 0;
@@ -55,10 +55,11 @@ section #SignInMessage{
   position: absolute;
   text-align: center;
 }
-#SignInMessage >  a, a:visited{
+#SignInMessage > a,
+a:visited {
   color: rgb(95, 174, 248);
 }
-#SignInMessage > a:active{
+#SignInMessage > a:active {
   color: rgb(56, 121, 182);
 }
 .List-setting {
@@ -195,4 +196,40 @@ article .background {
   height: 80%;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+#userRating {
+  display: flex;
+  margin-top: 2%;
+  width: 25%;
+  border: none;
+  box-shadow: 0 0 5px rgb(70, 67, 206);
+  border-radius: 5px;
+  padding: 1% 0 1% 1%;
+}
+#userRating span {
+  font-size: 1.1rem;
+}
+
+#animeRating {
+  margin-left: 5%;
+  border-radius: 5px;
+  padding: 2px 10px;
+}
+
+#animeStatus {
+  margin-left: 1%;
+  border-radius: 5px;
+  padding: 2px 10px;
+}
+#saveBtn {
+  margin-left: 1%;
+  background-color: rgb(107, 171, 224);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+#saveBtn:active {
+  background-color: rgb(15, 116, 199);
+  transition: 0.1s;
 }

@@ -22,14 +22,16 @@ const userSchema = new Schema({
     type: String,
     unique: true,
   },
+  //[mal_id,rating,status(watch,dropped,on Hold)]
   watchList: {
-    type: [String],
+    type: [[String, Number, String]],
   },
   friends: {
     type: [String],
   },
+  //[mal_id,rating,status(Reading,dropped,on Hold)]
   mangaList: {
-    type: [String],
+    type: [[String, Number, String]],
   },
   imageUrl: {
     type: String,

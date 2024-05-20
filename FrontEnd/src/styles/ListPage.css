@@ -21,8 +21,8 @@
 .ListPage .List .header .title {
   flex: 0.7;
 }
-.ListPage .List .header .score,
-.header-counts {
+.ListPage .List .header .rating,
+.header-status {
   flex: 0.15;
 }
 .ListPage .List .itemContainer {
@@ -67,8 +67,8 @@ a:visited {
   color: rgb(35, 155, 185);
   transition: 0.7s;
 }
-.ListPage .List .itemContainer .item .score,
-.counts {
+.ListPage .List .itemContainer .item .rating,
+.status {
   width: 15%;
   display: flex;
   justify-content: center;

@@ -1,4 +1,5 @@
 const User = require("../model/User");
+// const { param } = require("../routes/user-routes");
 
 require("dotenv").config();
 
@@ -41,9 +42,9 @@ const updateUser = async (req, res, next) => {
     email,
     password,
     subId,
-    animeId,
+    watchItem,
     friendId,
-    mangaId,
+    mangaItem,
     imageUrl,
     userName,
     fav_anime,
@@ -66,8 +67,8 @@ const updateUser = async (req, res, next) => {
       fav_manga,
       fav_character,
       $push: {
-        watchList: animeId,
-        mangaList: mangaId,
+        watchList: watchItem,
+        mangaList: mangaItem,
         friends: friendId,
       },
     });
@@ -139,6 +140,71 @@ const removeAnime = async (req, res, next) => {
     return next(e);
   }
 };
+const updateUserList = async (req, res, next) => {
+  const { id, animeId } = req.params;
+
+  const { rating, status } = req.body;
+
+  try {
+    // Find the user by id
+    let user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Find the index of the array inside watchList that has the matching animeId
+    const index = user.watchList.findIndex((item) => item[0] === animeId);
+
+    if (index === -1) {
+      return res.status(404).json({ message: "Anime not found in watch list" });
+    }
+
+    // Update the rating and status of the found array
+    user.watchList[index] = [animeId, rating, status];
+
+    // Save the updated user object
+    await user.save();
+
+    return res.status(200).json({ message: "Updated successfully" });
+  } catch (error) {
+    return next(error);
+  }
+};
+const updateUserMangaList = async (req, res, next) => {
+  const { id, mangaId } = req.params;
+
+  const { rating, status } = req.body;
+
+  try {
+    // Find the user by id
+    let user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Find the index of the array inside watchList that has the matching animeId
+    const index = user.mangaList.findIndex((item) => item[0] === mangaId);
+
+    if (index === -1) {
+      return res.status(404).json({ message: "Manga not found in watch list" });
+    }
+
+    // Update the rating and status of the found array
+    user.mangaList[index] = [mangaId, rating, status];
+
+    // Save the updated user object
+    await user.save();
+
+    return res.status(200).json({ message: "Updated successfully" });
+  } catch (error) {
+    return next(error);
+  }
+};
+exports.updateUserMangaList = updateUserMangaList;
+
+exports.updateUserList = updateUserList;
 exports.getAllUsers = getAllUsers;
 exports.addUser = addUser;
 exports.updateUser = updateUser;
