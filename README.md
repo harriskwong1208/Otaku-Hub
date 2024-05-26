@@ -2,9 +2,14 @@
 
 ## What is OtakuHub ?
 
-OtakuHub is a web application designed for anime and manga enthusiasts. Track, rate, and review your favorite series seamlessly with the user-friendly interface. Built with the MERN stack and powered by AWS Cognito for user authentication and Amplify for deployment.
+Otakuhub is a social platform designed for anime and manga lovers. It offers a suite of features, including allowing users to explore, track, and rate their favorite anime and manga. The platform provides personalized recommendations based on users' saved lists, enabling them to discover new content tailored to their preferences. Additionally, users can connect with like-minded otakus, add friends, and engage in discussions through the built-in chat feature. The platform is developed using the MERN stack (MongoDB, Express.js, React, Node.js) and utilizes AWS Cognito and Amplify for site deployment and user authentication. (In Progress, features to be implemented.)
+
+
 
  ![](./FrontEnd/src/static/otakuhub.png)
+
+## Live Site
+- https://testdeploy.d32b9itw4dzrl3.amplifyapp.com/
 
 
 ## Installation
