@@ -6,6 +6,9 @@ OtakuHub is a web application designed for anime and manga enthusiasts. Track, r
 
  ![](./FrontEnd/src/static/otakuhub.png)
 
+## Live Site
+- https://testdeploy.d32b9itw4dzrl3.amplifyapp.com/
+
 
 ## Installation
 
