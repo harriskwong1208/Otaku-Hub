@@ -1,6 +1,6 @@
 export const apiEndPoints = {
-  // backEndApi: "http://localhost:8000/api/",
-  backEndApi: "https://otakuhubbe.onrender.com/api/",
+  backEndApi: "http://localhost:8000/api/",
+  // backEndApi: "https://otakuhubbe.onrender.com/api/",
   jikan: "https://api.jikan.moe/v4/anime?q=",
   jikanById: "https://api.jikan.moe/v4/anime/",
   jikanManga: "https://api.jikan.moe/v4/manga?q=",
