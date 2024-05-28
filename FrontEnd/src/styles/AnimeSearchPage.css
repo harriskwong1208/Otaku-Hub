@@ -26,16 +26,20 @@
   background-color: rgb(64, 87, 192);
   border: none;
   transition: 1s;
-  box-shadow: 0 0 10px rgb(78, 202, 206);
+  box-shadow: 0 0 10px rgb(35, 30, 112);
 }
 .search-bar::placeholder {
   color: white;
 }
 .search-bar:focus {
   transition: 1s;
-  box-shadow: 0 0 10px rgb(235, 171, 76);
+  box-shadow: 0 0 10px rgb(154, 176, 247);
   border: none;
   outline: none;
+}
+.search-bar:hover {
+  background-color: rgb(6, 34, 128);
+  transition: 0.5s;
 }
 .search-btn {
   margin-top: 10px;
