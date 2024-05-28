@@ -206,12 +206,6 @@ export default function MangaDetailsPage() {
                 )
               : ""}
           </div>
-          <div className="mal-link">
-            <strong>More Details:</strong>{" "}
-            <a id="mal_link" target="_blank" href={manga?.url || "#"}>
-              MyAnimeList
-            </a>
-          </div>
         </div>
       </div>
       <div className="right-section">

@@ -186,12 +186,6 @@ export default function DetailsPage() {
                   : ` ${producer.name}`
               )}
           </div>
-          <div className="mal-link">
-            <strong>More Details:</strong>{" "}
-            <a id="mal_link" target="_blank" href={anime?.url || "#"}>
-              MyAnimeList
-            </a>
-          </div>
         </div>
       </div>
       <div className="right-section">
