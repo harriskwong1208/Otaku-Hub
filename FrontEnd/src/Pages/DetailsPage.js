@@ -24,7 +24,7 @@ export default function DetailsPage() {
   const animeStatus = ["Watching", "On Hold", "Dropped", "Finished"];
   const [rating, setRating] = useState(0);
   const [status, setStatus] = useState("Watching");
-
+  const [recommanded, setRecommanded] = useState();
   async function loadContent() {
     setIsLoading(true);
     try {
@@ -32,6 +32,13 @@ export default function DetailsPage() {
       const _id = await getCurrentUserId();
       _anime = _anime.data.data;
       setAnime(_anime);
+
+      //set recommanded anime
+      const recommendations = await axios.get(
+        apiEndPoints.animeRecommendations(id)
+      );
+      console.log(recommendations?.data.data);
+      setRecommanded(recommendations?.data.data.slice(0, 5));
 
       const animeByMalId = await getAnimeByMalId(_anime.mal_id);
       if (animeByMalId) {
@@ -68,7 +75,6 @@ export default function DetailsPage() {
           status: status,
         }
       );
-      console.log(response);
     } catch (e) {
       console.log(e);
       alert("Error occured while saving progress");
@@ -324,6 +330,28 @@ export default function DetailsPage() {
           ) : (
             <div id="message">Trailer unavailable.</div>
           )}
+        </div>
+        <div className="Recommanded">
+          <br></br>
+          <span id="recomTitle">Recommanded Anime</span>
+          <hr></hr>
+          <div className="recomSection">
+            {recommanded &&
+              recommanded.map((_anime, index) => (
+                <div className="recomImgContainer">
+                  <a href={`/anime/${_anime?.entry.mal_id}`} target="_blank">
+                    <img
+                      className="recomImage"
+                      src={
+                        _anime?.entry.images.jpg.large_image_url ||
+                        _anime?.entry.images.jpg.image_url ||
+                        _anime?.entry.images.jpg.small_image_url
+                      }
+                    ></img>
+                  </a>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>

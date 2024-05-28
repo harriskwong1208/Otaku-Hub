@@ -24,6 +24,8 @@ export default function MangaDetailsPage() {
   const mangaStatus = ["Reading", "On Hold", "Dropped", "Finished"];
   const [rating, setRating] = useState(0);
   const [status, setStatus] = useState("Reading");
+  const [recommanded, setRecommanded] = useState();
+
   async function getManga() {
     setIsLoading(true);
     try {
@@ -31,6 +33,13 @@ export default function MangaDetailsPage() {
       const _id = await getCurrentUserId();
       _manga = _manga.data.data;
       setManga(_manga);
+
+      //set recommanded manga
+      const recommendations = await axios.get(
+        apiEndPoints.mangaRecommendations(id)
+      );
+      console.log(recommendations?.data.data);
+      setRecommanded(recommendations?.data.data.slice(0, 5));
 
       const mangaByMalId = await getMangaByMalId(_manga.mal_id);
       if (mangaByMalId) {
@@ -327,6 +336,28 @@ export default function MangaDetailsPage() {
             {manga?.background ? manga.background : "Unavailable"}
           </div>
         </article>
+        <div className="Recommanded">
+          <br></br>
+          <span id="recomTitle">Recommanded Manga</span>
+          <hr></hr>
+          <div className="recomSection">
+            {recommanded &&
+              recommanded.map((_manga, index) => (
+                <div className="recomImgContainer">
+                  <a href={`/manga/${_manga?.entry.mal_id}`} target="_blank">
+                    <img
+                      className="recomImage"
+                      src={
+                        _manga?.entry.images.jpg.large_image_url ||
+                        _manga?.entry.images.jpg.image_url ||
+                        _manga?.entry.images.jpg.small_image_url
+                      }
+                    ></img>
+                  </a>
+                </div>
+              ))}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -238,3 +238,27 @@ article .background {
   width: 90%;
   margin: 0 auto;
 }
+.recomSection {
+  margin-top: 1%;
+}
+.Recommanded #recomTitle {
+  font-size: larger;
+  font-weight: bolder;
+}
+.Recommanded .recomSection {
+  display: grid;
+  grid-template-columns: repeat(5, 200px);
+  column-gap: 5px;
+  grid-template-rows: 300px;
+  justify-content: center;
+}
+.Recommanded .recomImgContainer {
+  width: 200px;
+  height: 280px;
+}
+.Recommanded .recomImage {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  display: block;
+}
