@@ -94,30 +94,3 @@
   width: 100%;
   max-height: 100%;
 }
-/* .Dashboard .list-content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 95%;
-  height: 90%;
-}
-.Dashboard .title {
-  padding: 0.5% 0 0.5% 1%;
-  font-size: larger;
-}
-.Dashboard .anime-container,
-.manga-container {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-.Dashboard .anime-container img {
-  cursor: pointer;
-  width: 200px;
-}
-.Dashboard .anime {
-  display: flex;
-  justify-content: center;
-} */

@@ -262,3 +262,26 @@ article .background {
   margin: auto;
   display: block;
 }
+
+.Review #reviewTitle {
+  font-size: larger;
+  font-weight: bolder;
+}
+.Review .reviewContainer {
+  margin-top: 1%;
+  padding: 1% 0 1% 1%;
+  box-shadow: 0 0 3px white;
+}
+
+.reviewContainer .title {
+  color: rgb(107, 171, 224);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.addReview {
+  background-color: rgb(53, 117, 170);
+  color: white;
+  border: none;
+  margin-left: 2%;
+  border-radius: 5px;
+}

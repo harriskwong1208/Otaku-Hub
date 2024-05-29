@@ -325,26 +325,43 @@ export default function DetailsPage() {
             <div id="message">Trailer unavailable.</div>
           )}
         </div>
-        <div className="Recommanded">
+        {recommanded?.length > 0 && (
+          <div className="Recommanded">
+            <br></br>
+            <span id="recomTitle">Recommanded Anime</span>
+            <hr></hr>
+            <div className="recomSection">
+              {recommanded &&
+                recommanded.map((_anime, index) => (
+                  <div className="recomImgContainer">
+                    <a href={`/anime/${_anime?.entry.mal_id}`} target="_blank">
+                      <img
+                        className="recomImage"
+                        src={
+                          _anime?.entry.images.jpg.large_image_url ||
+                          _anime?.entry.images.jpg.image_url ||
+                          _anime?.entry.images.jpg.small_image_url
+                        }
+                      ></img>
+                    </a>
+                  </div>
+                ))}
+            </div>
+          </div>
+        )}
+        <div className="Review">
           <br></br>
-          <span id="recomTitle">Recommanded Anime</span>
+          <span id="reviewTitle">
+            Reviews <button className="addReview">Add Review</button>
+          </span>
           <hr></hr>
-          <div className="recomSection">
-            {recommanded &&
-              recommanded.map((_anime, index) => (
-                <div className="recomImgContainer">
-                  <a href={`/anime/${_anime?.entry.mal_id}`} target="_blank">
-                    <img
-                      className="recomImage"
-                      src={
-                        _anime?.entry.images.jpg.large_image_url ||
-                        _anime?.entry.images.jpg.image_url ||
-                        _anime?.entry.images.jpg.small_image_url
-                      }
-                    ></img>
-                  </a>
-                </div>
-              ))}
+          <div className="reviewContainer">
+            <header>
+              <span className="title">Title</span> - User1 - rated 9/10
+            </header>
+            <div id="reviewDescription">
+              Lorem ipsum asdlknaslkdnaksndlnasdas
+            </div>
           </div>
         </div>
       </div>
