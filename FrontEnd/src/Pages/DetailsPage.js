@@ -25,6 +25,8 @@ export default function DetailsPage() {
   const [rating, setRating] = useState(0);
   const [status, setStatus] = useState("Watching");
   const [recommanded, setRecommanded] = useState();
+  const [edit, setEdit] = useState(false);
+
   async function loadContent() {
     setIsLoading(true);
     try {
@@ -352,9 +354,34 @@ export default function DetailsPage() {
         <div className="Review">
           <br></br>
           <span id="reviewTitle">
-            Reviews <button className="addReview">Add Review</button>
+            Reviews{" "}
+            <button className="addReview" onClick={() => setEdit(true)}>
+              Add Review
+            </button>
           </span>
           <hr></hr>
+          {edit && (
+            <div className="addReviewContainer">
+              <label for="reviewRating">Rating: </label>
+              <select name="reviewRating" id="reviewRating">
+                {ratingScale.map((num, index) => {
+                  return <option value={num}>{num}</option>;
+                })}
+              </select>
+              <label for="reviewText"></label>
+              <textarea
+                id="reviewText"
+                name="reviewText"
+                placeholder="Enter Review Here."
+              ></textarea>
+              <div className="reviewButtons">
+                <button id="reviewSaveBtn">Save</button>
+                <button id="reviewCancelBtn" onClick={() => setEdit(false)}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
           <div className="reviewContainer">
             <header>
               <span className="title">Title</span> - User1 - rated 9/10
