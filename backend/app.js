@@ -2,6 +2,8 @@ const express = require("express");
 const UserRouter = require("./routes/user-routes.js");
 const AnimeRouter = require("./routes/anime-routes.js");
 const MangaRouter = require("./routes/manga-routes.js");
+const reviewRouter = require("./routes/review-routes.js");
+
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { CognitoJwtVerifier } = require("aws-jwt-verify");
@@ -42,6 +44,7 @@ app.use(express.json());
 app.use("/api/users", UserRouter);
 app.use("/api/anime", AnimeRouter);
 app.use("/api/manga", MangaRouter);
+app.use("/api/review", reviewRouter);
 
 const PORT = process.env.PORT || 8000;
 
