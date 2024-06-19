@@ -26,6 +26,26 @@ const getAnimeById = async (req, res, next) => {
   return res.status(200).json({ anime });
 };
 
+//id = anime id from database
+//reviewId = review id from database
+const addReview = async (req, res, next) => {
+  const { id, reviewId } = req.params;
+  let anime;
+  try {
+    anime = Anime.findByIdAndUpdate(id, {
+      $push: {
+        reviews: reviewId,
+      },
+    });
+  } catch (e) {
+    return next(e);
+  }
+  if (!anime) {
+    return res.status(500).json({ msessage: "Unable to update anime." });
+  }
+  return res.status(200).json({ message: "Updated successfully" });
+};
+
 const addAnime = async (req, res, next) => {
   const {
     name,
@@ -66,7 +86,7 @@ const addAnime = async (req, res, next) => {
   }
   return res.status(201).json({ anime });
 };
-
+exports.addReview = addReview;
 exports.addAnime = addAnime;
 exports.getAnimeById = getAnimeById;
 exports.getAllAnime = getAllAnime;
