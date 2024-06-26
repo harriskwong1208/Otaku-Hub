@@ -10,7 +10,7 @@ import {
   checkUserWatchList,
   checkAndReturnAnimeFromWatchList,
 } from "../Collections/Users";
-import { addAnime, getAnimeByMalId } from "../Collections/Anime";
+import { addAnime, getAnimeByMalId, addReview } from "../Collections/Anime";
 import Error from "../components/Error";
 import LoadComponent from "../components/Loading";
 export default function DetailsPage() {
@@ -65,6 +65,12 @@ export default function DetailsPage() {
   useEffect(() => {
     loadContent();
   }, []);
+
+  // add review, return reviewid
+  //use anime mal id to return anime id from database
+  //use both id and reviewid to add review to anime
+
+  async function add_Review() {}
 
   async function saveAnimeProgress() {
     try {
@@ -375,7 +381,9 @@ export default function DetailsPage() {
                 placeholder="Enter Review Here."
               ></textarea>
               <div className="reviewButtons">
-                <button id="reviewSaveBtn">Save</button>
+                <button id="reviewSaveBtn" onClick={add_Review}>
+                  Save
+                </button>
                 <button id="reviewCancelBtn" onClick={() => setEdit(false)}>
                   Cancel
                 </button>

@@ -98,4 +98,21 @@ async function getAnime(id) {
   return anime;
 }
 
-export { addAnime, getAnimeByMalId, getAnime };
+// id = anime id from database (not mal)
+// reviewId = review id from database
+async function addReview(id, reviewId) {
+  let anime;
+  try {
+    anime = await axios.put(
+      (apiEndPoints.backEndApi = `anime/${id}/${reviewId}`)
+    );
+  } catch (e) {
+    console.log(e);
+    alert("Something went wrong, cannot add review.");
+  }
+  if (!anime) {
+    return new Error("Unable to add review");
+  }
+  return anime;
+}
+export { addAnime, getAnimeByMalId, getAnime, addReview };
