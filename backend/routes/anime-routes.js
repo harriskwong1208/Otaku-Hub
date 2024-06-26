@@ -11,5 +11,5 @@ const AnimeRouter = express.Router();
 AnimeRouter.get("/:id", getAnimeById);
 AnimeRouter.post("/", addAnime);
 AnimeRouter.get("/", getAllAnime);
-AnimeRouter.post("/:id/:reviewId", addReview);
+AnimeRouter.put("/:id/:reviewId", addReview);
 module.exports = AnimeRouter;
