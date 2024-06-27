@@ -26,6 +26,9 @@ export default function DetailsPage() {
   const [status, setStatus] = useState("Watching");
   const [recommanded, setRecommanded] = useState();
   const [edit, setEdit] = useState(false);
+  const [reviewRating, setReviewRating] = useState();
+  const [reviewTitle, setReviewTitle] = useState();
+  const [reviewDescription, setReviewDescription] = useState();
 
   async function loadContent() {
     setIsLoading(true);
@@ -70,7 +73,10 @@ export default function DetailsPage() {
   //use anime mal id to return anime id from database
   //use both id and reviewid to add review to anime
 
-  async function add_Review() {}
+  async function add_Review() {
+    alert(`${reviewRating} / ${reviewTitle}: ${reviewDescription}`);
+    setEdit(false);
+  }
 
   async function saveAnimeProgress() {
     try {
@@ -369,13 +375,33 @@ export default function DetailsPage() {
           {edit && (
             <div className="addReviewContainer">
               <label for="reviewRating">Rating: </label>
-              <select name="reviewRating" id="reviewRating">
+              <select
+                onChange={(e) => {
+                  setReviewRating(e.target.value);
+                }}
+                name="reviewRating"
+                id="reviewRating"
+              >
                 {ratingScale.map((num, index) => {
                   return <option value={num}>{num}</option>;
                 })}
               </select>
+              <label for="addReviewTitle"></label>
+              <input
+                onChange={(e) => {
+                  setReviewTitle(e.target.value);
+                }}
+                id="addReviewTitle"
+                name="addReviewTitle"
+                placeholder="Enter a title"
+                required
+              ></input>
               <label for="reviewText"></label>
               <textarea
+                onChange={(e) => {
+                  setReviewDescription(e.target.value);
+                }}
+                required
                 id="reviewText"
                 name="reviewText"
                 placeholder="Enter Review Here."

@@ -328,3 +328,12 @@ article .background {
   background-color: rgb(209, 36, 36);
   color: white;
 }
+#addReviewTitle {
+  display: block;
+  margin-top: 0.3%;
+  margin-bottom: 0.4%;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: none;
+  width: 50%;
+}
