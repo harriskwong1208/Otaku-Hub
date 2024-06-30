@@ -13,6 +13,7 @@ import {
 import { addAnime, getAnimeByMalId, addReview } from "../Collections/Anime";
 import Error from "../components/Error";
 import LoadComponent from "../components/Loading";
+import { createReview } from "../Collections/Review";
 export default function DetailsPage() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -74,8 +75,29 @@ export default function DetailsPage() {
   //use both id and reviewid to add review to anime
 
   async function add_Review() {
-    alert(`${reviewRating} / ${reviewTitle}: ${reviewDescription}`);
-    setEdit(false);
+    let userId;
+    let _review;
+    try {
+      userId = await getCurrentUserId();
+      _review = await createReview(
+        reviewTitle,
+        userId,
+        reviewRating,
+        reviewDescription
+      );
+    } catch (e) {
+      alert("Error in adding review, please try again later.");
+      console.log(e);
+    }
+    if (_review) {
+      alert("Added review");
+      console.log(_review);
+      setEdit(false);
+    } else {
+      alert("Something went wrong.");
+    }
+    // alert(`${reviewRating} / ${reviewTitle}: ${reviewDescription}`);
+    // setEdit(false);
   }
 
   async function saveAnimeProgress() {
