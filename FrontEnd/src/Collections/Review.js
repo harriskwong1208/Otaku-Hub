@@ -5,7 +5,7 @@ import { apiEndPoints } from "../apiEndpoints";
 async function createReview(title, user, rating, description) {
   let review;
   try {
-    review = await axios.post("/", {
+    review = await axios.post(apiEndPoints.backEndApi + `review/`, {
       title: title,
       user: user,
       rating: rating,
