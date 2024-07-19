@@ -30,6 +30,10 @@ export default function DetailsPage() {
   const [reviewRating, setReviewRating] = useState();
   const [reviewTitle, setReviewTitle] = useState();
   const [reviewDescription, setReviewDescription] = useState();
+  const [animeId, setAnimeId] = useState();
+  const [reviews, setReviews] = useState([]);
+
+  function loadReviews() {}
 
   async function loadContent() {
     setIsLoading(true);
@@ -43,10 +47,11 @@ export default function DetailsPage() {
       const recommendations = await axios.get(
         apiEndPoints.animeRecommendations(id)
       );
-      console.log(recommendations?.data.data);
       setRecommanded(recommendations?.data.data.slice(0, 5));
 
       const animeByMalId = await getAnimeByMalId(_anime.mal_id);
+      setAnimeId(animeByMalId._id);
+
       if (animeByMalId) {
         const animeInList = await checkUserWatchList(_id, animeByMalId._id);
         if (animeInList) {
@@ -77,6 +82,7 @@ export default function DetailsPage() {
   async function add_Review() {
     let userId;
     let _review;
+    let animeReview;
     try {
       userId = await getCurrentUserId();
       _review = await createReview(
@@ -85,17 +91,21 @@ export default function DetailsPage() {
         reviewRating,
         reviewDescription
       );
+      if (_review) {
+        animeReview = await addReview(animeId, _review?.data.review._id);
+        if (animeReview) {
+          console.log(animeReview);
+          alert("Added review");
+          setEdit(false);
+        }
+      } else {
+        alert("Something went wrong.");
+      }
     } catch (e) {
       alert("Error in adding review, please try again later.");
       console.log(e);
     }
-    if (_review) {
-      alert("Added review");
-      console.log(_review);
-      setEdit(false);
-    } else {
-      alert("Something went wrong.");
-    }
+
     // alert(`${reviewRating} / ${reviewTitle}: ${reviewDescription}`);
     // setEdit(false);
   }

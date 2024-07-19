@@ -104,15 +104,17 @@ async function addReview(id, reviewId) {
   let anime;
   try {
     anime = await axios.put(
-      (apiEndPoints.backEndApi = `anime/${id}/${reviewId}`)
+      apiEndPoints.backEndApi + `anime/${id}/${reviewId}`
     );
+    console.log(anime);
+    if (!anime) {
+      return new Error("Unable to add review");
+    }
   } catch (e) {
     console.log(e);
     alert("Something went wrong, cannot add review.");
   }
-  if (!anime) {
-    return new Error("Unable to add review");
-  }
+
   return anime;
 }
 export { addAnime, getAnimeByMalId, getAnime, addReview };
