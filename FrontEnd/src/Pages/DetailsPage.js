@@ -10,10 +10,15 @@ import {
   checkUserWatchList,
   checkAndReturnAnimeFromWatchList,
 } from "../Collections/Users";
-import { addAnime, getAnimeByMalId, addReview } from "../Collections/Anime";
+import {
+  addAnime,
+  getAnimeByMalId,
+  addReview,
+  getAnime,
+} from "../Collections/Anime";
 import Error from "../components/Error";
 import LoadComponent from "../components/Loading";
-import { createReview } from "../Collections/Review";
+import { createReview, getReview } from "../Collections/Review";
 export default function DetailsPage() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -33,7 +38,17 @@ export default function DetailsPage() {
   const [animeId, setAnimeId] = useState();
   const [reviews, setReviews] = useState([]);
 
-  function loadReviews() {}
+  //reviews: array of review ids from database
+  //Sets reviews state to contain array of review objects
+  async function loadReviews(reviews) {
+    let reviewsObj = [];
+    for (let i = 0; i < reviews.length; i++) {
+      let tempReview = await getReview(reviews[i]);
+      reviewsObj.push(tempReview.data.review);
+    }
+    console.log(reviewsObj);
+    setReviews(reviewsObj);
+  }
 
   async function loadContent() {
     setIsLoading(true);
@@ -51,7 +66,8 @@ export default function DetailsPage() {
 
       const animeByMalId = await getAnimeByMalId(_anime.mal_id);
       setAnimeId(animeByMalId._id);
-
+      let animeObj = await getAnime(animeByMalId._id);
+      loadReviews(animeObj.data.anime?.reviews);
       if (animeByMalId) {
         const animeInList = await checkUserWatchList(_id, animeByMalId._id);
         if (animeInList) {
@@ -75,6 +91,71 @@ export default function DetailsPage() {
     loadContent();
   }, []);
 
+  function displayReviews() {
+    return (
+      <div className="Review">
+        <br></br>
+        <span id="reviewTitle">
+          Reviews{" "}
+          <button className="addReview" onClick={() => setEdit(true)}>
+            Add Review
+          </button>
+        </span>
+        <hr></hr>
+        {edit && (
+          <div className="addReviewContainer">
+            <label for="reviewRating">Rating: </label>
+            <select
+              onChange={(e) => {
+                setReviewRating(e.target.value);
+              }}
+              name="reviewRating"
+              id="reviewRating"
+            >
+              {ratingScale.map((num, index) => {
+                return <option value={num}>{num}</option>;
+              })}
+            </select>
+            <label for="addReviewTitle"></label>
+            <input
+              onChange={(e) => {
+                setReviewTitle(e.target.value);
+              }}
+              id="addReviewTitle"
+              name="addReviewTitle"
+              placeholder="Enter a title"
+              required
+            ></input>
+            <label for="reviewText"></label>
+            <textarea
+              onChange={(e) => {
+                setReviewDescription(e.target.value);
+              }}
+              required
+              id="reviewText"
+              name="reviewText"
+              placeholder="Enter Review Here."
+            ></textarea>
+            <div className="reviewButtons">
+              <button id="reviewSaveBtn" onClick={add_Review}>
+                Save
+              </button>
+              <button id="reviewCancelBtn" onClick={() => setEdit(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
+        <div className="reviewContainer">
+          <header>
+            <span className="title">Title</span> - User1 - rated 9/10
+          </header>
+          <div id="reviewDescription">Lorem ipsum asdlknaslkdnaksndlnasdas</div>
+        </div>
+      </div>
+    );
+  }
+
   // add review, return reviewid
   //use anime mal id to return anime id from database
   //use both id and reviewid to add review to anime
@@ -94,7 +175,6 @@ export default function DetailsPage() {
       if (_review) {
         animeReview = await addReview(animeId, _review?.data.review._id);
         if (animeReview) {
-          console.log(animeReview);
           alert("Added review");
           setEdit(false);
         }
@@ -395,7 +475,8 @@ export default function DetailsPage() {
             </div>
           </div>
         )}
-        <div className="Review">
+        {displayReviews()}
+        {/* <div className="Review">
           <br></br>
           <span id="reviewTitle">
             Reviews{" "}
@@ -456,7 +537,7 @@ export default function DetailsPage() {
               Lorem ipsum asdlknaslkdnaksndlnasdas
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

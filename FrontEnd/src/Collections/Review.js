@@ -20,4 +20,18 @@ async function createReview(title, user, rating, description) {
   return review;
 }
 
-export { createReview };
+//id = review id from database
+async function getReview(id) {
+  let review;
+  try {
+    review = await axios.get(apiEndPoints.backEndApi + `review/${id}`);
+    if (!review) {
+      return new Error("Unable to retrieve review");
+    }
+    return review;
+  } catch (e) {
+    return new Error(e);
+  }
+}
+
+export { createReview, getReview };
