@@ -146,12 +146,22 @@ export default function DetailsPage() {
             </div>
           </div>
         )}
-        <div className="reviewContainer">
+        {reviews &&
+          reviews.map((review) => (
+            <div className="reviewContainer">
+              <header>
+                <span className="title">{review?.title}</span> - {review?.user}{" "}
+                - rated {review?.rating}/10
+              </header>
+              <div id="reviewDescription">{review?.description}</div>
+            </div>
+          ))}
+        {/* <div className="reviewContainer">
           <header>
             <span className="title">Title</span> - User1 - rated 9/10
           </header>
           <div id="reviewDescription">Lorem ipsum asdlknaslkdnaksndlnasdas</div>
-        </div>
+        </div> */}
       </div>
     );
   }
