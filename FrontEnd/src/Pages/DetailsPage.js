@@ -9,6 +9,7 @@ import {
   getCurrentUserId,
   checkUserWatchList,
   checkAndReturnAnimeFromWatchList,
+  getUserById,
 } from "../Collections/Users";
 import {
   addAnime,
@@ -44,9 +45,14 @@ export default function DetailsPage() {
     let reviewsObj = [];
     for (let i = 0; i < reviews.length; i++) {
       let tempReview = await getReview(reviews[i]);
+      console.log(i);
+      console.log(tempReview?.data.review);
+
+      let userName = await getReviewUser(tempReview?.data.review.user);
+      tempReview.data.review.user =
+        userName?.data.user.userName || userName?.data.user.name;
       reviewsObj.push(tempReview.data.review);
     }
-    console.log(reviewsObj);
     setReviews(reviewsObj);
   }
 
@@ -90,6 +96,14 @@ export default function DetailsPage() {
   useEffect(() => {
     loadContent();
   }, []);
+
+  //id= user id from database
+  //return user object
+  async function getReviewUser(id) {
+    let user = await getUserById(id);
+
+    return user;
+  }
 
   function displayReviews() {
     return (
@@ -156,12 +170,6 @@ export default function DetailsPage() {
               <div id="reviewDescription">{review?.description}</div>
             </div>
           ))}
-        {/* <div className="reviewContainer">
-          <header>
-            <span className="title">Title</span> - User1 - rated 9/10
-          </header>
-          <div id="reviewDescription">Lorem ipsum asdlknaslkdnaksndlnasdas</div>
-        </div> */}
       </div>
     );
   }
@@ -186,7 +194,8 @@ export default function DetailsPage() {
         animeReview = await addReview(animeId, _review?.data.review._id);
         if (animeReview) {
           alert("Added review");
-          setEdit(false);
+          // setEdit(false);
+          window.location.reload();
         }
       } else {
         alert("Something went wrong.");
@@ -195,9 +204,6 @@ export default function DetailsPage() {
       alert("Error in adding review, please try again later.");
       console.log(e);
     }
-
-    // alert(`${reviewRating} / ${reviewTitle}: ${reviewDescription}`);
-    // setEdit(false);
   }
 
   async function saveAnimeProgress() {
@@ -486,68 +492,6 @@ export default function DetailsPage() {
           </div>
         )}
         {displayReviews()}
-        {/* <div className="Review">
-          <br></br>
-          <span id="reviewTitle">
-            Reviews{" "}
-            <button className="addReview" onClick={() => setEdit(true)}>
-              Add Review
-            </button>
-          </span>
-          <hr></hr>
-          {edit && (
-            <div className="addReviewContainer">
-              <label for="reviewRating">Rating: </label>
-              <select
-                onChange={(e) => {
-                  setReviewRating(e.target.value);
-                }}
-                name="reviewRating"
-                id="reviewRating"
-              >
-                {ratingScale.map((num, index) => {
-                  return <option value={num}>{num}</option>;
-                })}
-              </select>
-              <label for="addReviewTitle"></label>
-              <input
-                onChange={(e) => {
-                  setReviewTitle(e.target.value);
-                }}
-                id="addReviewTitle"
-                name="addReviewTitle"
-                placeholder="Enter a title"
-                required
-              ></input>
-              <label for="reviewText"></label>
-              <textarea
-                onChange={(e) => {
-                  setReviewDescription(e.target.value);
-                }}
-                required
-                id="reviewText"
-                name="reviewText"
-                placeholder="Enter Review Here."
-              ></textarea>
-              <div className="reviewButtons">
-                <button id="reviewSaveBtn" onClick={add_Review}>
-                  Save
-                </button>
-                <button id="reviewCancelBtn" onClick={() => setEdit(false)}>
-                  Cancel
-                </button>
-              </div>
-            </div>
-          )}
-          <div className="reviewContainer">
-            <header>
-              <span className="title">Title</span> - User1 - rated 9/10
-            </header>
-            <div id="reviewDescription">
-              Lorem ipsum asdlknaslkdnaksndlnasdas
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

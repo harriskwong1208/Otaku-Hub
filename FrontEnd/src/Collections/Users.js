@@ -21,9 +21,6 @@ export async function addUserSubId(subId, id) {
   await axios.put(apiEndPoints.backEndApi + "users/" + id, {
     subId: subId,
   });
-  // await axios.put(apiEndPoints.hostedEndpoint + id,{
-  //     subId: subId
-  // });
 }
 
 export async function getUserFromCognito() {
@@ -275,5 +272,20 @@ export async function deleteAnime(id, animeId) {
   } catch (e) {
     console.log(e);
     return new Error("Error in deleting manga");
+  }
+}
+
+//id = user id from database
+//Return user object by user id
+export async function getUserById(id) {
+  let user;
+  try {
+    user = await axios.get(apiEndPoints.backEndApi + `users/${id}`);
+    if (!user) {
+      throw "Error in finding user";
+    }
+    return user;
+  } catch (e) {
+    return e;
   }
 }
