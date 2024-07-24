@@ -71,19 +71,21 @@ export default function DetailsPage() {
       setRecommanded(recommendations?.data.data.slice(0, 5));
 
       const animeByMalId = await getAnimeByMalId(_anime.mal_id);
-      setAnimeId(animeByMalId._id);
-      let animeObj = await getAnime(animeByMalId._id);
-      loadReviews(animeObj.data.anime?.reviews);
       if (animeByMalId) {
-        const animeInList = await checkUserWatchList(_id, animeByMalId._id);
-        if (animeInList) {
-          setInList(true);
-          const foundAnime = await checkAndReturnAnimeFromWatchList(
-            _id,
-            animeByMalId._id
-          );
-          setRating(foundAnime[1]);
-          setStatus(foundAnime[2]);
+        setAnimeId(animeByMalId._id);
+        let animeObj = await getAnime(animeByMalId._id);
+        loadReviews(animeObj.data.anime?.reviews);
+        if (animeByMalId) {
+          const animeInList = await checkUserWatchList(_id, animeByMalId._id);
+          if (animeInList) {
+            setInList(true);
+            const foundAnime = await checkAndReturnAnimeFromWatchList(
+              _id,
+              animeByMalId._id
+            );
+            setRating(foundAnime[1]);
+            setStatus(foundAnime[2]);
+          }
         }
       }
       setIsLoading(false);
