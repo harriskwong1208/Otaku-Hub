@@ -166,6 +166,10 @@ export default function DetailsPage() {
               <header>
                 <span className="title">{review?.title}</span> - {review?.user}{" "}
                 - rated {review?.rating}/10
+                <div className="reviewBtns">
+                  <button id="reviewEdit">Edit</button>
+                  <button id="reviewDelete">Delete</button>
+                </div>
               </header>
               <div id="reviewDescription">{review?.description}</div>
             </div>

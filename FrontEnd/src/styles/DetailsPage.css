@@ -278,6 +278,34 @@ article .background {
   font-size: 1.2rem;
   font-weight: 500;
 }
+.reviewContainer header {
+  display: flex;
+}
+.reviewContainer .reviewBtns {
+  margin-left: auto;
+  margin-right: 1%;
+  display: flex;
+}
+.reviewContainer .reviewBtns #reviewEdit {
+  margin-right: 5%;
+  background-color: rgb(107, 171, 224);
+}
+.reviewContainer .reviewBtns #reviewEdit:active {
+  background-color: rgb(25, 115, 189);
+}
+.reviewContainer .reviewBtns #reviewDelete {
+  background-color: rgb(223, 38, 38);
+}
+.reviewContainer .reviewBtns #reviewDelete:active {
+  background-color: rgb(170, 12, 12);
+}
+.reviewContainer .reviewBtns > #reviewEdit,
+#reviewDelete {
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+
 .addReview {
   background-color: rgb(53, 117, 170);
   color: white;
