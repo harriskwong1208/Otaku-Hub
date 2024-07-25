@@ -20,6 +20,7 @@ import {
 import Error from "../components/Error";
 import LoadComponent from "../components/Loading";
 import { createReview, getReview } from "../Collections/Review";
+
 export default function DetailsPage() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
