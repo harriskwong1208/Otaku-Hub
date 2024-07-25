@@ -23,6 +23,7 @@ import { createReview, getReview } from "../Collections/Review";
 export default function DetailsPage() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
+  const [userId, setUserId] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [anime, setAnime] = useState({});
   const [error, setError] = useState(null);
@@ -46,6 +47,7 @@ export default function DetailsPage() {
     for (let i = 0; i < reviews.length; i++) {
       let tempReview = await getReview(reviews[i]);
       let userName = await getReviewUser(tempReview?.data.review.user);
+      tempReview.data.review.userId = tempReview.data.review.user;
       tempReview.data.review.user =
         userName?.data.user.userName || userName?.data.user.name;
       reviewsObj.push(tempReview.data.review);
@@ -56,6 +58,9 @@ export default function DetailsPage() {
   async function loadContent() {
     setIsLoading(true);
     try {
+      const userId = await getCurrentUserId();
+      setUserId(userId);
+
       let _anime = await axios.get(apiEndPoints.jikanById + id);
       const _id = await getCurrentUserId();
       _anime = _anime.data.data;
@@ -168,10 +173,12 @@ export default function DetailsPage() {
               <header>
                 <span className="title">{review?.title}</span> - {review?.user}{" "}
                 - rated {review?.rating}/10
-                <div className="reviewBtns">
-                  <button id="reviewEdit">Edit</button>
-                  <button id="reviewDelete">Delete</button>
-                </div>
+                {userId == review?.userId && (
+                  <div className="reviewBtns">
+                    <button id="reviewEdit">Edit</button>
+                    <button id="reviewDelete">Delete</button>
+                  </div>
+                )}
               </header>
               <div id="reviewDescription">{review?.description}</div>
             </div>
