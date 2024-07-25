@@ -39,6 +39,10 @@ export default function DetailsPage() {
   const [reviewDescription, setReviewDescription] = useState();
   const [animeId, setAnimeId] = useState();
   const [reviews, setReviews] = useState([]);
+  const [userReviewEdit, setUserReviewEdit] = useState(false);
+  const [userReviewRating, setUserReviewRating] = useState();
+  const [userReviewTitle, setUserReviewTitle] = useState();
+  const [userReviewDescription, setUserReviewDescription] = useState();
 
   //reviews: array of review ids from database
   //Sets reviews state to contain array of review objects
@@ -74,9 +78,9 @@ export default function DetailsPage() {
 
       let animeByMalId = await getAnimeByMalId(_anime.mal_id);
 
-      animeByMalId = animeByMalId.data.anime;
-
       if (animeByMalId) {
+        animeByMalId = animeByMalId?.data.anime;
+
         setAnimeId(animeByMalId._id);
         let animeObj = await getAnime(animeByMalId._id);
         loadReviews(animeObj.data.anime?.reviews);
