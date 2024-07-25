@@ -45,9 +45,6 @@ export default function DetailsPage() {
     let reviewsObj = [];
     for (let i = 0; i < reviews.length; i++) {
       let tempReview = await getReview(reviews[i]);
-      console.log(i);
-      console.log(tempReview?.data.review);
-
       let userName = await getReviewUser(tempReview?.data.review.user);
       tempReview.data.review.user =
         userName?.data.user.userName || userName?.data.user.name;
@@ -70,7 +67,10 @@ export default function DetailsPage() {
       );
       setRecommanded(recommendations?.data.data.slice(0, 5));
 
-      const animeByMalId = await getAnimeByMalId(_anime.mal_id);
+      let animeByMalId = await getAnimeByMalId(_anime.mal_id);
+
+      animeByMalId = animeByMalId.data.anime;
+
       if (animeByMalId) {
         setAnimeId(animeByMalId._id);
         let animeObj = await getAnime(animeByMalId._id);

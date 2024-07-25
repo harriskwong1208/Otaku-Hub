@@ -74,14 +74,18 @@ async function addAnime(anime) {
 //Returns the anime object if found
 async function getAnimeByMalId(mal_id) {
   try {
-    let anime = await axios.get(apiEndPoints.backEndApi + "anime");
-    anime = anime.data.anime;
-    for (let i of anime) {
-      if (i.mal_id == mal_id) {
-        console.log(i);
-        return i;
-      }
-    }
+    // let anime = await axios.get(apiEndPoints.backEndApi + "anime");
+    // anime = anime.data.anime;
+    // for (let i of anime) {
+    //   if (i.mal_id == mal_id) {
+    //     console.log(i);
+    //     return i;
+    //   }
+    // }
+    let anime = await axios.get(
+      apiEndPoints.backEndApi + `anime/search/${mal_id}`
+    );
+    return anime;
   } catch (e) {
     console.log(e);
   }

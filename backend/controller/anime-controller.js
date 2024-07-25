@@ -91,6 +91,23 @@ const addAnime = async (req, res, next) => {
   }
   return res.status(201).json({ anime });
 };
+
+//Searches for anime with request mal id
+const searchAnime = async (req, res, next) => {
+  const { mal_id } = req.params;
+  let anime;
+  try {
+    anime = await Anime.findOne({ mal_id });
+  } catch (e) {
+    return next(e);
+  }
+  if (!anime) {
+    return res.status(404).json({ message: "Anime not found for mal_id." });
+  }
+  return res.status(200).json({ anime });
+};
+
+exports.searchAnime = searchAnime;
 exports.addReview = addReview;
 exports.addAnime = addAnime;
 exports.getAnimeById = getAnimeById;

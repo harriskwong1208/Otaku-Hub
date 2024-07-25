@@ -4,6 +4,7 @@ const {
   addAnime,
   getAllAnime,
   addReview,
+  searchAnime,
 } = require("../controller/anime-controller");
 const Anime = require("../model/Anime");
 const AnimeRouter = express.Router();
@@ -12,4 +13,5 @@ AnimeRouter.get("/:id", getAnimeById);
 AnimeRouter.post("/", addAnime);
 AnimeRouter.get("/", getAllAnime);
 AnimeRouter.put("/:id/:reviewId", addReview);
+AnimeRouter.get("/search/:mal_id", searchAnime);
 module.exports = AnimeRouter;
