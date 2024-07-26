@@ -38,7 +38,7 @@ function App() {
             <Route path="/user/:id" element={<UserProfile />} />
             <Route path="/mangasearch" element={<MangaSearchPage />} />
             <Route path="/manga/:id" element={<MangaDetailsPage />} />
-            <Route path="/editReview" element={<EditReview />} />
+            <Route path="/editReview/:id" element={<EditReview />} />
           </Routes>
         </BrowserRouter>
       </div>
