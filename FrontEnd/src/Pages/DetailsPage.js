@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
@@ -40,10 +40,7 @@ export default function DetailsPage() {
   const [reviewDescription, setReviewDescription] = useState();
   const [animeId, setAnimeId] = useState();
   const [reviews, setReviews] = useState([]);
-  const [userReviewEdit, setUserReviewEdit] = useState(false);
-  const [userReviewRating, setUserReviewRating] = useState();
-  const [userReviewTitle, setUserReviewTitle] = useState();
-  const [userReviewDescription, setUserReviewDescription] = useState();
+  const navigate = useNavigate();
 
   //reviews: array of review ids from database
   //Sets reviews state to contain array of review objects
@@ -180,8 +177,12 @@ export default function DetailsPage() {
                 - rated {review?.rating}/10
                 {userId == review?.userId && (
                   <div className="reviewBtns">
-                    <button id="reviewEdit">Edit</button>
-                    <button id="reviewDelete">Delete</button>
+                    <button
+                      id="reviewEdit"
+                      onClick={() => navigate(`/editReview/${review?._id}`)}
+                    >
+                      Edit
+                    </button>
                   </div>
                 )}
               </header>
