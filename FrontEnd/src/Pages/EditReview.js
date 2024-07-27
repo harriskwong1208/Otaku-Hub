@@ -5,10 +5,11 @@ import LoadComponent from "../components/Loading";
 import axios from "axios";
 import { apiEndPoints } from "../apiEndpoints";
 import Error from "../components/Error";
+import { getCurrentUserId } from "../Collections/Users";
 
 export function EditReview() {
   const { id } = useParams();
-  const [error, setError] = useState(false);
+  const [error, setError] = useState();
   const [loading, setLoading] = useState();
   const [reviewDetails, setReviewDetails] = useState();
   const ratingScale = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -20,15 +21,17 @@ export function EditReview() {
     try {
       const review = await axios.get(apiEndPoints.backEndApi + `review/${id}`);
       if (review) {
-        setReviewDetails(review?.data.review);
+        const currUser = await getCurrentUserId();
+        if (review?.data.review.user != currUser) {
+          setError(401);
+        }
         setTitle(review?.data.review.title);
         setDescription(review?.data.review.description);
         setRating(review?.data.review.rating);
       }
     } catch (e) {
       console.log(e);
-      setError(e);
-      alert("Error loading review.");
+      setError(404);
     }
   }
 
@@ -42,7 +45,7 @@ export function EditReview() {
   }, []);
 
   if (error) {
-    return <Error />;
+    return <Error code={error} />;
   }
   if (loading) {
     return <LoadComponent />;
